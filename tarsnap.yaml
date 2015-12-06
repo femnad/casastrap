@@ -1,0 +1,14 @@
+---
+- hosts: kalium
+  sudo: yes
+  pre_tasks:
+    - apt: name={{ item }} state=latest
+      with_items:
+        - gcc
+        - libc6-dev
+        - make
+        - libssl-dev
+        - zlib1g-dev
+        - e2fslibs-dev
+  tasks:
+    - script: compile-and-install-tarsnap.sh

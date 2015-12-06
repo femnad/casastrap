@@ -1,0 +1,7 @@
+---
+- hosts: kalium
+  pre_tasks:
+    - script: init-key-dir.sh
+  tasks:
+    - copy: src=~/.tarsnaprc dest=~/.tarsnaprc
+    - copy: src=~/z/zr/syncrotron.key dest=~/z/zr/syncrotron.key

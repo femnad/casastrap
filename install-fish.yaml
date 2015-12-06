@@ -1,0 +1,14 @@
+---
+- hosts: kalium
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes    
+      with_items:
+        - build-essential
+        - ncurses-dev
+        - libncurses5-dev
+        - gettext
+        - autoconf
+        - automake
+  tasks:
+    - script: install-fish.sh

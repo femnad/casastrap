@@ -1,0 +1,4 @@
+---
+- hosts: kalium
+  tasks:
+    script: tarsnap-sync.sh
