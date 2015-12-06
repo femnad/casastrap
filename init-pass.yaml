@@ -1,0 +1,9 @@
+---
+- hosts: kalium
+  tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - gnupg2
+        - git
+        - pass
