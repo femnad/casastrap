@@ -1,13 +1,11 @@
 ---
-- hosts: kalium
+- hosts: francium
   pre_tasks:
     - apt: name={{item}} state=latest
       become: yes
-      become_method: su
       with_items:
         - ruby
         - git
     - gem: name=homesick state=latest user_install=yes
-    - script: add-gems-bin-to-path.sh
   tasks:
-    - script: clone-dotfiles.sh
+    - script: add-gems-bin-to-path.sh

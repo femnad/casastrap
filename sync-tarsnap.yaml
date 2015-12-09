@@ -1,4 +1,4 @@
 ---
-- hosts: kalium
+- hosts: francium
   tasks:
-    script: tarsnap-sync.sh
+    - script: tarsnap-sync.sh
