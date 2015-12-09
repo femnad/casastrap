@@ -1,5 +1,5 @@
 ---
-- hosts: kalium
+- hosts: all
   pre_tasks:
     - script: init-key-dir.sh
   tasks:

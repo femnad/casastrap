@@ -1,4 +1,4 @@
 ---
-- hosts: francium
+- hosts: all
   tasks:
     - script: tarsnap-sync.sh

@@ -1,5 +1,5 @@
 ---
-- hosts: kalium
+- hosts: all
   sudo: yes
   pre_tasks:
     - apt: name={{ item }} state=latest

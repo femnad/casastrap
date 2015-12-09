@@ -1,5 +1,5 @@
 ---
-- hosts: kalium
+- hosts: all
   tasks:
     - apt: name={{item}} state=latest
       become: yes
