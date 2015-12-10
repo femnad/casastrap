@@ -1,0 +1,10 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - firefox
+        - zip
+  tasks:
+    - script: init-firefox.sh
