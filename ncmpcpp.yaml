@@ -1,0 +1,15 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - libboost1.58-dev
+        - libboost-filesystem1.58-dev
+        - libboost-locale1.58-dev        
+        - libboost-program-options1.58-dev
+        - libboost-regex1.58-dev
+        - libboost-thread1.58-dev
+
+  tasks:
+    - script: install-ncmpcpp.sh

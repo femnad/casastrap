@@ -1,0 +1,13 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - mercurial
+        - lynx
+        - libtokyocabinet-dev
+        - libsasl2-dev
+  tasks:
+    - hg: repo=http://dev.mutt.org/hg/mutt dest=~/z/gl/mutt
+    - script: install-mutt.sh
