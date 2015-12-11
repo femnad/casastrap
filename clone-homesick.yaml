@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - git: repo=git://gitlab.com:femnad/base.git dest=/tmp accept_hostkey=true
+    - script: clone-and-symlink-castle.sh {{item}}
+      with_items:
+        - base
+        - basic
