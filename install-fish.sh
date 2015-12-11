@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir ~/z/gl
+mkdir -p ~/z/gl
 cd ~/z/gl
 git clone https://github.com/fish-shell/fish-shell.git
 cd fish-shell

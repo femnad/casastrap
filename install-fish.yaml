@@ -8,6 +8,7 @@
         - ncurses-dev
         - libncurses5-dev
         - gettext
+        - git
         - autoconf
         - automake
   tasks:
