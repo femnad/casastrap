@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 cd ~/z/gl/mutt
-autoconf
+autoreconf -i
 ./configure --enable-{imap,smtp,hcache} --with-{ssl,sasl}
 make
 sudo make install
