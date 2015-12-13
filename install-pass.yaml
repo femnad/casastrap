@@ -7,3 +7,4 @@
         - gnupg2
         - git
         - pass
+    - script: init-pass.sh
