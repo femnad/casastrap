@@ -6,3 +6,4 @@ autoreconf -i
 make
 sudo make install
 mkdir -p ~/.cache/mutt/{sa,fm,gm}{header,message}
+touch ~/.mutt/{sa,fm,gm}aliases
