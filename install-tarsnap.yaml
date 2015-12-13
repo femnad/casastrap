@@ -1,8 +1,8 @@
 ---
 - hosts: all
-  sudo: yes
   pre_tasks:
     - apt: name={{ item }} state=latest
+      become: yes
       with_items:
         - gcc
         - libc6-dev
@@ -11,4 +11,4 @@
         - zlib1g-dev
         - e2fslibs-dev
   tasks:
-    - script: compile-and-install-tarsnap.sh
+    - script: install-tarsnap.sh

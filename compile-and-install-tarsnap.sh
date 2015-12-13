@@ -10,4 +10,3 @@ cd $install_dir
 ./configure
 make all
 sudo make install
-chown -R femnad:femnad $install_base
