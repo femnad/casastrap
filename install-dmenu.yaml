@@ -1,0 +1,11 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - libfreetype6-dev
+        - libxft-dev
+  tasks:
+    - git: repo=git://git.suckless.org/dmenu dest=~/z/gl/dmenu accept_hostkey=yes
+    - script: install-dmenu.sh

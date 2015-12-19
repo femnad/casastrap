@@ -4,12 +4,15 @@
     - apt: name={{item}} state=latest
       become: yes
       with_items:
+        - libmpdclient-dev
         - libboost1.58-dev
         - libboost-filesystem1.58-dev
         - libboost-locale1.58-dev        
         - libboost-program-options1.58-dev
         - libboost-regex1.58-dev
         - libboost-thread1.58-dev
-
+        - libreadline-dev
+        - libncurses5-dev
+        - libncursesw5-dev
   tasks:
     - script: install-ncmpcpp.sh

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 timestamp=$(date +"%s")
 mkdir "/tmp/$timestamp"
 temp_archive="/tmp/$timestamp/libspotify.tar.gz"
