@@ -7,3 +7,9 @@
         - emacs
         - vim
         - surfraw
+      when: ansible_os_family == "Debian"
+    - dnf: name={{item}} state=latest
+      become: yes
+      with_items:
+        - emacs
+        - vim
