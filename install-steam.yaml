@@ -1,0 +1,11 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - zenity
+        - curl
+        - jockey-common
+  tasks:
+    - script: install-steam.sh
