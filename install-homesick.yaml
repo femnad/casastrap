@@ -6,6 +6,14 @@
       with_items:
         - ruby
         - git
+      when: ansible_os_family == "Debian"
+    - dnf: name={{item}} state=latest
+      become: yes
+      with_items:
+        - ruby
+        - git
+      when: ansible_distribution == "Fedora"
     - gem: name=homesick state=latest user_install=yes
   tasks:
     - script: add-gems-bin-to-path.sh
+      when: ansible_os_family == "Debian"
