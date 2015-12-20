@@ -7,4 +7,12 @@
         - gnupg2
         - git
         - pass
+      when: ansible_os_family == "Debian"
+    - dnf: name={{item}} state=latest
+      become: yes
+      with_items:
+        - gnupg2
+        - git
+        - pass
+      when: ansible_distribution == "Fedora"
     - script: init-pass.sh

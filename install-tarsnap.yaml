@@ -10,5 +10,16 @@
         - libssl-dev
         - zlib1g-dev
         - e2fslibs-dev
+      when: ansible_os_family == "Debian"
+    - dnf: name={{ item }} state=latest
+      become: yes
+      with_items:
+        - gcc
+        - glibc-devel
+        - make
+        - openssl-devel
+        - zlib-devel
+        - e2fsprogs-devel
+      when: ansible_distribution == "Fedora"
   tasks:
     - script: install-tarsnap.sh

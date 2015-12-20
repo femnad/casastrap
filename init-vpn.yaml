@@ -1,0 +1,15 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      when: ansible_os_family == "Debian"
+      with_items:
+        - openvpn
+        - unzip
+    - dnf: name={{item}} state=latest
+      when: ansible_os_family == "Redhat"
+      with_items:
+        - openvpn
+        - unzip
+  tasks:
+    - script: init-pia-scripts.sh
