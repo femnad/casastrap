@@ -1,0 +1,14 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - git
+        - sbcl
+        - autoconf
+        - x11-utils
+        - texinfo
+    - git: repo=https://github.com/stumpwm/stumpwm dest=~/z/gl/stumpwm
+  tasks:
+    - script: install-stumpwm.sh
