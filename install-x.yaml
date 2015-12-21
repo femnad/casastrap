@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - xinit
+        - xinput
+        - mesa-utils
+        - xfonts-scalable
+        - xdm
+      when: ansible_os_family == "Debian"
