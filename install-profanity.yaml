@@ -1,0 +1,20 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - pkg-config
+        - libxml2-dev
+        - libtool
+        - libexpat1-dev
+        - libncurses5-dev
+        - libncursesw5-dev
+        - libglib2.0-dev
+        - libcurl4-openssl-dev
+        - libreadline6-dev
+        - uuid-dev
+    - git: repo=https://github.com/strophe/libstrophe.git dest=~/z/gl/libstrophe
+    - script: install-libstrophe.sh
+  tasks:
+    - script: install-profanity.sh
