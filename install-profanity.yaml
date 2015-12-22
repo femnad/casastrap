@@ -14,6 +14,7 @@
         - libcurl4-openssl-dev
         - libreadline6-dev
         - uuid-dev
+        - libnotify-dev
     - git: repo=https://github.com/strophe/libstrophe.git dest=~/z/gl/libstrophe
     - script: install-libstrophe.sh
   tasks:

@@ -6,6 +6,6 @@ mkdir -p ~/z/dy
 tar xvf profanity-0.4.7.tar.gz -C ~/z/dy
 cd ~/z/dy/profanity-0.4.7
 ./bootstrap.sh
-./configure
+./configure --enable-notifications
 make
 sudo make install

@@ -1,0 +1,8 @@
+---
+- hosts: all
+  pre_tasks:
+    - apt: name=libxrandr-dev state=latest
+      become: yes
+  tasks:
+    - git: repo=git://git.suckless.org/slock dest=~/z/gl/slock accept_hostkey=yes
+    - script: install-slock.sh
