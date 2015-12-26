@@ -14,12 +14,12 @@
       when: ansible_os_family == "Debian"
     - dnf: name={{item}} state=latest
       become: yes
-      when: ansible_distribution == "Fedora"
       with_items:
         - autoconf
         - automake
         - gcc-c++
         - ncurses-devel
+      when: ansible_distribution == "Fedora"
   tasks:
     - git: repo=https://github.com/fish-shell/fish-shell.git dest=~/z/dy/fish-shell
     - script: install-fish.sh

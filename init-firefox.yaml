@@ -6,5 +6,13 @@
       with_items:
         - firefox
         - zip
+      when: ansible_os_family == "Debian"
+    - dnf: name={{item}} state=latest
+      become: yes
+      with_items:
+        - firefox
+        - zip
+      when: ansible_distribution == "Fedora"
   tasks:
+    - git: repo=https://github.com/5digits/dactyl dest=~/z/gl/dactyl
     - script: init-firefox.sh
