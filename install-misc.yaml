@@ -7,6 +7,7 @@
         - emacs
         - vim
         - surfraw
+        - w3m
         - xdotool
       when: ansible_os_family == "Debian"
     - dnf: name={{item}} state=latest
@@ -15,6 +16,7 @@
         - emacs
         - vim
         - surfraw
+        - w3m
         - xdotool
       when: ansible_distribution == "Fedora"
     - git: repo=https://github.com/tpope/vim-pathogen.git dest=/tmp/vim-pathogen
