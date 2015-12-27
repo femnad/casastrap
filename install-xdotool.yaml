@@ -1,0 +1,12 @@
+---
+- hosts: all
+  pre_tasks:
+    - dnf: name={{item}} state=latest
+      when: ansible_distribution == "Fedora"
+      become: yes
+      with_items:
+        - libxkbcommon-devel
+        - libXtst-devel
+  tasks:
+    - git: repo=https://github.com/jordansissel/xdotool dest=~/z/gl/xdotool accept_hostkey=yes
+    - script: install-xdotool.sh

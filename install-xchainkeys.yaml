@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - git: repo=https://github.com/hbekel/xchainkeys.git dest=~/z/gl/xchainkeys accept_hostkey=yes
+    - script: install-xchainkeys.sh

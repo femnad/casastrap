@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - git: repo=https://github.com/robm/dzen.git dest=~/z/gl/dzen accept_hostkey=yes
+    - script: install-dzen.sh
