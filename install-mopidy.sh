@@ -5,6 +5,7 @@ mkdir "/tmp/$timestamp"
 temp_archive="/tmp/$timestamp/libspotify.tar.gz"
 wget https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-x86_64-release.tar.gz -O $temp_archive
 tar xvf $temp_archive -C ~/z/dy/
+sudo su -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/usr-local-lib.conf'
 cd ~/z/dy/libspotify-12.1.51-Linux-x86_64-release
 sudo make install
 pip install mopidy --user
