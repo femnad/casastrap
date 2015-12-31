@@ -10,5 +10,19 @@
         - gstreamer0.10-tools
         - dtach
         - python-dev
+      when: ansible_os_family == "Debian"
+    - dnf: name={{item}} state=latest
+      become: yes
+      with_items:
+        - gcc
+        - gstreamer-python
+        - gstreamer-plugins-good
+        - gstreamer-plugins-ugly
+        - gstreamer-plugins-bad-free
+        - gstreamer-plugins-bad-nonfree
+        - libffi-devel
+        - python-devel
+        - python-pip
+      when: ansible_distribution == "Fedora"
   tasks:
     - script: install-mopidy.sh
