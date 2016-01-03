@@ -8,6 +8,15 @@
         - lynx
         - libtokyocabinet-dev
         - libsasl2-dev
+      when: ansible_os_family == "Debian"
+    - dnf: name={{item}} state=latest
+      become: yes
+      with_items:
+        - cyrus-sasl-devel
+        - lynx
+        - mercurial
+        - tokyocabinet-devel
+      when: ansible_distribution == "Fedora"
   tasks:
     - hg: repo=http://dev.mutt.org/hg/mutt dest=~/z/gl/mutt
     - script: install-mutt.sh
