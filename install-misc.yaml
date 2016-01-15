@@ -5,8 +5,10 @@
       become: yes
       with_items:
         - emacs
-        - vim
+        - screen
         - surfraw
+        - tmux
+        - vim
         - w3m
         - xdotool
       when: ansible_os_family == "Debian"
@@ -14,8 +16,10 @@
       become: yes
       with_items:
         - emacs
-        - vim
+        - screen
         - surfraw
+        - tmux
+        - vim
         - w3m
         - xdotool
       when: ansible_distribution == "Fedora"
