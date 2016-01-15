@@ -1,8 +1,10 @@
 ---
 - hosts: all
+  vars:
+    - repo_dest: ~/z/gl/fish-shell
   pre_tasks:
     - apt: name={{item}} state=latest
-      become: yes    
+      become: yes
       with_items:
         - build-essential
         - ncurses-dev
@@ -11,6 +13,7 @@
         - git
         - autoconf
         - automake
+        - libtool
       when: ansible_os_family == "Debian"
     - dnf: name={{item}} state=latest
       become: yes
@@ -19,7 +22,13 @@
         - automake
         - gcc-c++
         - ncurses-devel
+        - libtool
       when: ansible_distribution == "Fedora"
   tasks:
     - git: repo=https://github.com/fish-shell/fish-shell.git dest=~/z/dy/fish-shell
     - script: install-fish.sh
+  tasks:
+    - name: clone repo
+      git: repo=https://github.com/fish-shell/fish-shell.git dest={{repo_dest}}
+    - script: install-fish.sh {{repo_dest}}
+      become: yes

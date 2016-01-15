@@ -1,6 +1,6 @@
 #!/bin/bash
-cd ~/z/dy/fish-shell
-autoconf
+cd "$1"
+autoreconf
 ./configure
 make
-sudo make install
+make install
