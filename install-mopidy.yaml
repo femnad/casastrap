@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars:
+    - extract_libspotify_to: /home/femnad/z/dy
   pre_tasks:
     - apt: name={{item}} state=latest
       become: yes
@@ -26,4 +28,5 @@
         - python-pip
       when: ansible_distribution == "Fedora"
   tasks:
-    - script: install-mopidy.sh
+    - script: install-mopidy.sh {{extract_libspotify_to}}
+      become: yes
