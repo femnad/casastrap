@@ -1,5 +1,9 @@
 ---
 - hosts: all
+  pre_tasks:
+    - name: Install lynx
+      apt: name=lynx state=latest
+      become: yes
   tasks:
-    - git: repo=git@gitlab.com:femnad/base.git dest=/tmp/homesick-base accept_hostkey=true
-    - script: clone-and-symlink-castle.sh
+    - name: Clone and symlink homesick castles
+      script: clone-and-symlink-castle.sh

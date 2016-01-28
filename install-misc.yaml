@@ -24,5 +24,5 @@
         - xdotool
       when: ansible_distribution == "Fedora"
     - git: repo=https://github.com/tpope/vim-pathogen.git dest=/tmp/vim-pathogen
-    - command: mkdir -p ~/.vim/autoload
+    - file: path=/home/femnad/.vim/autoload state=directory
     - command: cp -r /tmp/vim-pathogen/autoload/pathogen.vim ~/.vim/autoload

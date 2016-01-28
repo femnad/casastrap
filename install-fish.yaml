@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-    - repo_dest: ~/z/gl/fish-shell
+    - repo_dest: /home/femnad/z/gl/fish-shell
   pre_tasks:
     - apt: name={{item}} state=latest
       become: yes
@@ -25,10 +25,8 @@
         - libtool
       when: ansible_distribution == "Fedora"
   tasks:
-    - git: repo=https://github.com/fish-shell/fish-shell.git dest=~/z/dy/fish-shell
-    - script: install-fish.sh
-  tasks:
-    - name: clone repo
+    - name: Clone repo
       git: repo=https://github.com/fish-shell/fish-shell.git dest={{repo_dest}}
-    - script: install-fish.sh {{repo_dest}}
+    - name: Install fish
+      script: install-fish.sh {{repo_dest}}
       become: yes
