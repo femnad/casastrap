@@ -1,5 +1,8 @@
 ---
 - hosts: all
+  vars:
+    - key_file_location: /home/femnad/stuff/keyfile
+      gpg_id: etmoi
   tasks:
     - apt: name={{item}} state=latest
       become: yes
@@ -15,4 +18,4 @@
         - git
         - pass
       when: ansible_distribution == "Fedora"
-    - script: init-pass.sh
+    - script: init-pass.sh {{key_file_location}} {{gpg_id}}

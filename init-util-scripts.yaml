@@ -1,7 +1,0 @@
----
-- hosts: all
-  tasks:
-    - git: repo=git@gitlab.com:femnad/protection-from-scriptification.git dest=~/z/fm/protection-from-scriptification
-    - git: repo=git@gitlab.com:femnad/dzenitor.git dest=~/z/fm/dzenitor
-    - git: repo=git@gitlab.com:femnad/ysnpassmenu.git dest=~/z/fm/ysnpassmenu
-    - script: symlink-scripts.sh

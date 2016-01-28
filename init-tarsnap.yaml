@@ -1,6 +1,7 @@
 ---
 - hosts: all
+  vars:
+    key_location: /home/femnad/key
+    key_destination: /home/femnad/key-store/key
   tasks:
-    - command: mkdir -p ~/z/zr
-    - copy: src=~/.tarsnaprc dest=~/.tarsnaprc
-    - copy: src=~/z/zr/syncrotron.key dest=~/z/zr/syncrotron.key
+    - copy: src={{key_location}} dest={{key_destination}}
