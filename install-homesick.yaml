@@ -13,7 +13,9 @@
         - ruby
         - git
       when: ansible_distribution == "Fedora"
-    - gem: name=homesick state=latest user_install=yes
+    - name: Install homesick gem
+      gem: name=homesick state=latest user_install=yes
+      tags: gem-install
   tasks:
     - script: add-gems-bin-to-path.sh
       when: ansible_os_family == "Debian"

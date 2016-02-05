@@ -1,0 +1,6 @@
+---
+- hosts: all
+  vars:
+    - username: femnad
+  tasks:
+    - user: name={{username}} group=users shell=/bin/bash
