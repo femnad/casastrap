@@ -1,0 +1,24 @@
+---
+- hosts: all
+  vars:
+    - local_home: "{{ lookup('env', 'HOME') }}"
+    - clone_dir: "{{local_home}}/z/gl/lnav"
+  pre_tasks:
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest
+      with_items:
+        - libgpm-dev
+        - libncurses5-dev
+        - libncursesw5-dev
+        - libreadline-dev
+      become: yes
+      when: ansible_os_family == "Debian"
+      tags: install
+  tasks:
+    - name: Clone lnav repository
+      git: repo=https://github.com/tstack/lnav.git dest={{clone_dir}}
+      tags: clone
+    - name: Run lnav installation script
+      script: install-lnav.sh {{clone_dir}}
+      become: yes
+      tags: install
