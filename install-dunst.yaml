@@ -1,0 +1,22 @@
+---
+- hosts: all
+  vars:
+    - home: "{{ lookup('env', 'HOME') }}"  
+    - clone_dir: "{{home}}/z/gl/dunst"
+  pre_tasks:
+    - name: Install requirements with dnf
+      dnf: name={{item}} state=latest
+      with_items:
+        - cairo-devel
+        - dbus-devel
+        - libxdg-basedir-devel
+        - libXScrnSaver-devel
+        - pango-devel
+      when: ansible_distribution == "Fedora"
+      become: yes
+  tasks:
+    - name: Clone the repository
+      git: repo=https://github.com/knopwob/dunst.git dest="{{clone_dir}}"
+    - name: Install dunst
+      script: install-dunst.sh {{clone_dir}}
+      become: yes
