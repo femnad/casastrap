@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars:
+    - user_home: "{{lookup('env', 'HOME')}}"
+    - repo_dest: "{{user_home}}/z/gl/jq"
+  tasks:
+    - name: Clone the jq repository
+      git: repo=https://github.com/stedolan/jq.git dest="{{repo_dest}}"
+      tags: clone
+    - name: Install jq
+      script: install-jq.sh {{repo_dest}}
+      become: yes
+      tags: install
