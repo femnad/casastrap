@@ -10,5 +10,6 @@ for ovpn_file in "$scripts_dir/"*.ovpn
 do
     sed -i '/^$/d' "$ovpn_file"
     echo 'auth-user-pass up' >> "$ovpn_file"
+    echo 'auth-nocache' >> "$ovpn_file"
 done
 chmod 600 "$auth_user_pass_file"
