@@ -1,15 +1,20 @@
 ---
 - hosts: all
+  vars:
+    - home: "{{lookup('env', 'HOME')}}"
+    - scripts_dir: "{{home}}/z/ce"
   pre_tasks:
     - apt: name={{item}} state=latest
       when: ansible_os_family == "Debian"
       with_items:
         - openvpn
         - unzip
+      become: yes
     - dnf: name={{item}} state=latest
       when: ansible_distribution == "Fedora"
       with_items:
         - openvpn
         - unzip
+      become: yes
   tasks:
-    - script: init-pia-scripts.sh
+    - script: init-pia-scripts.sh {{scripts_dir}}
