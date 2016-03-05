@@ -25,5 +25,6 @@
       gem: name=homesick state=latest user_install=yes
       tags: gem-install
   tasks:
-    - script: add-gems-bin-to-path.sh
-      when: ansible_os_family == "Debian"
+    - name: Add gem bin directory to PATH
+      script: add-gems-bin-to-path.sh
+      tags: add-path

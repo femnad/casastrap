@@ -1,9 +1,20 @@
 ---
 - hosts: all
   pre_tasks:
-    - name: Install lynx
+    - name: Install lynx with apt
       apt: name=lynx state=latest
       become: yes
+      when: ansible_os_family == "Debian"
+      tags: install-req
+    - name: Install lynx with portage
+      portage: name=www-client/lynx state=present
+      become: yes
+      when: ansible_distribution == "Gentoo"
+      tags: install-req
   tasks:
+    - name: Pre-approve host key for Gitlab
+      git: repo=git@gitlab.com:femnad/base.git dest=/tmp/base accept_hostkey=yes
+      tags: pre-clone
     - name: Clone and symlink homesick castles
       script: clone-and-symlink-castle.sh
+      tags: clone
