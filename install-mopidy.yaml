@@ -1,9 +1,10 @@
 ---
 - hosts: all
-  vars:
-    - extract_libspotify_to: /home/femnad/z/dy
+  vars_files:
+    - paths.yaml
   pre_tasks:
-    - apt: name={{item}} state=latest
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest
       become: yes
       with_items:
         - python-gst0.10
@@ -13,7 +14,9 @@
         - dtach
         - python-dev
       when: ansible_os_family == "Debian"
-    - dnf: name={{item}} state=latest
+      tags: install-reqs
+    - name: Install requirements with dnf
+      dnf: name={{item}} state=latest
       become: yes
       with_items:
         - dtach
@@ -27,6 +30,17 @@
         - python-devel
         - python-pip
       when: ansible_distribution == "Fedora"
+      tags: install-reqs
   tasks:
-    - script: install-mopidy.sh {{extract_libspotify_to}}
+    - name: Install libspotify;
+      script: install-libspotify.sh {{release_download_path}}
+      tags: install-libs
       become: yes
+    - name: Install pip packages
+      pip: name={{item}} virtualenv={{common_virtualenv}}
+      with_items:
+        - mopidy
+        - pyspotify
+        - Mopidy-Spotify
+        - Mopidy-Spotify-Tunigo
+      tags: install
