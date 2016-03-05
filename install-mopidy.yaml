@@ -2,6 +2,8 @@
 - hosts: all
   vars_files:
     - paths.yaml
+  vars:
+    - mopidy_virtualenv: "{{ virtualenv_path }}/mopidy_venv"
   pre_tasks:
     - name: Install requirements with apt
       apt: name={{item}} state=latest
@@ -31,13 +33,26 @@
         - python-pip
       when: ansible_distribution == "Fedora"
       tags: install-reqs
+    - name: Install requirements with portage
+      portage: name={{item}} state=present
+      with_items:
+        - dev-python/pygobject
+        - media-libs/gstreamer
+        - gst-plugins/bad
+        - gst-plugins/base
+        - gst-plugins/good
+        - gst-plugins/ugly
+        - gst-python
+      become: yes
+      tags: install-reqs
+      when: ansible_distribution == "Gentoo"
   tasks:
     - name: Install libspotify;
       script: install-libspotify.sh {{release_download_path}}
       tags: install-libs
       become: yes
     - name: Install pip packages
-      pip: name={{item}} virtualenv={{common_virtualenv}}
+      pip: name={{item}} virtualenv={{mopidy_virtualenv}} virtualenv_site_packages=yes
       with_items:
         - mopidy
         - pyspotify
