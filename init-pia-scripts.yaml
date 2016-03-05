@@ -11,10 +11,16 @@
         - unzip
       become: yes
     - dnf: name={{item}} state=latest
-      when: ansible_distribution == "Fedora"
       with_items:
         - openvpn
         - unzip
       become: yes
+      when: ansible_distribution == "Fedora"
+    - name: Install requirements with portage
+      portage: name=openvpn state=present
+      become: yes
+      tags: install-reqs
+      when: ansible_distribution == "Gentoo"
   tasks:
     - script: init-pia-scripts.sh {{scripts_dir}}
+      tags: genscripts

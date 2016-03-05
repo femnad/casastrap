@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
-cd ~/z/gl/stumpwm
+
+repo_path="$1"
+
+cd $repo_path
+./autogen.sh
 ./configure
 make
 make install

@@ -1,5 +1,9 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
+  vars:
+    - repo_path: "{{repo_clone_path}}/stumpwm"
   pre_tasks:
     - apt: name={{item}} state=latest
       become: yes
@@ -9,6 +13,16 @@
         - autoconf
         - x11-utils
         - texinfo
-    - git: repo=https://github.com/stumpwm/stumpwm dest=~/z/gl/stumpwm
+      when: ansible_os_family == "Debian"
+    - name: Install requirements with portage
+      portage: name=dev-lisp/sbcl state=present
+      become: yes
+      when: ansible_distribution == "Gentoo"
+      tags: install-reqs
   tasks:
-    - script: install-stumpwm.sh
+    - name: Clone Stumpwm repo
+      git: repo=https://github.com/stumpwm/stumpwm dest={{repo_path}}
+    - name: Install Stumpwm
+      script: install-stumpwm.sh {{repo_path}}
+      become: yes
+      tags: install

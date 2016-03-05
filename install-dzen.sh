@@ -1,5 +1,8 @@
 #!/bin/bash
 set -e
-cd ~/z/gl/dzen
+
+repo_path="$1"
+
+cd $repo_path
 make
-sudo make install
+make install
