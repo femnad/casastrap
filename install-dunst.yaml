@@ -14,6 +14,11 @@
         - pango-devel
       when: ansible_distribution == "Fedora"
       become: yes
+    - name: Install requirements with portage
+      portage: name=dev-libs/libxdg-basedir state=present
+      when: ansible_distribution == "Gentoo"
+      tags: reqs
+      become: yes
   tasks:
     - name: Clone the repository
       git: repo=https://github.com/knopwob/dunst.git dest="{{clone_dir}}"
