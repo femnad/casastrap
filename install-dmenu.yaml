@@ -1,5 +1,9 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
+  vars:
+    - dmenu_path: "{{repo_clone_path}}/dmenu"
   pre_tasks:
     - apt: name={{item}} state=latest
       become: yes
@@ -15,6 +19,13 @@
         - libXft-devel
         - libXinerama-devel
       when: ansible_distribution == "Fedora"
+    - name: Install requirements with portage
+      portage: name=x11-libs/libXinerama state=present
+      become: yes
+      tags: install-reqs
+      when: ansible_distribution == "Gentoo"
   tasks:
-    - git: repo=git://git.suckless.org/dmenu dest=~/z/gl/dmenu accept_hostkey=yes
-    - script: install-dmenu.sh
+    - git: repo=git://git.suckless.org/dmenu dest={{dmenu_path}} accept_hostkey=yes
+    - script: install-dmenu.sh {{dmenu_path}}
+      tags: install
+      become: yes

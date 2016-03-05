@@ -1,4 +1,7 @@
 #!/bin/bash
-cd ~/z/gl/dmenu
+set -e
+
+repo_path="$1"
+cd $repo_path
 make
-sudo make install
+make install
