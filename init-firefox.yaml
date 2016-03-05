@@ -1,5 +1,9 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
+  vars:
+    dactyl_path: "{{repo_clone_path}}/dactyl"
   pre_tasks:
     - apt: name={{item}} state=latest
       become: yes
@@ -14,5 +18,7 @@
         - zip
       when: ansible_distribution == "Fedora"
   tasks:
-    - git: repo=https://github.com/5digits/dactyl dest=~/z/gl/dactyl
-    - script: init-firefox.sh
+    - git: repo=https://github.com/5digits/dactyl dest={{dactyl_path}}
+    - name: Install pentadactyl
+      script: init-firefox.sh {{dactyl_path}}
+      tags: install
