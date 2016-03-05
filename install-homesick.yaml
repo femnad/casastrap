@@ -13,6 +13,14 @@
         - ruby
         - git
       when: ansible_distribution == "Fedora"
+    - name: Install requirements with portage
+      portage: name={{item}} state=present
+      with_items:
+        - dev-lang/ruby
+        - dev-vcs/git
+      become: yes
+      tags: install-req
+      when: ansible_distribution == "Gentoo"
     - name: Install homesick gem
       gem: name=homesick state=latest user_install=yes
       tags: gem-install

@@ -1,21 +1,21 @@
 ---
-- hosts: all
+- vars_files:
+    - paths.yaml
+  hosts: all
   pre_tasks:
-    - apt: name={{item}} state=latest
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest
       become: yes
       with_items:
         - libmpdclient-dev
-        - libboost1.58-dev
-        - libboost-filesystem1.58-dev
-        - libboost-locale1.58-dev        
-        - libboost-program-options1.58-dev
-        - libboost-regex1.58-dev
-        - libboost-thread1.58-dev
+        - libboost-all-dev
         - libreadline-dev
         - libncurses5-dev
         - libncursesw5-dev
       when: ansible_os_family == "Debian"
-    - dnf: name={{item}} state=latest
+      tags: install-reqs
+    - name: Install requirements with dnf
+      dnf: name={{item}} state=latest
       become: yes
       with_items:
         - boost
@@ -30,5 +30,8 @@
         - readline-devel
       when:
         - ansible_distribution == "Fedora"
+      tags: install-reqs
   tasks:
-    - script: install-ncmpcpp.sh
+    - name: Install ncmpcpp
+      script: install-ncmpcpp.sh {{release_download_path}}
+      tags: install
