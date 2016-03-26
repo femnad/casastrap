@@ -1,5 +1,14 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
+  vars:
+    - repo_path: "{{repo_clone_path}}/dzen"
   tasks:
-    - git: repo=https://github.com/robm/dzen.git dest=~/z/gl/dzen accept_hostkey=yes
-    - script: install-dzen.sh
+    - name: Clone Dzen repository
+      git: repo=https://github.com/robm/dzen.git dest={{repo_path}} accept_hostkey=yes
+      tags: clone
+    - name: Install dzen
+      script: install-dzen.sh {{repo_path}}
+      become: yes
+      tags: install
