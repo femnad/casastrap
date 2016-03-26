@@ -1,7 +1,7 @@
 Why?
 ====
 
-Because installing and setting everyting by hand is insufferable. I mean, I can't remember the time the compilation of some packages failed with the same errors and I had to lookup which package contained the necessary header files.
+Because installing and setting everything by hand is insufferable. I mean, I can't remember the time the compilation of some packages failed with the same errors and I had to lookup which package contained the necessary header files.
 
 
 How?
