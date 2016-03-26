@@ -1,7 +1,9 @@
 ---
 - hosts: all
-  vars:
-    key_location: /home/femnad/key
-    key_destination: /home/femnad/key-store/key
+  vars_files:
+    - paths.yaml
   tasks:
-    - copy: src={{key_location}} dest={{key_destination}}
+    - name: Create key file directory
+      file: name={{tarsnap_key_dir}} state=directory
+    - name: Copy latest Tarsnap key file
+      copy: src={{tarsnap_key_file}} dest={{tarsnap_key_file}}
