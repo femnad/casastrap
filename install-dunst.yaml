@@ -4,6 +4,17 @@
     - home: "{{ lookup('env', 'HOME') }}"  
     - clone_dir: "{{home}}/z/gl/dunst"
   pre_tasks:
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest
+      with_items:
+        - libcairo2-dev
+        - libdbus-1-dev
+        - libpango1.0-dev
+        - libxdg-basedir-dev
+        - libxss-dev
+      when: ansible_os_family == "Debian"
+      become: yes
+      tags: reqs
     - name: Install requirements with dnf
       dnf: name={{item}} state=latest
       with_items:
@@ -14,6 +25,7 @@
         - pango-devel
       when: ansible_distribution == "Fedora"
       become: yes
+      tags: reqs
     - name: Install requirements with portage
       portage: name=dev-libs/libxdg-basedir state=present
       when: ansible_distribution == "Gentoo"
