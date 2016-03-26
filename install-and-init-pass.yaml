@@ -1,0 +1,27 @@
+---
+- hosts: all
+  vars_files:
+    - creds.yaml
+    - paths.yaml
+  tasks:
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest
+      become: yes
+      with_items:
+        - gnupg2
+        - git
+        - pass
+      when: ansible_os_family == "Debian"
+      tags: reqs
+    - name: Install requirements with dnf
+      dnf: name={{item}} state=latest
+      become: yes
+      with_items:
+        - gnupg2
+        - git
+        - pass
+      when: ansible_distribution == "Fedora"
+      tags: reqs
+    - name: Initialize pass
+      script: init-pass.sh {{gpg_key_location}} {{gpg_id}}
+      tags: init
