@@ -1,9 +1,12 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
   vars:
-    - repo_dest: /home/femnad/z/gl/fish-shell
+    - repo_dest: "{{repo_clone_path}}/fish-shell"
   pre_tasks:
-    - apt: name={{item}} state=latest
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest
       become: yes
       with_items:
         - build-essential
@@ -15,7 +18,9 @@
         - automake
         - libtool
       when: ansible_os_family == "Debian"
-    - dnf: name={{item}} state=latest
+      tags: reqs
+    - name: Install requirements with dnf
+      dnf: name={{item}} state=latest
       become: yes
       with_items:
         - autoconf
@@ -24,9 +29,12 @@
         - ncurses-devel
         - libtool
       when: ansible_distribution == "Fedora"
+      tags: reqs
   tasks:
     - name: Clone repo
       git: repo=https://github.com/fish-shell/fish-shell.git dest={{repo_dest}}
+      tags: clone
     - name: Install fish
       script: install-fish.sh {{repo_dest}}
       become: yes
+      tags: install
