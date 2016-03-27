@@ -1,7 +1,13 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
+    - misc.yaml
+  vars:
+    - repo_path: "{{repo_clone_path}}/mutt"
   pre_tasks:
-    - apt: name={{item}} state=latest
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest
       become: yes
       with_items:
         - mercurial
@@ -9,7 +15,9 @@
         - libtokyocabinet-dev
         - libsasl2-dev
       when: ansible_os_family == "Debian"
-    - dnf: name={{item}} state=latest
+      tags: reqs
+    - name: Install requirements with dnf
+      dnf: name={{item}} state=latest
       become: yes
       with_items:
         - cyrus-sasl-devel
@@ -17,6 +25,15 @@
         - mercurial
         - tokyocabinet-devel
       when: ansible_distribution == "Fedora"
+      tags: reqs
   tasks:
-    - hg: repo=http://dev.mutt.org/hg/mutt dest=~/z/gl/mutt
-    - script: install-mutt.sh
+    - name: Clone mutt repository
+      hg: repo=http://dev.mutt.org/hg/mutt dest={{repo_path}}
+      tags: clone
+    - name: Install mutt
+      script: install-mutt.sh {{repo_path}}
+      tags: install
+      become: yes
+    - name: Generate cache and alias files
+      script: generate-mutt-dirs-files.sh {{mutt_prefixes}}
+      tags: gen-dir-file
