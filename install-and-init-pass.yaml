@@ -22,6 +22,12 @@
         - pass
       when: ansible_distribution == "Fedora"
       tags: reqs
+    - name: Ensure that the export directory exists
+      file: path={{gpg_export_dir}} state=directory
+      tags: copy
+    - name: Copy the GPG private key to remote machine
+      copy: src={{gpg_key_location}} dest={{gpg_key_location}}
+      tags: copy
     - name: Initialize pass
       script: init-pass.sh {{gpg_key_location}} {{gpg_id}}
       tags: init
