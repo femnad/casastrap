@@ -4,6 +4,13 @@
     - paths.yaml
   vars:
     - repo_path: "{{repo_clone_path}}/dzen"
+  pre_tasks:
+    - name: Install requirements with apt
+      apt: name={{item}} state=latest update_cache=yes
+      with_items:
+        - libxft-dev
+      become: yes
+      tags: reqs
   tasks:
     - name: Clone Dzen repository
       git: repo=https://github.com/robm/dzen.git dest={{repo_path}} accept_hostkey=yes
