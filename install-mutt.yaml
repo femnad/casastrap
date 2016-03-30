@@ -2,6 +2,7 @@
 - hosts: all
   vars_files:
     - paths.yaml
+    - misc.yaml
   vars:
     - repo_path: "{{repo_clone_path}}/mutt"
   pre_tasks:
