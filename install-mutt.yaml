@@ -11,6 +11,8 @@
       become: yes
       with_items:
         - mercurial
+        - libncurses5-dev
+        - libncursesw5-dev
         - lynx
         - libtokyocabinet-dev
         - libsasl2-dev
