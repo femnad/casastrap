@@ -1,13 +1,21 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
   vars:
-    - user_home: "{{lookup('env', 'HOME')}}"
-    - repo_dest: "{{user_home}}/z/gl/jq"
+    - repo_dest: "{{repo_clone_path}}/jq"
   tasks:
     - name: Clone the jq repository
       git: repo=https://github.com/stedolan/jq.git dest="{{repo_dest}}"
       tags: clone
-    - name: Install jq
+    - name: Compile jq
       script: install-jq.sh {{repo_dest}}
+      tags: compile
+    - name: Install jq
+      command: make install chdir={{repo_dest}}
+      become: yes
+      tags: install
+    - name: Refresh ld cache
+      command: ldconfig
       become: yes
       tags: install

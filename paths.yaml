@@ -1,5 +1,5 @@
 ---
-user_home: "{{ lookup('env', 'HOME') }}"
+user_home: "{{ ansible_env.HOME }}"
 release_download_path: "{{ user_home }}/z/dy"
 repo_clone_path: "{{ user_home }}/z/gl"
 virtualenv_path: "{{ user_home }}/y/venvs"
