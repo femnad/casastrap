@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 scripts_dir="$1"
 wget https://www.privateinternetaccess.com/openvpn/openvpn.zip -O /tmp/openvpn.zip
 mkdir -p $scripts_dir

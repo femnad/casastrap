@@ -1,10 +1,11 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
   vars:
-    - home: "{{lookup('env', 'HOME')}}"
-    - scripts_dir: "{{home}}/z/ce"
+    - scripts_dir: "{{user_home}}/z/ce"
   pre_tasks:
-    - apt: name={{item}} state=latest
+    - apt: name={{item}} state=latest update_cache=yes
       when: ansible_os_family == "Debian"
       with_items:
         - openvpn
@@ -22,5 +23,6 @@
       tags: install-reqs
       when: ansible_distribution == "Gentoo"
   tasks:
-    - script: init-pia-scripts.sh {{scripts_dir}}
+    - name: Generate OpenVPN scripts
+      script: init-pia-scripts.sh {{scripts_dir}}
       tags: genscripts
