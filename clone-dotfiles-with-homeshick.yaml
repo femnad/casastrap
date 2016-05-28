@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
   pre_tasks:
     - name: Install lynx with apt
       apt: name=lynx state=latest
@@ -12,6 +14,11 @@
       when: ansible_distribution == "Gentoo"
       tags: install-req
   tasks:
+    - name: Clone homeshick
+      git: repo=git@github.com:andsens/homeshick.git
+           dest="{{user_home}}/.homesick/repos/homeshick"
+           accept_hostkey=yes
+      tags: pre-clone
     - name: Pre-approve host key for Gitlab
       git: repo=git@gitlab.com:femnad/base.git dest=/tmp/base accept_hostkey=yes
       tags: pre-clone
