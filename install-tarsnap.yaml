@@ -2,6 +2,12 @@
 - hosts: all
   vars_files:
     - paths.yaml
+  vars:
+    tarsnap_version: 1.0.36.1
+    tarsnap_release: tarsnap-autoconf-{{tarsnap_version}}
+    tarsnap_archive: "{{tarsnap_release}}.tgz"
+    tarsnap_download_path: /tmp/{{tarsnap_archive}}
+    tarsnap_extract_path: "{{release_store_path}}/{{tarsnap_release}}"
   pre_tasks:
     - apt: name={{ item }} state=latest
       become: yes
@@ -24,7 +30,25 @@
         - e2fsprogs-devel
       when: ansible_distribution == "Fedora"
   tasks:
-    - name: Install tarsnap
-      script: install-tarsnap.sh {{release_download_path}}
+    - name: Download Tarsnap
+      get_url: url=https://www.tarsnap.com/download/{{tarsnap_archive}} dest={{tarsnap_download_path}}
+      tags: download
+    - name: Create release store path
+      file: path={{release_store_path}} state=directory
+      tags: extract
+    - name: Extract Tarsnap archive
+      unarchive: src={{tarsnap_download_path}} dest={{release_store_path}} copy=no
+      tags: extract
+    - name: Compile tarsnap
+      shell: |
+        ./configure
+        make all
+      args:
+        chdir: "{{tarsnap_extract_path}}"
+      tags: compile
+    - name: Install Tarsnap
+      command: make install
+      args:
+        chdir: "{{tarsnap_extract_path}}"
       become: yes
       tags: install
