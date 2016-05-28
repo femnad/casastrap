@@ -23,11 +23,28 @@
       when: ansible_distribution == "Fedora"
       tags: reqs
     - name: Ensure that the export directory exists
-      file: path={{gpg_export_dir}} state=directory
-      tags: copy
+      local_action: file path={{gpg_export_dir}} state=directory
+      tags: export
+    - name: Export gpg key
+      local_action: command gpg --output {{gpg_key_location}} --armor --export-secret-keys {{gpg_id}}
+      tags: export
     - name: Copy the GPG private key to remote machine
       copy: src={{gpg_key_location}} dest={{gpg_key_location}}
-      tags: copy
+      tags: export
     - name: Initialize pass
-      script: init-pass.sh {{gpg_key_location}} {{gpg_id}}
+      shell: |
+        gpg --import {{gpg_key_location}}
+        pass init {{gpg_id}}
+        git init {{user_home}}/.password-store
       tags: init
+    - name: Cleanup local export
+      local_action: command shred {{gpg_key_location}}
+      tags: cleanup
+    - name: Cleanup local directory
+      local_action: file path={{gpg_export_dir}} state=absent
+      tags: cleanup
+    - name: Cleanup remote
+      shell: |
+        shred {{gpg_key_location}}
+        rm -r {{gpg_export_dir}}
+      tags: cleanup
