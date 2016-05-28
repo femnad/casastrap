@@ -34,7 +34,17 @@
     - name: Clone repo
       git: repo=https://github.com/fish-shell/fish-shell.git dest={{repo_dest}}
       tags: clone
+    - name: Compile fish
+      shell: |
+        autoreconf -i
+        ./configure
+        make
+      args:
+        chdir: "{{repo_dest}}"
+      tags: compile
     - name: Install fish
-      script: install-fish.sh {{repo_dest}}
+      shell: make install
+      args:
+        chdir: "{{repo_dest}}"
       become: yes
       tags: install
