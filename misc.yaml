@@ -1,2 +1,5 @@
 ---
-mutt_prefixes: "fm gm sa"
+mutt_prefixes:
+  - fm
+  - gm
+  - sa

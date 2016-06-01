@@ -32,10 +32,24 @@
     - name: Clone mutt repository
       hg: repo=http://dev.mutt.org/hg/mutt dest={{repo_path}}
       tags: clone
+    - name: Compile mutt
+      shell: |
+        autoreconf -i
+        ./configure --enable-imap --enable-smtp --enable-hcache --with-ssl --with-sasl
+        make
+      args:
+        chdir: "{{repo_path}}"
+      tags: compile
     - name: Install mutt
-      script: install-mutt.sh {{repo_path}}
+      command: make chdir={{repo_path}}
       tags: install
-      become: yes
-    - name: Generate cache and alias files
-      script: generate-mutt-dirs-files.sh {{mutt_prefixes}}
-      tags: gen-dir-file
+    - name: Generate header caches
+      file: path="{{user_home}}/.cache/mutt/{{item}}header" state=directory
+      with_items:
+        "{{mutt_prefixes}}"
+      tags: cache-header
+    - name: Generate message caches
+      file: path="{{user_home}}/.cache/mutt/{{item}}message" state=directory
+      with_items:
+        "{{mutt_prefixes}}"
+      tags: cache-message
