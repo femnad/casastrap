@@ -35,7 +35,7 @@
     - name: Compile mutt
       shell: |
         autoreconf -i
-        ./configure --enable-imap --enable-smtp --enable-hcache --with-ssl --with-sasl
+        ./configure --enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl
         make
       args:
         chdir: "{{repo_path}}"
