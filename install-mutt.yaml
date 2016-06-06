@@ -41,7 +41,8 @@
         chdir: "{{repo_path}}"
       tags: compile
     - name: Install mutt
-      command: make chdir={{repo_path}}
+      command: make install chdir={{repo_path}}
+      become: yes
       tags: install
     - name: Generate header caches
       file: path="{{user_home}}/.cache/mutt/{{item}}header" state=directory
