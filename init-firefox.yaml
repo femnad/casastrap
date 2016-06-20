@@ -18,7 +18,12 @@
         - zip
       when: ansible_distribution == "Fedora"
   tasks:
-    - git: repo=https://github.com/5digits/dactyl dest={{dactyl_path}}
+    - name: Clone dactyl
+      git: repo=https://github.com/5digits/dactyl dest={{dactyl_path}}
+      tags: clone
     - name: Install pentadactyl
-      script: init-firefox.sh {{dactyl_path}}
+      shell: |
+        DISPLAY=:0 make installxpi
+      args:
+        chdir: "{{dactyl_path}}/pentadactyl"
       tags: install
