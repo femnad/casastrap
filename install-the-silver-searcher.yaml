@@ -1,0 +1,29 @@
+---
+- hosts: all
+  vars_files:
+    - paths.yaml
+  vars:
+    - clone_path: "{{repo_clone_path}}/the_silver_searcher"
+    - name: The Silver Searcher
+  pre_tasks:
+    - name: Install requirements for {{name}} with apt
+      apt: name={{item}} state=installed
+      with_items:
+        - liblzma-dev
+      become: yes
+      tags: reqs
+  tasks:
+    - name: Clone {{name}} repository
+      git: repo=git@github.com:ggreer/the_silver_searcher.git dest={{clone_path}}
+      tags: clone
+    - name: Build {{name}}
+      command: ./build.sh
+      args:
+        chdir: "{{clone_path}}"
+      tags: build
+    - name: Install {{name}}
+      command: make install
+      args:
+        chdir: "{{clone_path}}"
+      become: yes
+      tags: install
