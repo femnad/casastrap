@@ -1,8 +1,9 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
   vars:
-    - local_home: "{{ lookup('env', 'HOME') }}"
-    - clone_dir: "{{local_home}}/z/gl/lnav"
+    - clone_dir: "{{repo_clone_path}}/lnav"
   pre_tasks:
     - name: Install requirements with apt
       apt: name={{item}} state=latest
@@ -18,7 +19,17 @@
     - name: Clone lnav repository
       git: repo=https://github.com/tstack/lnav.git dest={{clone_dir}}
       tags: clone
-    - name: Run lnav installation script
-      script: install-lnav.sh {{clone_dir}}
+    - name: Build lnav
+      shell: |
+        ./autogen.sh
+        ./configure
+        make
+      args:
+        chdir: "{{clone_dir}}"
+      tags: build
+    - name: Install lnav
+      command: make install
+      args:
+        chdir: "{{clone_dir}}"
       become: yes
       tags: install
