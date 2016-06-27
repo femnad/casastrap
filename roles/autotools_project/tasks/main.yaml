@@ -1,0 +1,16 @@
+---
+- name: Build {{project}}
+  shell:
+    |
+      autoreconf -i
+      ./configure
+      make
+  args:
+    chdir: "{{clone_path}}"
+  tags: build
+- name: Install {{project}}
+  command: make install
+  args:
+    chdir: "{{clone_path}}"
+  become: yes
+  tags: install

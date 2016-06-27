@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars_files:
+    - paths.yaml
+  vars:
+    - project: jo
+    - project_repo: git@github.com:jpmens/jo.git
+    - clone_path: "{{repo_clone_path}}/jo"
+  roles:
+    - { role: git_clone }
+    - { role: autotools_project }
