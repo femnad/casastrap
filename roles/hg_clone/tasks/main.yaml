@@ -1,0 +1,4 @@
+---
+- name: Clone {{project}} repository
+  hg: repo={{project_repo}} dest={{clone_path}}
+  tags: clone

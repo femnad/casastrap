@@ -4,53 +4,26 @@
     - paths.yaml
     - misc.yaml
   vars:
-    - repo_path: "{{repo_clone_path}}/mutt"
-  pre_tasks:
-    - name: Install requirements with apt
-      apt: name={{item}} state=latest
-      become: yes
-      with_items:
-        - mercurial
-        - libncurses5-dev
-        - libncursesw5-dev
-        - lynx
-        - libtokyocabinet-dev
-        - libsasl2-dev
-      when: ansible_os_family == "Debian"
-      tags: reqs
-    - name: Install requirements with dnf
-      dnf: name={{item}} state=latest
-      become: yes
-      with_items:
-        - cyrus-sasl-devel
-        - lynx
-        - mercurial
-        - tokyocabinet-devel
-      when: ansible_distribution == "Fedora"
-      tags: reqs
+    - project: mutt
+    - project_repo: http://dev.mutt.org/hg/mutt
+    - clone_path: "{{repo_clone_path}}/mutt"
+    - header_directory: "{{user_home}}/.cache/mutt"
+  roles:
+    - { role: os_packages,
+        apt_packages: [libncurses5-dev, libncursesw5-dev,
+                       libtokyocabinet-dev, libsasl2-dev],
+        dnf_packages: [ cyrus-sasl-devel, tokyocabinet-devel] }
+    - { role: hg_clone }
+    - { role: autotools_project,
+        configuration: "--enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl" }
   tasks:
-    - name: Clone mutt repository
-      hg: repo=http://dev.mutt.org/hg/mutt dest={{repo_path}}
-      tags: clone
-    - name: Compile mutt
-      shell: |
-        autoreconf -i
-        ./configure --enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl
-        make
-      args:
-        chdir: "{{repo_path}}"
-      tags: compile
-    - name: Install mutt
-      command: make install chdir={{repo_path}}
-      become: yes
-      tags: install
     - name: Generate header caches
-      file: path="{{user_home}}/.cache/mutt/{{item}}header" state=directory
+      file: path="{{header_directory}}/{{item}}header" state=directory
       with_items:
         "{{mutt_prefixes}}"
       tags: cache-header
     - name: Generate message caches
-      file: path="{{user_home}}/.cache/mutt/{{item}}message" state=directory
+      file: path="{{header_directory}}/{{item}}message" state=directory
       with_items:
         "{{mutt_prefixes}}"
       tags: cache-message

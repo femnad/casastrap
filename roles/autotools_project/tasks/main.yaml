@@ -3,7 +3,7 @@
   shell:
     |
       autoreconf -i
-      ./configure
+      ./configure {{configuration | default()}}
       make
   args:
     chdir: "{{clone_path}}"
