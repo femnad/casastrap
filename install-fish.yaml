@@ -5,7 +5,6 @@
   vars:
     - project: fish-shell
     - project_repo: git@github.com:fish-shell/fish-shell.git
-    - clone_path: "{{repo_clone_path}}/{{project}}"
   roles:
     - { role: os_packages, apt_packages: ncurses-dev,
         dnf_packages: ncurses-devel }

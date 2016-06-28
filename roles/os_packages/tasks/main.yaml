@@ -1,29 +1,36 @@
 ---
 - name: Install requirements with apt
   apt: name={{item}} state=latest
-  become: yes
   with_items:
     "{{packages | default([])}}"
   when: ansible_os_family == "Debian"
+  become: yes
   tags: reqs
 - name: Install requirements with dnf
   dnf: name={{item}} state=latest
-  become: yes
   with_items:
     "{{packages | default([])}}"
   when: ansible_distribution == "Fedora"
+  become: yes
   tags: reqs
 - name: Install apt specific requirements
   apt: name={{item}} state=latest
-  become: yes
   with_items:
     "{{apt_packages | default([])}}"
   when: ansible_os_family == "Debian"
+  become: yes
   tags: reqs
 - name: Install dnf specific requirements
   dnf: name={{item}} state=latest
-  become: yes
   with_items:
     "{{dnf_packages | default([])}}"
   when: ansible_distribution == "Fedora"
+  become: yes
+  tags: reqs
+- name: Install emerge specific requirements
+  emerge: name={{item}} state=present
+  with_items:
+    "{{emerge_packages | default([])}}"
+  when: ansible_distribution == "Gentoo"
+  become: yes
   tags: reqs
