@@ -3,18 +3,13 @@
   vars_files:
     - paths.yaml
   vars:
-    - repo_dest: "{{repo_clone_path}}/jq"
+    - project: jq
+    - project_repo: git@github.com:stedolan/jq.git
+    - clone_path: "{{repo_clone_path}}/{{project}}"
+  roles:
+    - { role: git_clone }
+    - { role: autotools_project }
   tasks:
-    - name: Clone the jq repository
-      git: repo=https://github.com/stedolan/jq.git dest="{{repo_dest}}"
-      tags: clone
-    - name: Compile jq
-      script: install-jq.sh {{repo_dest}}
-      tags: compile
-    - name: Install jq
-      command: make install chdir={{repo_dest}}
-      become: yes
-      tags: install
     - name: Refresh ld cache
       command: ldconfig
       become: yes

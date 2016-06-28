@@ -3,48 +3,11 @@
   vars_files:
     - paths.yaml
   vars:
-    - repo_dest: "{{repo_clone_path}}/fish-shell"
-  pre_tasks:
-    - name: Install requirements with apt
-      apt: name={{item}} state=latest
-      become: yes
-      with_items:
-        - build-essential
-        - ncurses-dev
-        - libncurses5-dev
-        - gettext
-        - git
-        - autoconf
-        - automake
-        - libtool
-      when: ansible_os_family == "Debian"
-      tags: reqs
-    - name: Install requirements with dnf
-      dnf: name={{item}} state=latest
-      become: yes
-      with_items:
-        - autoconf
-        - automake
-        - gcc-c++
-        - ncurses-devel
-        - libtool
-      when: ansible_distribution == "Fedora"
-      tags: reqs
-  tasks:
-    - name: Clone repo
-      git: repo=https://github.com/fish-shell/fish-shell.git dest={{repo_dest}}
-      tags: clone
-    - name: Compile fish
-      shell: |
-        autoreconf -i
-        ./configure
-        make
-      args:
-        chdir: "{{repo_dest}}"
-      tags: compile
-    - name: Install fish
-      shell: make install
-      args:
-        chdir: "{{repo_dest}}"
-      become: yes
-      tags: install
+    - project: fish-shell
+    - project_repo: git@github.com:fish-shell/fish-shell.git
+    - clone_path: "{{repo_clone_path}}/{{project}}"
+  roles:
+    - { role: os_packages, apt_packages: ncurses-dev,
+        dnf_packages: ncurses-devel }
+    - { role: git_clone }
+    - { role: autotools_project }
