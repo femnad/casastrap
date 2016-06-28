@@ -1,16 +1,26 @@
 ---
-- name: Build {{project}}
-  shell:
-    |
-      autoreconf -i
-      ./configure {{configuration | default()}}
-      make
+- name: Init {{project}} build configuration
+  command: autoreconf -i
   args:
     chdir: "{{clone_path}}"
-  tags: build
+    removes: configure.ac
+  tags: build, build-init
+- name: Configure {{project}}
+  command: ./configure {{configuration | default()}}
+  args:
+    chdir: "{{clone_path}}"
+    removes: configure
+  tags: build, build-configure
+- name: Build {{project}}
+  command: make
+  args:
+    chdir: "{{clone_path}}"
+    removes: Makefile
+  tags: build, build-make
 - name: Install {{project}}
   command: make install
   args:
     chdir: "{{clone_path}}"
+    removes: Makefile
   become: yes
   tags: install
