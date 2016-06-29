@@ -4,7 +4,7 @@
   args:
     chdir: "{{clone_path}}"
     removes: configure.ac
-  tags: build-init
+  tags: build, autoconf
 - name: Configure {{project}}
   command: ./configure {{configuration | default()}}
   args:

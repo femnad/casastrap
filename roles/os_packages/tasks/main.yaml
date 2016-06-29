@@ -1,6 +1,6 @@
 ---
 - name: Install requirements with apt
-  apt: name={{item}} state=latest
+  apt: name={{item}} state=latest update_cache=yes
   with_items:
     "{{packages | default([])}}"
   when: ansible_os_family == "Debian"
@@ -14,7 +14,7 @@
   become: yes
   tags: reqs
 - name: Install apt specific requirements
-  apt: name={{item}} state=latest
+  apt: name={{item}} state=latest update_cache=yes
   with_items:
     "{{apt_packages | default([])}}"
   when: ansible_os_family == "Debian"

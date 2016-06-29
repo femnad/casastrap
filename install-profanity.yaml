@@ -3,49 +3,13 @@
   vars_files:
     - paths.yaml
   vars:
-    - profanity_clone_path: "{{repo_clone_path}}/profanity"
-    - libmesode_clone_path: "{{repo_clone_path}}/libmesode"
-  pre_tasks:
-    - name: Install requirements with apt
-      apt: name={{item}} state=latest
-      become: yes
-      with_items:
-        - autoconf-archive
-        - pkg-config
-        - libxml2-dev
-        - libtool
-        - libexpat1-dev
-        - libncurses5-dev
-        - libncursesw5-dev
-        - libglib2.0-dev
-        - libcurl4-openssl-dev
-        - libreadline6-dev
-        - uuid-dev
-        - libnotify-dev
-      when: ansible_os_family == "Debian"
-      tags: reqs
-    - name: Clone libmesode repository
-      git: repo=https://github.com/boothj5/libmesode.git dest={{libmesode_clone_path}}
-      tags: clone-reqs
-    - name: Compile libmesode
-      script: generic-bootstrap-and-install.sh {{libmesode_clone_path}}
-      tags: compile-reqs
-    - name: Install libmesode
-      command: make install chdir={{libmesode_clone_path}}
-      become: yes
-      tags: install-reqs
-    - name: Refresh linker cache
-      command: ldconfig
-      become: yes
-      tags: install-reqs
-  tasks:
-    - name: Clone profanity
-      git: repo=https://github.com/boothj5/profanity.git dest={{profanity_clone_path}}
-      tags: clone
-    - name: Compile profanity
-      script: generic-bootstrap-and-install.sh {{profanity_clone_path}} "--enable-notifications"
-      tags: compile
-    - name: Install profanity
-      command: make install chdir={{profanity_clone_path}}
-      become: yes
-      tags: install
+    - project: profanity
+    - project_repo: https://github.com/boothj5/profanity.git
+    - apt_packages: [autoconf-archive, pkg-config, libxml2-dev, libtool,
+                         libexpat1-dev, libncurses5-dev, libncursesw5-dev,
+                         libglib2.0-dev, libcurl4-openssl-dev, libreadline6-dev,
+                         uuid-dev, libnotify-dev]
+  roles:
+    - os_packages
+    - git_clone
+    - { role: autotools_project, configuration: "--enable-notifications"}

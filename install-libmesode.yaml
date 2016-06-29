@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars_files:
+    - paths.yaml
+  vars:
+    - project: libmesode
+    - project_repo: https://github.com/boothj5/libmesode.git
+  roles:
+    - os_packages
+    - git_clone
+    - autotools_project
