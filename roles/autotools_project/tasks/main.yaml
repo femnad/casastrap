@@ -4,19 +4,19 @@
   args:
     chdir: "{{clone_path}}"
     removes: configure.ac
-  tags: build, build-init
+  tags: build-init
 - name: Configure {{project}}
   command: ./configure {{configuration | default()}}
   args:
     chdir: "{{clone_path}}"
     removes: configure
-  tags: build, build-configure
+  tags: build, configure
 - name: Build {{project}}
   command: make
   args:
     chdir: "{{clone_path}}"
     removes: Makefile
-  tags: build, build-make
+  tags: build, make
 - name: Install {{project}}
   command: make install
   args:
