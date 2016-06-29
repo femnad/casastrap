@@ -4,9 +4,11 @@
     - paths.yaml
   vars:
     - project: fish-shell
-    - project_repo: git@github.com:fish-shell/fish-shell.git
+    - project_repo: https://github.com/fish-shell/fish-shell.git
+    - packages: [autoconf, automake, libtool, make]
+    - apt_packages: [g++, ncurses-dev]
+    - dnf_packages: ncurses-devel
   roles:
-    - { role: os_packages, apt_packages: ncurses-dev,
-        dnf_packages: ncurses-devel }
-    - { role: git_clone }
-    - { role: autotools_project }
+    - os_packages
+    - git_clone
+    - autotools_project

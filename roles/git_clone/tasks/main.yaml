@@ -1,4 +1,4 @@
 ---
 - name: Clone project with git
-  git: repo={{project_repo}} dest={{clone_path}}
+  git: repo={{project_repo}} dest={{clone_path}} accept_hostkey=yes
   tags: clone
