@@ -5,9 +5,8 @@
   vars:
     - project: fish-shell
     - project_repo: https://github.com/fish-shell/fish-shell.git
-    - packages: [autoconf, automake, libtool, make]
     - apt_packages: [g++, ncurses-dev]
-    - dnf_packages: ncurses-devel
+    - dnf_yum_packages: [gcc-c++, ncurses-devel]
   roles:
     - os_packages
     - git_clone
