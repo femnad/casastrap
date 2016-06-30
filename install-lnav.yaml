@@ -3,33 +3,11 @@
   vars_files:
     - paths.yaml
   vars:
-    - clone_dir: "{{repo_clone_path}}/lnav"
-  pre_tasks:
-    - name: Install requirements with apt
-      apt: name={{item}} state=latest
-      with_items:
-        - libgpm-dev
-        - libncurses5-dev
-        - libncursesw5-dev
-        - libreadline-dev
-      become: yes
-      when: ansible_os_family == "Debian"
-      tags: install
-  tasks:
-    - name: Clone lnav repository
-      git: repo=https://github.com/tstack/lnav.git dest={{clone_dir}}
-      tags: clone
-    - name: Build lnav
-      shell: |
-        ./autogen.sh
-        ./configure
-        make
-      args:
-        chdir: "{{clone_dir}}"
-      tags: build
-    - name: Install lnav
-      command: make install
-      args:
-        chdir: "{{clone_dir}}"
-      become: yes
-      tags: install
+    - project: lnav
+    - repo: https://github.com/tstack/lnav.git
+  roles:
+    - { role: os_packages,
+        apt: [g++, libgpm-dev, libncurses5-dev, libncursesw5-dev, libpcre3-dev,
+              libreadline-dev, libsqlite3-dev, zlib1g-dev] }
+    - git_clone
+    - autotools_project

@@ -5,7 +5,7 @@
   vars:
     - project: slock
     - repo: git://git.suckless.org/slock
-    - apt_packages: libxrandr-dev
+    - apt: libxrandr-dev
   roles:
     - os_packages
     - git_clone

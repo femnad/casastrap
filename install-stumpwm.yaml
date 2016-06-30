@@ -5,8 +5,8 @@
   vars:
     - project: stumpwm
     - repo: https://github.com/stumpwm/stumpwm
-    - apt_packages: [sbcl, x11-utils, texinfo]
-    - portage_packages: dev-lisp/sbcl
+    - apt: [sbcl, x11-utils, texinfo]
+    - portage: dev-lisp/sbcl
   roles:
     - os_packages
     - git_clone

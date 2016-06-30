@@ -5,7 +5,7 @@
   vars:
     - project: dzen
     - repo: https://github.com/robm/dzen.git
-    - apt_packages: libxft-dev
+    - apt: libxft-dev
   roles:
     - os_packages
     - git_clone

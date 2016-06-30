@@ -23,28 +23,28 @@
 - name: Install apt specific requirements
   apt: name={{item}} state=latest update_cache={{update_cache | default(False)}}
   with_items:
-    "{{apt_packages | default([])}}"
+    "{{apt | default([])}}"
   when: ansible_os_family == "Debian"
   become: yes
   tags: reqs, apt-reqs
 - name: Install dnf specific requirements
   dnf: name={{item}} state=latest
   with_items:
-    "{{dnf_yum_packages | default([])}}"
+    "{{dnf_yum | default([])}}"
   when: ansible_distribution == "Fedora"
   become: yes
   tags: reqs, reqs-dnf
 - name: Install portage specific requirements
   portage: name={{item}} state=present
   with_items:
-    "{{portage_packages | default([])}}"
+    "{{portage | default([])}}"
   when: ansible_distribution == "Gentoo"
   become: yes
   tags: reqs
 - name: Install yum specific requirements
   yum: name={{item}} state=latest
   with_items:
-    "{{dnf_yum_packages | default([])}}"
+    "{{dnf_yum | default([])}}"
   when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
   become: yes
   tags: reqs, reqs-yum

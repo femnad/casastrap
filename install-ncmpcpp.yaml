@@ -6,9 +6,9 @@
   vars:
     - project: ncmpcpp
     - repo: git://repo.or.cz/ncmpcpp.git
-    - apt_packages: [libmpdclient-dev, libboost-all-dev, libreadline-dev,
+    - apt: [libmpdclient-dev, libboost-all-dev, libreadline-dev,
                    libncurses5-dev, libncursesw5-dev]
-    - dnf_yum_packages: [boost, boost-devel, boost-filesystem, boost-locale,
+    - dnf_yum: [boost, boost-devel, boost-filesystem, boost-locale,
                          boost-program-options, boost-regex, boost-thread,
                          libmpdclient-devel, ncurses-devel, readline-devel]
   roles:
