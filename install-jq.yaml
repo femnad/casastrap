@@ -4,13 +4,8 @@
     - paths.yaml
   vars:
     - project: jq
-    - project_repo: git@github.com:stedolan/jq.git
-    - clone_path: "{{repo_clone_path}}/{{project}}"
+    - repo: https://github.com/stedolan/jq.git
   roles:
-    - { role: git_clone }
-    - { role: autotools_project }
-  tasks:
-    - name: Refresh ld cache
-      command: ldconfig
-      become: yes
-      tags: install
+    - git_clone
+    - autotools_project
+    - ldconfig

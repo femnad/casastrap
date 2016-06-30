@@ -1,4 +1,6 @@
 ---
 - name: Clone project with git
-  git: repo={{project_repo}} dest={{clone_path}} accept_hostkey=yes force={{force_discard | default(True)}}
+  git: repo={{repo}} dest={{clone_path}} accept_hostkey=yes
+       force={{force_discard | default(True)}}
+       version={{version | default(omit)}}
   tags: clone

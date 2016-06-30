@@ -4,8 +4,9 @@
     - paths.yaml
   vars:
     - project: libmesode
-    - project_repo: https://github.com/boothj5/libmesode.git
+    - repo: https://github.com/boothj5/libmesode.git
   roles:
     - os_packages
     - git_clone
     - autotools_project
+    - ldconfig

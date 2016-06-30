@@ -1,39 +1,24 @@
 ---
 - hosts: all
+  vars_files:
+    - paths.yaml
   vars:
-    - home: "{{ lookup('env', 'HOME') }}"  
-    - clone_dir: "{{home}}/z/gl/dunst"
-  pre_tasks:
-    - name: Install requirements with apt
-      apt: name={{item}} state=latest
-      with_items:
-        - libcairo2-dev
-        - libdbus-1-dev
-        - libpango1.0-dev
-        - libxdg-basedir-dev
-        - libxss-dev
-      when: ansible_os_family == "Debian"
-      become: yes
-      tags: reqs
-    - name: Install requirements with dnf
-      dnf: name={{item}} state=latest
-      with_items:
-        - cairo-devel
-        - dbus-devel
-        - libxdg-basedir-devel
-        - libXScrnSaver-devel
-        - pango-devel
-      when: ansible_distribution == "Fedora"
-      become: yes
-      tags: reqs
-    - name: Install requirements with portage
-      portage: name=dev-libs/libxdg-basedir state=present
-      when: ansible_distribution == "Gentoo"
-      tags: reqs
-      become: yes
+    - project: dunst
+    - repo: https://github.com/knopwob/dunst.git
+    - apt_packages: [libcairo2-dev, libdbus-1-dev, libpango1.0-dev,
+                     libxdg-basedir-dev, libxss-dev]
+    - dnf_yum_packages: [cairo-devel, dbus-devel, libxdg-basedir-devel,
+                         libXScrnSaver-devel, pango-devel]
+    - portage_packages: dev-libs/libxdg-basedir
+    - configuration_path: "{{user_home}}/.config/dunst"
+  roles:
+    - os_packages
+    - git_clone
+    - autotools_project
   tasks:
-    - name: Clone the repository
-      git: repo=https://github.com/knopwob/dunst.git dest="{{clone_dir}}"
-    - name: Install dunst
-      script: install-dunst.sh {{clone_dir}}
-      become: yes
+    - name: Create configuration directory
+      file: path={{configuration_path}} state=directory
+      tags: config
+    - name: Copy sample configuration
+      command: cp {{clone_path}}/dunstrc {{configuration_path}}
+      tags: config

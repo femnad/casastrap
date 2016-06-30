@@ -4,7 +4,7 @@
     - paths.yaml
   vars:
     - project: profanity
-    - project_repo: https://github.com/boothj5/profanity.git
+    - repo: https://github.com/boothj5/profanity.git
     - apt_packages: [autoconf-archive, pkg-config, libxml2-dev, libtool,
                          libexpat1-dev, libncurses5-dev, libncursesw5-dev,
                          libglib2.0-dev, libcurl4-openssl-dev, libreadline6-dev,
@@ -13,3 +13,4 @@
     - os_packages
     - git_clone
     - { role: autotools_project, configuration: "--enable-notifications"}
+    - ldconfig

@@ -4,7 +4,7 @@
     - paths.yaml
   vars:
     - project: dmenu
-    - project_repo: git://git.suckless.org/dmenu
+    - repo: git://git.suckless.org/dmenu
   roles:
     - { role: os_packages,
         apt_packages: [libfreetype6-dev, libxft-dev, libxinerama-dev],

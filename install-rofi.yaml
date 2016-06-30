@@ -3,19 +3,10 @@
   vars_files:
     - paths.yaml
   vars:
-    clone_path: "{{repo_clone_path}}/rofi"
-  pre_tasks:
-    - name: Install requirements with portage
-      portage: name=x11-misc/xcb state=present
-      become: yes
-      tags: reqs
-  tasks:
-    - name: Clone rofi repository
-      git: repo=https://github.com/DaveDavenport/rofi.git dest={{clone_path}}
-      tags: clone
-    - name: Install rofi
-      script: install-rofi.sh {{clone_path}}
-      become: yes
-      tags: install
-    
-  
+    project: rofi
+    repo: https://github.com/DaveDavenport/rofi.git
+    portage_packages: x11-misc/xcb
+  roles:
+    - os_packages
+    - { role: git_clone, version: 1.1.0 }
+    - autotools_project

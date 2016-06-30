@@ -4,7 +4,7 @@
     - paths.yaml
   vars:
     - project: fish-shell
-    - project_repo: https://github.com/fish-shell/fish-shell.git
+    - repo: https://github.com/fish-shell/fish-shell.git
     - apt_packages: [g++, ncurses-dev]
     - dnf_yum_packages: [gcc-c++, ncurses-devel]
   roles:

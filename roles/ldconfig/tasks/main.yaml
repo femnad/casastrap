@@ -1,0 +1,5 @@
+---
+- name: Refresh linker cache
+  command: ldconfig
+  become: yes
+  tags: install

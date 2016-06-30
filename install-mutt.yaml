@@ -5,7 +5,7 @@
     - misc.yaml
   vars:
     - project: mutt
-    - project_repo: http://dev.mutt.org/hg/mutt
+    - repo: http://dev.mutt.org/hg/mutt
     - clone_path: "{{repo_clone_path}}/mutt"
     - header_directory: "{{user_home}}/.cache/mutt"
   roles:
