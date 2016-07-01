@@ -1,4 +1,0 @@
----
-- hosts: all
-  vars_files:
-    - paths.yaml
