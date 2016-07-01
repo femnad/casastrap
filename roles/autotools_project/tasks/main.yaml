@@ -1,37 +1,37 @@
 ---
-- name: Init {{project}} build configuration
+- name: Init {{_name}} build configuration
   command: autoreconf -i
   args:
-    chdir: "{{clone_path}}"
+    chdir: "{{source_path}}"
     removes: configure.ac
   tags: build, autoconf
-- name: Configure {{project}}
+- name: Configure {{_name}}
   command: ./configure {{configuration | default()}}
   args:
-    chdir: "{{clone_path}}"
+    chdir: "{{source_path}}"
     removes: configure
   tags: build, configure
-- name: Clean {{project}} artifacts
+- name: Clean {{_name}} artifacts
   command: make clean
   when: clean
   args:
-    chdir: "{{clone_path}}"
+    chdir: "{{source_path}}"
   tags: build
 - name: Remove generated artifacts
-  file: path="{{clone_path}}/{{item}}" state=absent
+  file: path="{{source_path}}/{{item}}" state=absent
   with_items:
     "{{generated_artifacts}}"
   tags: build
-- name: Build {{project}}
+- name: Build {{_name}}
   command: make
   args:
-    chdir: "{{clone_path}}"
+    chdir: "{{source_path}}"
     removes: Makefile
   tags: build, make
-- name: Install {{project}}
+- name: Install {{_name}}
   command: make install
   args:
-    chdir: "{{clone_path}}"
+    chdir: "{{source_path}}"
     removes: Makefile
   become: yes
   tags: install

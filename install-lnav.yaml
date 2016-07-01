@@ -6,8 +6,8 @@
     - project: lnav
     - repo: https://github.com/tstack/lnav.git
   roles:
+    - git_clone
     - { role: os_packages,
         apt: [g++, libgpm-dev, libncurses5-dev, libncursesw5-dev, libpcre3-dev,
               libreadline-dev, libsqlite3-dev, zlib1g-dev] }
-    - git_clone
     - autotools_project

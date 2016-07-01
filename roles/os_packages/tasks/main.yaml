@@ -1,26 +1,26 @@
 ---
-- name: Install apt specific requirements for {{project}}
+- name: Install apt specific requirements for {{_name}}
   apt: name={{item}} state=latest update_cache={{update_cache | default(False)}}
   with_items:
     "{{apt | default([])}}"
   when: ansible_os_family == "Debian"
   become: yes
   tags: reqs, apt-reqs
-- name: Install dnf specific requirements for {{project}}
+- name: Install dnf specific requirements for {{_name}}
   dnf: name={{item}} state=latest
   with_items:
     "{{dnf_yum | default([])}}"
   when: ansible_distribution == "Fedora"
   become: yes
   tags: reqs, reqs-dnf
-- name: Install portage specific requirements for {{project}}
+- name: Install portage specific requirements for {{_name}}
   portage: name={{item}} state=present
   with_items:
     "{{portage | default([])}}"
   when: ansible_distribution == "Gentoo"
   become: yes
   tags: reqs
-- name: Install yum specific requirements for {{project}}
+- name: Install yum specific requirements for {{_name}}
   yum: name={{item}} state=latest
   with_items:
     "{{dnf_yum | default([])}}"

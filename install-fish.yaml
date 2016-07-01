@@ -2,11 +2,9 @@
 - hosts: all
   vars_files:
     - paths.yaml
-  vars:
-    - project: fish-shell
-    - repo: https://github.com/fish-shell/fish-shell.git
   roles:
-    - { role: os_packages, apt: [g++, ncurses-dev],
+    - { role: source_install,
+        name: fish-shell,
+        repo: "https://github.com/fish-shell/fish-shell.git",
+        apt: [g++, ncurses-dev],
         dnf_yum: [gcc-c++, ncurses-devel] }
-    - git_clone
-    - autotools_project
