@@ -18,7 +18,7 @@
     - name: Get list of script files
       find: paths={{vpn_scripts_dir}} patterns='*.ovpn'
       register: scripts
-      tags: extract-scripts
+      tags: extract-scripts, edit-scripts
     - name: Get Private Internet Access username and password
       command: pass {{ pia_pass_filename }}
       register: up
@@ -45,6 +45,10 @@
       with_nested:
         - "{{scripts.files}}"
         - ["auth-user-pass {{ pia_user_password_file }}", "auth-nocache"]
+      tags: edit-scripts
+    - name: Remove empty lines from scripts
+      replace: dest={{ item.path }} regexp='^$\n'
+      with_items: "{{ scripts.files }}"
       tags: edit-scripts
 
 - include: install_os_packages.yaml
