@@ -1,0 +1,4 @@
+- name: Install OS Packages
+  hosts: all
+  roles:
+    - { role: os_packages, _apt: "{{apt}}" }

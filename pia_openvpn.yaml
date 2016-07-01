@@ -1,0 +1,5 @@
+---
+pia_pass_filename: www/private-internet-access
+pia_user_password_file: "{{ vpn_scripts_dir }}/up"
+username_regexp: '^user: (.*)'
+vpn_scripts_dir: "{{ user_home }}/z/ce"
