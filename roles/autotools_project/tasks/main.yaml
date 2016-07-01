@@ -11,6 +11,17 @@
     chdir: "{{clone_path}}"
     removes: configure
   tags: build, configure
+- name: Clean {{project}} artifacts
+  command: make clean
+  when: clean
+  args:
+    chdir: "{{clone_path}}"
+  tags: build
+- name: Remove generated artifacts
+  file: path="{{clone_path}}/{{item}}" state=absent
+  with_items:
+    "{{generated_artifacts}}"
+  tags: build
 - name: Build {{project}}
   command: make
   args:

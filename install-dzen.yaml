@@ -5,8 +5,7 @@
   vars:
     - project: dzen
     - repo: https://github.com/robm/dzen.git
-    - apt: libxft-dev
   roles:
-    - os_packages
+    - { role: os_packages, apt: libxft-dev }
     - git_clone
     - autotools_project

@@ -7,8 +7,9 @@
     - repo: git://git.suckless.org/dmenu
   roles:
     - { role: os_packages,
-        apt_packages: [libfreetype6-dev, libxft-dev, libxinerama-dev],
-        dnf_packages: [freetype-devel, libXft-devel, libXinerama-devel],
-        emerge_packages: [x11-libs/libXinerama] }
-    - { role: git_clone }
-    - { role: autotools_project }
+        apt: [libfreetype6-dev, libxft-dev, libxinerama-dev],
+        dnf: [freetype-devel, libXft-devel, libXinerama-devel],
+        portage: [x11-libs/libXinerama] }
+    - git_clone
+    - { role: autotools_project, clean: true,
+        generated_artifacts: ["config.h"] }

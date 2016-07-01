@@ -5,8 +5,7 @@
   vars:
     project: rofi
     repo: https://github.com/DaveDavenport/rofi.git
-    portage_packages: x11-misc/xcb
   roles:
-    - os_packages
+    - { role: os_packages, portage: x11-misc/xcb }
     - { role: git_clone, version: 1.1.0 }
     - autotools_project

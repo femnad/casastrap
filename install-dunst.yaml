@@ -5,14 +5,14 @@
   vars:
     - project: dunst
     - repo: https://github.com/knopwob/dunst.git
-    - apt: [libcairo2-dev, libdbus-1-dev, libpango1.0-dev,
-                     libxdg-basedir-dev, libxss-dev]
-    - dnf_yum: [cairo-devel, dbus-devel, libxdg-basedir-devel,
-                         libXScrnSaver-devel, pango-devel]
-    - portage: dev-libs/libxdg-basedir
     - configuration_path: "{{user_home}}/.config/dunst"
   roles:
-    - os_packages
+    - { role: os_packages,
+        apt: [libcairo2-dev, libdbus-1-dev, libpango1.0-dev,
+                     libxdg-basedir-dev, libxss-dev],
+        dnf_yum: [cairo-devel, dbus-devel, libxdg-basedir-devel,
+                         libXScrnSaver-devel, pango-devel],
+        portage: dev-libs/libxdg-basedir }
     - git_clone
     - autotools_project
   tasks:
