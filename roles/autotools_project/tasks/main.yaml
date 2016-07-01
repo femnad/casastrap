@@ -3,13 +3,11 @@
   command: autoreconf -i
   args:
     chdir: "{{source_path}}"
-    removes: configure.ac
   tags: build, autoconf
 - name: Configure {{_name}}
-  command: ./configure {{configuration | default()}}
+  command: ./configure {{configuration | default(omit)}}
   args:
     chdir: "{{source_path}}"
-    removes: configure
   tags: build, configure
 - name: Clean {{_name}} artifacts
   command: make clean
@@ -26,12 +24,10 @@
   command: make
   args:
     chdir: "{{source_path}}"
-    removes: Makefile
   tags: build, make
 - name: Install {{_name}}
   command: make install
   args:
     chdir: "{{source_path}}"
-    removes: Makefile
   become: yes
   tags: install

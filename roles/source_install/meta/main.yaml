@@ -4,4 +4,4 @@ dependencies:
   - { role: os_packages, _name: "{{name}}",
       _apt: "{{apt}}", _dnf_yum: "{{dnf_yum}}", _portage: "{{portage}}" }
   - { role: autotools_project, _name: "{{name}}",
-      source_path: "{{repo_clone_path}}" }
+      source_path: "{{clone_path}}" }
