@@ -1,6 +1,10 @@
----
 - name: Clone {{_name}} with git
   git: repo={{_repo}} dest={{clone_path}} accept_hostkey=yes
        force={{force_discard | default(True)}}
        version={{version | default(omit)}}
+  when: repo_type == "git"
+  tags: clone
+- name: Clone {{_name}} repository with Mercurial
+  hg: repo={{_repo}} dest={{clone_path}}
+  when: repo_type == "hg"
   tags: clone

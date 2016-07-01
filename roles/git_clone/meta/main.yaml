@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: os_packages, apt: git, dnf_yum: git, portage: dev-vcs/git }

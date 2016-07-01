@@ -1,7 +1,7 @@
 ---
 dependencies:
-  - { role: git_clone, _repo: "{{repo}}", _name: "{{name}}" }
+  - { role: clone, _repo: "{{repo}}", _name: "{{name}}" }
   - { role: os_packages, _name: "{{name}}",
-      _apt: "{{apt}}", _dnf_yum: "{{dnf_yum}}" }
+      _apt: "{{apt}}", _dnf_yum: "{{dnf_yum}}", _portage: "{{portage}}" }
   - { role: autotools_project, _name: "{{name}}",
       source_path: "{{repo_clone_path}}" }

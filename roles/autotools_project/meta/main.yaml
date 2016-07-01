@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - { role: os_packages, _apt: "{{_apt_deps}}", _dnf_yum: "{{_dnf_yum_deps}}" }
+  - { role: os_packages, _apt: "{{_apt_deps}}", _dnf_yum: "{{_dnf_yum_deps}}",
+      _portage: "{{_portage_deps}}" }

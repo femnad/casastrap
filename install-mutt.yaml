@@ -3,16 +3,14 @@
   vars_files:
     - paths.yaml
     - misc.yaml
-  vars:
-    - project: mutt
-    - repo: http://dev.mutt.org/hg/mutt
   roles:
-    - { role: os_packages,
+    - { role: source_install,
+        name: mutt,
+        repo: "http://dev.mutt.org/hg/mutt",
+        repo_type: "hg",
         apt: [libncurses5-dev, libncursesw5-dev, libssl-dev,
               libtokyocabinet-dev, libsasl2-dev],
-        dnf_yum: [ cyrus-sasl-devel, tokyocabinet-devel] }
-    - { role: hg_clone }
-    - { role: autotools_project,
+        dnf_yum: [ cyrus-sasl-devel, tokyocabinet-devel],
         configuration: "--enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl" }
   tasks:
     - name: Generate header caches

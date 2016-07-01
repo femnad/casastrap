@@ -1,3 +1,4 @@
 ---
 _apt_deps: [autoconf, automake, libtool, make, pkg-config]
-_dnf_deps: [autoconf, automake, libtool, make, pkgconfig]
+_dnf_yum_deps: [autoconf, automake, libtool, make, pkgconfig]
+_portage_deps: []
