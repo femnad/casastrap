@@ -17,17 +17,20 @@
   args:
     chdir: "{{source_path}}"
   tags: build, clean
-- name: Comment out lines in {{config_file}} for {{_name}}
+- name: Comment out lines in config file for {{_name}}
   replace: dest="{{source_path}}/{{config_file}}" regexp="^({{item}}.*)"
            replace='#\1'
   with_items:
     "{{comment_out_lines}}"
+  when:
+    config_file != ""
   tags: build, config-edit
-- name: Comment in lines in {{config_file}} for {{_name}}
+- name: Comment in lines in config file for {{_name}}
   lineinfile: dest="{{source_path}}/{{config_file}}" regexp="^#({{item}}.*)"
               state=present line='\1' backrefs=yes
   with_items:
     "{{comment_in_lines}}"
+  when: config_file != ""
   tags: build, config-edit
 - name: Remove generated artifacts
   file: path="{{source_path}}/{{item}}" state=absent
