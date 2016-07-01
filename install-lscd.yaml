@@ -1,0 +1,12 @@
+---
+- hosts: all
+  vars_files:
+    - paths.yaml
+  roles:
+    - { role: source_install,
+        name: lscd,
+        repo: "https://github.com/hut/lscd.git",
+        configure: false,
+        make: false,
+        link_directory: "{{ user_bin }}" }
+

@@ -13,9 +13,9 @@
   tags: build, configure
 - name: Clean {{_name}} artifacts
   command: make clean
-  when: clean
   args:
     chdir: "{{source_path}}"
+  when: make and clean
   tags: build, clean
 - name: Comment out lines in config file for {{_name}}
   replace: dest="{{source_path}}/{{config_file}}" regexp="^({{item}}.*)"
@@ -41,10 +41,17 @@
   command: make
   args:
     chdir: "{{source_path}}"
+  when: make
   tags: build, make
 - name: Install {{_name}}
   command: make install
   args:
     chdir: "{{source_path}}"
+  when: make
   become: yes
   tags: install
+- name: Link {{_name}} executable
+  file: src="{{ source_path }}/{{ _name }}"
+        dest="{{ link_directory }}/{{ _name }}" state=link
+  when: link_directory != ""
+  tags: link-file
