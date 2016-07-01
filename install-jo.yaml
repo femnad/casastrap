@@ -4,8 +4,7 @@
     - paths.yaml
   vars:
     - project: jo
-    - repo: git@github.com:jpmens/jo.git
-    - clone_path: "{{repo_clone_path}}/jo"
+    - repo: https://github.com/jpmens/jo.git
   roles:
-    - { role: git_clone }
-    - { role: autotools_project }
+    - git_clone
+    - autotools_project

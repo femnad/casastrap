@@ -1,2 +1,3 @@
 ---
 clone_path: "{{repo_clone_path}}/{{project}}"
+packages: [autoconf, automake, libtool, make]

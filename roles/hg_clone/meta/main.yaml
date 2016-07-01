@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - { role: os_packages, packages: [mercurial] }
+  - { role: os_packages, apt: mercurial, dnf_yum: mercurial,
+      portage: dev-vcs/mercurial }

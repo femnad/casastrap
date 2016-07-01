@@ -5,9 +5,8 @@
   vars:
     - project: fish-shell
     - repo: https://github.com/fish-shell/fish-shell.git
-    - apt: [g++, ncurses-dev]
-    - dnf_yum: [gcc-c++, ncurses-devel]
   roles:
-    - os_packages
+    - { role: os_packages, apt: [g++, ncurses-dev],
+        dnf_yum: [gcc-c++, ncurses-devel] }
     - git_clone
     - autotools_project
