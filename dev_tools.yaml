@@ -1,0 +1,6 @@
+---
+- name: Install jo, jq and lnav
+  hosts: all
+- include: install-jo.yaml
+- include: install-jq.yaml
+- include: install-lnav.yaml

@@ -2,12 +2,9 @@
 - hosts: all
   vars_files:
     - paths.yaml
-  vars:
-    - project: lnav
-    - repo: https://github.com/tstack/lnav.git
   roles:
-    - git_clone
-    - { role: os_packages,
-        apt: [g++, libgpm-dev, libncurses5-dev, libncursesw5-dev, libpcre3-dev,
+    - { role: source_install,
+        name: lnav,
+        repo: "https://github.com/tstack/lnav.git",
+        apt: [libgpm-dev, libncurses5-dev, libncursesw5-dev, libpcre3-dev,
               libreadline-dev, libsqlite3-dev, zlib1g-dev] }
-    - autotools_project
