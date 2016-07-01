@@ -1,47 +1,47 @@
 ---
-- name: Install requirements with apt
+- name: Install requirements with apt for {{project}}
   apt: name={{item}} state=latest update_cache={{update_cache | default(False)}}
   with_items:
     "{{packages | default([])}}"
   when: ansible_os_family == "Debian"
   become: yes
   tags: reqs
-- name: Install requirements with dnf
+- name: Install requirements with dnf for {{project}}
   dnf: name={{item}} state=latest
   with_items:
     "{{packages | default([])}}"
   when: ansible_distribution == "Fedora"
   become: yes
   tags: reqs
-- name: Install requirements with yum
+- name: Install requirements with yum for {{project}}
   yum: name={{item}} state=latest
   with_items:
     "{{packages | default([])}}"
   when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
   become: yes
   tags: reqs
-- name: Install apt specific requirements
+- name: Install apt specific requirements for {{project}}
   apt: name={{item}} state=latest update_cache={{update_cache | default(False)}}
   with_items:
     "{{apt | default([])}}"
   when: ansible_os_family == "Debian"
   become: yes
   tags: reqs, apt-reqs
-- name: Install dnf specific requirements
+- name: Install dnf specific requirements for {{project}}
   dnf: name={{item}} state=latest
   with_items:
     "{{dnf_yum | default([])}}"
   when: ansible_distribution == "Fedora"
   become: yes
   tags: reqs, reqs-dnf
-- name: Install portage specific requirements
+- name: Install portage specific requirements for {{project}}
   portage: name={{item}} state=present
   with_items:
     "{{portage | default([])}}"
   when: ansible_distribution == "Gentoo"
   become: yes
   tags: reqs
-- name: Install yum specific requirements
+- name: Install yum specific requirements for {{project}}
   yum: name={{item}} state=latest
   with_items:
     "{{dnf_yum | default([])}}"

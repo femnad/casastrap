@@ -1,5 +1,5 @@
 ---
-- name: Clone project with git
+- name: Clone {{project}} with git
   git: repo={{repo}} dest={{clone_path}} accept_hostkey=yes
        force={{force_discard | default(True)}}
        version={{version | default(omit)}}

@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: os_packages, packages: [autoconf, automake, libtool] }
