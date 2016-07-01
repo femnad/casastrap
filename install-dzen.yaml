@@ -6,5 +6,8 @@
     - { role: source_install,
         name: dzen,
         repo: "https://github.com/robm/dzen.git",
-        apt: libxft-dev,
-        configure: false }
+        apt: [libxft-dev, libxpm-dev],
+        configure: false,
+        config_file: "config.mk",
+        comment_out_lines: ["LIBS", "CFLAGS"],
+        comment_in_lines: ["LIBS", "CFLAGS = -Wall"] }
