@@ -6,7 +6,7 @@
   when: configure
   tags: build, autoconf
 - name: Configure {{_name}}
-  command: ./configure {{configuration | default(omit)}}
+  command: ./configure {{configuration | default("")}}
   args:
     chdir: "{{source_path}}"
   when: configure
