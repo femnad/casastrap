@@ -3,11 +3,13 @@
   command: autoreconf -i
   args:
     chdir: "{{source_path}}"
+  when: configure
   tags: build, autoconf
 - name: Configure {{_name}}
   command: ./configure {{configuration | default(omit)}}
   args:
     chdir: "{{source_path}}"
+  when: configure
   tags: build, configure
 - name: Clean {{_name}} artifacts
   command: make clean

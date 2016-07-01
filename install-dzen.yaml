@@ -2,10 +2,9 @@
 - hosts: all
   vars_files:
     - paths.yaml
-  vars:
-    - project: dzen
-    - repo: https://github.com/robm/dzen.git
   roles:
-    - { role: os_packages, apt: libxft-dev }
-    - git_clone
-    - autotools_project
+    - { role: source_install,
+        name: dzen,
+        repo: "https://github.com/robm/dzen.git",
+        apt: libxft-dev,
+        configure: false }

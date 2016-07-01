@@ -1,2 +1,3 @@
 clean: false
+configure: true
 generated_artifacts: []
