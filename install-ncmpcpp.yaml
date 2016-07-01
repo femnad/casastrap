@@ -3,15 +3,12 @@
     all
   vars_files:
     - paths.yaml
-  vars:
-    - project: ncmpcpp
-    - repo: git://repo.or.cz/ncmpcpp.git
-    - apt: [libmpdclient-dev, libboost-all-dev, libreadline-dev,
-                   libncurses5-dev, libncursesw5-dev]
-    - dnf_yum: [boost, boost-devel, boost-filesystem, boost-locale,
-                         boost-program-options, boost-regex, boost-thread,
-                         libmpdclient-devel, ncurses-devel, readline-devel]
   roles:
-    - os_packages
-    - git_clone
-    - autotools_project
+    - { role: source_install,
+        name: ncmpcpp,
+        repo: "git://repo.or.cz/ncmpcpp.git",
+        apt: [libmpdclient-dev, libboost-all-dev, libreadline-dev,
+              libncurses5-dev, libncursesw5-dev],
+        dnf_yum: [boost, boost-devel, boost-filesystem, boost-locale,
+                  boost-program-options, boost-regex, boost-thread,
+                  libmpdclient-devel, ncurses-devel, readline-devel] }

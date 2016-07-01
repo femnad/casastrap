@@ -2,10 +2,7 @@
 - hosts: all
   vars_files:
     - paths.yaml
-  vars:
-    - project: jq
-    - repo: https://github.com/stedolan/jq.git
   roles:
-    - git_clone
-    - autotools_project
-    - ldconfig
+    - { role: source_install,
+        name: jq,
+        repo: "https://github.com/stedolan/jq.git" }
