@@ -5,4 +5,5 @@
   roles:
     - { role: source_install,
         name: jq,
-        repo: "https://github.com/stedolan/jq.git" }
+        repo: "https://github.com/stedolan/jq.git",
+        apt: flex }
