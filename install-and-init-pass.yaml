@@ -1,32 +1,23 @@
 ---
+- include: install_os_packages.yaml
+  vars:
+    apt:
+      - gnupg2
+      - git
+      - pass
 - hosts: all
   vars_files:
     - creds.yaml
     - paths.yaml
   tasks:
-    - name: Install requirements with apt
-      apt: name={{item}} state=latest
-      become: yes
-      with_items:
-        - gnupg2
-        - git
-        - pass
-      when: ansible_os_family == "Debian"
-      tags: reqs
-    - name: Install requirements with dnf
-      dnf: name={{item}} state=latest
-      become: yes
-      with_items:
-        - gnupg2
-        - git
-        - pass
-      when: ansible_distribution == "Fedora"
-      tags: reqs
     - name: Ensure that the export directory exists
       local_action: file path={{gpg_export_dir}} state=directory
       tags: export
     - name: Export gpg key
       local_action: command gpg --output {{gpg_key_location}} --armor --export-secret-keys {{gpg_id}}
+      tags: export
+    - name: Ensure that the copy directory exists
+      file: path={{gpg_export_dir}} state=directory
       tags: export
     - name: Copy the GPG private key to remote machine
       copy: src={{gpg_key_location}} dest={{gpg_key_location}}
