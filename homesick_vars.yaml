@@ -6,5 +6,5 @@ homesick_repos:
   - base
   - homebin
   - "{{ ansible_hostname }}"
-homeshick_repos_path:
+homesick_repos_path:
   "{{ user_home }}/.homesick/repos"

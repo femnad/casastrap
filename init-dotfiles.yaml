@@ -1,0 +1,5 @@
+---
+- include: install-homeshick.yaml
+  tags: install
+- include: clone-dotfiles.yaml
+  tags: clone, link

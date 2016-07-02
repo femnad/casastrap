@@ -6,13 +6,17 @@
   tasks:
     - name: Clone homesick repos
       git: repo={{ gitlab_base_url }}:{{ gitlab_username }}/{{ item }}.git
-           dest={{ homeshick_repos_path }}/{{ item }}
+           dest={{ homesick_repos_path }}/{{ item }}
            accept_hostkey=true
       with_items:
         "{{ homesick_repos }}"
       tags: clone
     - name: Link homesick repos
-      script: symlink-homesick-castle.sh {{ item }}
+      shell: |
+        source $HOME/.homesick/repos/homeshick/homeshick.sh
+        homeshick link -f {[ item }}
+      args:
+        executable: /bin/bash
       with_items:
         "{{ homesick_repos }}"
       tags: link
