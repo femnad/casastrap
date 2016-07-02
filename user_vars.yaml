@@ -1,0 +1,3 @@
+---
+username: femnad
+ssh_public_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
