@@ -5,4 +5,4 @@ then
     echo 'Need a castle name'
     exit 1
 fi
-homeshick link $1
+homeshick link -f $1
