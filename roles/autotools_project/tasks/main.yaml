@@ -22,15 +22,14 @@
            replace='#\1'
   with_items:
     "{{comment_out_lines}}"
-  when:
-    config_file != ""
+  when: edit_config
   tags: build, config-edit
 - name: Comment in lines in config file for {{_name}}
   lineinfile: dest="{{source_path}}/{{config_file}}" regexp="^#({{item}}.*)"
               state=present line='\1' backrefs=yes
   with_items:
     "{{comment_in_lines}}"
-  when: config_file != ""
+  when: edit_config
   tags: build, config-edit
 - name: Remove generated artifacts
   file: path="{{source_path}}/{{item}}" state=absent
@@ -53,5 +52,5 @@
 - name: Link {{_name}} executable
   file: src="{{ source_path }}/{{ _name }}"
         dest="{{ link_directory }}/{{ _name }}" state=link
-  when: link_directory != ""
+  when: link
   tags: link-file

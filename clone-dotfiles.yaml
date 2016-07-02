@@ -1,0 +1,18 @@
+---
+- hosts: all
+  vars_files:
+    - paths.yaml
+    - homesick_vars.yaml
+  tasks:
+    - name: Clone homesick repos
+      git: repo={{ gitlab_base_url }}:{{ gitlab_username }}/{{ item }}.git
+           dest={{ homeshick_repos_path }}/{{ item }}
+           accept_hostkey=true
+      with_items:
+        "{{ homesick_repos }}"
+      tags: clone
+    - name: Link homesick repos
+      script: symlink-homesick-castle.sh {{ item }}
+      with_items:
+        "{{ homesick_repos }}"
+      tags: link

@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - os_update
+  post_tasks:
+    - local_action: command notify-send Ansible 'Update complete for {{ ansible_hostname }}'
