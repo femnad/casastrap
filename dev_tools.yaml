@@ -4,3 +4,5 @@
 - include: install-jo.yaml
 - include: install-jq.yaml
 - include: install-lnav.yaml
+- include: install-the-silver-searcher.yaml
+  tags: ag
