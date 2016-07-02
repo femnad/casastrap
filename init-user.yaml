@@ -10,3 +10,7 @@
       authorized_key: user={{ username }}
                       key={{ lookup('file', ssh_public_key) }}
       tags: ssh-key
+    - name: Set passwordless sudo for the sudo group
+      lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo   ALL=(ALL:ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
+      become: yes
+      tags: sudo
