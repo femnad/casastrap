@@ -1,0 +1,8 @@
+- hosts: all
+  vars_files:
+    - paths.yaml
+  roles:
+    - { role: clone,
+        _name: "{{ name }}",
+        _repo: "{{ repo }}" }
+

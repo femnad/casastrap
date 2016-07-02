@@ -2,8 +2,11 @@
 dependencies:
   - { role: clone, _repo: "{{repo}}", _name: "{{name}}",
       when: clone_source }
-  - { role: download, file: "{{ release }}" }
+  - { role: download, file: "{{ release }}",
+      when: not clone_source }
   - { role: packages, _name: "{{name}}",
       _apt: "{{apt}}", _dnf_yum: "{{dnf_yum}}", _portage: "{{portage}}" }
   - { role: autotools, _name: "{{name}}",
-      source_path: "{{release_path}}" }
+      source_path: "{{clone_path}}", when: clone_source }
+  - { role: autotools, _name: "{{name}}",
+      source_path: "{{release_path}}", when: not clone_source }

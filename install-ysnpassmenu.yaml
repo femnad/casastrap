@@ -1,0 +1,6 @@
+---
+- include: clone_repo.yaml
+  vars:
+    name: ysnpassmenu
+    repo: "https://github.com/femnad/ysnpassmenu.git"
+- include: install-dmenu.yaml

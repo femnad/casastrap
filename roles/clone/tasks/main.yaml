@@ -4,7 +4,7 @@
        version={{version | default(omit)}}
   when: repo_type == "git"
   tags: clone
-- name: Clone {{_name}} repository with Mercurial
+- name: Clone {{_name}} with Mercurial
   hg: repo={{_repo}} dest={{clone_path}}
   when: repo_type == "hg"
   tags: clone

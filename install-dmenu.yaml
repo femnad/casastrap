@@ -2,14 +2,13 @@
 - hosts: all
   vars_files:
     - paths.yaml
-  vars:
-    - project: dmenu
-    - repo: git://git.suckless.org/dmenu
   roles:
-    - { role: os_packages,
+    - { role: source_install,
+        name: dmenu,
+        repo: "git://git.suckless.org/dmenu",
         apt: [libfreetype6-dev, libxft-dev, libxinerama-dev],
         dnf: [freetype-devel, libXft-devel, libXinerama-devel],
-        portage: [x11-libs/libXinerama] }
-    - git_clone
-    - { role: autotools_project, clean: true,
+        portage: [x11-libs/libXinerama],
+        clean: true,
+        configure: false,
         generated_artifacts: ["config.h"] }

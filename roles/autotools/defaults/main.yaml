@@ -1,7 +1,7 @@
 ---
 clean: false
 configure: true
-reconfigure: true
+reconf: true
 generated_artifacts: []
 make: true
 make_install: true
