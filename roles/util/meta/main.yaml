@@ -1,8 +1,5 @@
-clean: false
+---
 comment_in_lines: []
 comment_out_lines: []
-configure: true
 edit_config: false
-generated_artifacts: []
-make: true
 link: false

@@ -1,0 +1,2 @@
+release_path:
+  "{{extract_path.files[0].path}}"

@@ -2,17 +2,11 @@
 - hosts: all
   vars_files:
     - paths.yaml
-  tasks:
-    - name: Download and extract Libstpotify release
-      unarchive: src=https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-x86_64-release.tar.gz
-                 dest="{{ release_store_path }}" copy=no
-    - name: Locate the extration directory
-      find: path={{ release_store_path }} patterns='libspotify*' file_type="directory"
-      register: extract
-    - name: Check whether only a single extraction directory was located
-      assert: { that: " {{ extract.matched == 1 }} " }
-    - name: Install the library file
-      command: make install
-      args:
-        chdir: "{{ extract.files[0].path }}"
-      become: yes
+  roles:
+    - { roles: source_install,
+        clone_source: no,
+        name: libstpotify,
+        release: "https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-x86_64-release.tar.gz",
+        reconf: no,
+        configure: no,
+        make: no }

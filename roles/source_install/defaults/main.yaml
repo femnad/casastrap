@@ -2,3 +2,4 @@
 apt: []
 dnf_yum: []
 portage: []
+source: true

@@ -1,0 +1,7 @@
+---
+clean: false
+configure: true
+reconfigure: true
+generated_artifacts: []
+make: true
+make_install: true
