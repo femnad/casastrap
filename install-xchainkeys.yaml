@@ -2,10 +2,7 @@
 - hosts: all
   vars_files:
     - paths.yaml
-  vars:
-    - project: xchainkeys
-    - repo: https://github.com/hbekel/xchainkeys.git
   roles:
-    - os_packages
-    - git_clone
-    - autotools_project
+    - { role: source_install,
+        name: xchainkeys,
+        repo: "https://github.com/hbekel/xchainkeys.git" }

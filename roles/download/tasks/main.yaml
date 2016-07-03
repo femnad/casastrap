@@ -10,3 +10,7 @@
   register: extract_path
 - name: Check whether only a single extraction directory was located
   assert: { that: " {{ extract_path.matched == 1 }} " }
+- name: Set release path
+  set_fact:
+    release_path:
+      "{{extract_path.files[0].path}}"
