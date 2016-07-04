@@ -11,8 +11,15 @@
     chdir: "{{source_path}}"
   when: configure
   tags: build, configure
+- name: Set make executable
+  set_fact:
+    make_executable:
+      gmake
+    when:
+      ansible_distribution == "FreeBSD"
+  tags: build, make, install
 - name: Clean {{_name}} artifacts
-  command: make clean
+  command: "{{ make_executable }} clean"
   args:
     chdir: "{{source_path}}"
   when: make and clean
@@ -23,13 +30,13 @@
     "{{generated_artifacts}}"
   tags: build, clean
 - name: Build {{_name}}
-  command: make
+  command: "{{ make_executable }}"
   args:
     chdir: "{{source_path}}"
   when: make
   tags: build, make
 - name: Install {{_name}}
-  command: make install
+  command: "{{ make_executable }} install"
   args:
     chdir: "{{source_path}}"
   when: make or make_install

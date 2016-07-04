@@ -1,5 +1,6 @@
 dependencies:
   - { role: packages, _apt: mercurial, _dnf_yum: mercurial,
       _portage: dev-vcs/mercurial, when: repo_type == "hg" }
-  - { role: packages, _apt: git, _dnf_yum: git, _portage: dev-vcs/git,
+  - { role: packages, _apt: git, _dnf_yum: git, _pkg: git,
+      _portage: dev-vcs/git,
       when: repo_type == "git" }

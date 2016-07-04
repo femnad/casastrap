@@ -13,6 +13,13 @@
   when: ansible_distribution == "Fedora"
   become: yes
   tags: reqs, reqs-dnf
+- name: Install packages with pkg {{ _name }}
+  pkgng: name={{ item }} state=present
+  with_items:
+    "{{ _pkg }}"
+  when: ansible_distribution == "FreeBSD"
+  become: yes
+  tags: reqs, reqs-pkg
 - name: Install requirements with portage {{_name}}
   portage: name={{item}} state=present
   with_items:

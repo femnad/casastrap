@@ -12,3 +12,4 @@
   set_fact:
     release_path:
       "{{ clone_path }}"
+  tags: clone, build, install, make
