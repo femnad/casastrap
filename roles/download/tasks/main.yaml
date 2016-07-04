@@ -8,9 +8,11 @@
 - name: Locate the extration directory
   find: path={{ release_store_path }} patterns="{{ name }}*" file_type="directory"
   register: extract_path
+  tags: build, make, install
 - name: Check whether only a single extraction directory was located
   assert: { that: " {{ extract_path.matched == 1 }} " }
 - name: Set release path
   set_fact:
     release_path:
       "{{extract_path.files[0].path}}"
+  tags: build, make, install

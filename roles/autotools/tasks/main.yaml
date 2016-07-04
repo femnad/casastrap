@@ -15,8 +15,8 @@
   set_fact:
     make_executable:
       gmake
-    when:
-      ansible_distribution == "FreeBSD"
+  when:
+    ansible_distribution == "FreeBSD"
   tags: build, make, install
 - name: Clean {{_name}} artifacts
   command: "{{ make_executable }} clean"
