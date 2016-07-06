@@ -6,5 +6,6 @@ dependencies:
       when: not clone_source }
   - { role: packages, _name: "{{name}}",
       _apt: "{{apt}}", _dnf_yum: "{{dnf_yum}}", _portage: "{{portage}}" }
+  - { role: util, when: edit_config }
   - { role: autotools, _name: "{{name}}",
       source_path: "{{release_path}}" }

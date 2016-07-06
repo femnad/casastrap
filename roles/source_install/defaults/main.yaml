@@ -1,5 +1,6 @@
 ---
 apt: []
 clone_source: true
+edit_config: false
 dnf_yum: []
 portage: []
