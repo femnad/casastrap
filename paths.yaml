@@ -1,6 +1,4 @@
 ---
-common_virtualenv_py2: "{{ virtualenv_path }}/genenv2"
-common_virtualenv_py3: "{{ virtualenv_path }}/genenv3"
 gpg_export_dir: "{{ user_home }}/y/shred-me"
 gpg_key_location: "{{ gpg_export_dir }}/fff.key"
 release_store_path: "{{ user_home }}/z/dy"
@@ -9,4 +7,3 @@ tarsnap_key_dir: "{{ user_home }}/z/zr"
 tarsnap_key_file: "{{ tarsnap_key_dir }}/2016-feb.key"
 user_bin: "{{ user_home }}/bin"
 user_home: "{{ ansible_env.HOME }}"
-virtualenv_path: "{{ user_home }}/y/venvs"

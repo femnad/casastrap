@@ -1,0 +1,3 @@
+base_virtualenv_path: "{{ user_home }}/v"
+common_virtualenv_py2: "{{ base_virtualenv_path }}/genenv2"
+common_virtualenv_py3: "{{ base_virtualenv_path }}/genenv3"
