@@ -1,9 +1,11 @@
 ---
 clean: false
 configure: true
-reconf: true
+configuration:
 generated_artifacts: []
+initiator: autotools
 make: true
 make_command:
 make_executable: make
 make_install: true
+reconf: true

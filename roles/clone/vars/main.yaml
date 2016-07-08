@@ -1,2 +1,2 @@
 ---
-clone_path: "{{repo_clone_path}}/{{_name}}"
+clone_path: "{{ repo_clone_path }}/{{ name }}"

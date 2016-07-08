@@ -1,11 +1,14 @@
 ---
 dependencies:
-  - { role: clone, _repo: "{{repo}}", _name: "{{name}}",
+  - { role: clone, url: "{{ repo.url }}",
+      name: "{{ repo.name }}",
       when: clone_source }
   - { role: download, file: "{{ release }}",
       when: not clone_source }
-  - { role: packages, _name: "{{name}}",
-      _apt: "{{apt}}", _dnf_yum: "{{dnf_yum}}", _portage: "{{portage}}" }
+  - { role: packages, apt: "{{ dependencies.apt }}",
+      dnf_yum: "{{ dependencies.dnf_yum }}",
+      pkg: "{{ dependencies.pkg }}",
+      portage: "{{ dependencies.portage }}" }
   - { role: util, when: edit_config }
-  - { role: autotools, _name: "{{name}}",
-      source_path: "{{release_path}}" }
+  - { role: autotools, name: "{{ repo.name }}",
+      source_path: "{{ release_path }}" }

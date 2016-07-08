@@ -5,7 +5,7 @@
 - name: Download and extract the release
   unarchive: src={{ release }} dest={{ release_store_path }} copy=no
   tags: download-release, extract-release
-- name: Locate the extration directory
+- name: Locate the extraction directory
   find: path={{ release_store_path }} patterns="{{ name }}*" file_type="directory"
   register: extract_path
   tags: build, make, install

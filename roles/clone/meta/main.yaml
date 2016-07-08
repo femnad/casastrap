@@ -1,9 +1,9 @@
 dependencies:
-  - { role: packages, _apt: mercurial, _dnf_yum: mercurial,
-      _portage: dev-vcs/mercurial, when: repo_type == "hg" }
-  - { role: packages, _apt: git, _dnf_yum: git, _pkg: git,
-      _portage: dev-vcs/git,
+  - { role: packages, apt: git, dnf_yum: git, pkg: git,
+      portage: dev-vcs/git,
       when: repo_type == "git" }
-  - { role: packages, _apt: bzr, _dnf_yum: bzr, _pkg: bzr,
-      _portage: dev-vcs/bzr,
+  - { role: packages, apt: mercurial, dnf_yum: mercurial, pkg: mercurial,
+      portage: dev-vcs/mercurial, when: repo_type == "hg" }
+  - { role: packages, apt: bzr, dnf_yum: bzr, pkg: bzr,
+      portage: dev-vcs/bzr,
       when: repo_type == "bzr" }

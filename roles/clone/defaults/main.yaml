@@ -1,2 +1,5 @@
 ---
+accept_hostkey: true
+force_discard: true
+initiator: clone
 repo_type: git

@@ -1,5 +1,11 @@
 ---
 _name:
-_pkg:
+apt:
+  []
+dnf_yum:
+  []
+pkg:
+  []
+portage:
   []
 update_cache: false

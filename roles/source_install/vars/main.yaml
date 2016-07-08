@@ -1,0 +1,2 @@
+---
+dependencies: "{{ {'apt': [], 'dnf_yum': [], 'pkg': [], 'portage': []} | combine(deps) }}"

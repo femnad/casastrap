@@ -1,15 +1,14 @@
-- name: Clone {{_name}} with git
-  git: repo={{_repo}} dest={{clone_path}} accept_hostkey=yes
-       force={{force_discard | default(True)}}
-       version={{version | default(omit)}}
+- name: Clone {{ name }} with git
+  git: repo={{ url }} dest={{ clone_path }} accept_hostkey={{ accept_hostkey }}
+       force={{ force_discard }} version={{version | default(omit)}}
   when: repo_type == "git"
   tags: clone
-- name: Clone {{_name}} with Mercurial
-  hg: repo={{_repo}} dest={{clone_path}}
+- name: Clone {{ name }} with Mercurial
+  hg: repo={{ url }} dest={{ clone_path }}
   when: repo_type == "hg"
   tags: clone
-- name: Clone {{_name}} with Bazaar
-  bzr: name={{_repo}} dest={{clone_path}}
+- name: Clone {{ name }} with Bazaar
+  bzr: name={{ url }} dest={{ clone_path }}
   when: repo_type == "bzr"
   tags: clone
 - name: Set release path

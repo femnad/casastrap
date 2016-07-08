@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - { role: packages, _apt: "{{_apt_deps}}", _dnf_yum: "{{_dnf_yum_deps}}",
-      _pkg: "{{ _pkg_deps }}",
-      _portage: "{{_portage_deps}}",
+  - { role: packages, apt: "{{ _apt_deps }}", dnf_yum: "{{ _dnf_yum_deps }}",
+      pkg: "{{ _pkg_deps }}",
+      portage: "{{ _portage_deps }}",
       when: make or configure }
