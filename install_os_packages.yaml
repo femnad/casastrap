@@ -1,7 +1,0 @@
-- name: Install OS Packages
-  hosts: all
-  roles:
-    - { role: packages,
-        _apt: "{{apt | default([])}}",
-        _dnf_yum: "{{dnf_yum | default([])}}",
-        _portage: "{{portage | default([])}}" }

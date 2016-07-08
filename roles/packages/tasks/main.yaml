@@ -1,12 +1,12 @@
 ---
-- name: "Install requirements with apt (initiator: {{ initiator }})"
+- name: "Install packages with apt (initiator: {{ initiator }})"
   apt: name={{item}} state=latest update_cache={{update_cache}}
   with_items:
     "{{ apt }}"
   when: ansible_os_family == "Debian"
   become: yes
   tags: reqs, reqs-apt
-- name: "Install requirements with dnf (initiator: {{ initiator }})"
+- name: "Install packages with dnf (initiator: {{ initiator }})"
   dnf: name={{item}} state=latest
   with_items:
     "{{ dnf_yum }}"
