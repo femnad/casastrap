@@ -30,7 +30,7 @@
     "{{generated_artifacts}}"
   tags: build, clean
 - name: Build {{_name}}
-  command: "{{ make_executable }}"
+  command: "{{ make_executable }} {{ make_command }}"
   args:
     chdir: "{{source_path}}"
   when: make

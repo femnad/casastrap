@@ -8,6 +8,10 @@
   hg: repo={{_repo}} dest={{clone_path}}
   when: repo_type == "hg"
   tags: clone
+- name: Clone {{_name}} with Bazaar
+  bzr: name={{_repo}} dest={{clone_path}}
+  when: repo_type == "bzr"
+  tags: clone
 - name: Set release path
   set_fact:
     release_path:

@@ -4,5 +4,6 @@ configure: true
 reconf: true
 generated_artifacts: []
 make: true
+make_command:
 make_executable: make
 make_install: true
