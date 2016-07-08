@@ -1,0 +1,15 @@
+---
+- hosts: all
+
+  vars_files:
+    - paths.yaml
+
+  vars:
+    repo:
+      name: libmesode
+      url: https://github.com/boothj5/libmesode.git
+    deps:
+      apt: [libexpat1-dev, libssl-dev]
+
+  roles:
+    - source_install

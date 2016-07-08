@@ -1,6 +1,0 @@
----
-dependencies:
-  - { role: git_clone, repo: "{{dep_repo}}",
-      project: "{{dep_name}}" }
-  - { role: autotools_project, project: "{{dep_name}}" }
-  - { role: ldconfig }

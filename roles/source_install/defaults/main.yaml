@@ -1,7 +1,5 @@
 ---
-apt: []
 clone_source: true
+deps: {}
 edit_config: false
-dnf_yum: []
-portage: []
 initiator: source_install
