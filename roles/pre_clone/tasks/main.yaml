@@ -10,7 +10,7 @@
         git
       portage:
         dev-vcs/git
-  when: repo_type == "git"
+  when: repo.type == "git"
 - name: Set clone dependency for hg
   set_fact:
     clone_dependency:
@@ -22,7 +22,7 @@
         mercurial
       portage:
         dev-vcs/mercurial
-  when: repo_type == "hg"
+  when: repo.type == "hg"
 - name: Set clone dependency for bzr
   set_fact:
     clone_dependency:
@@ -34,4 +34,4 @@
         bzr
       portage:
         dev-vcs/bzr
-  when: repo_type == "bzr"
+  when: repo.type == "bzr"

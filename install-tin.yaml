@@ -4,12 +4,17 @@
   vars_files:
     - paths.yaml
 
+  vars:
+    repo:
+      name: tin
+      url: http://bzr.tin.org/
+      type: bzr
+    deps:
+      apt: [bison, libncursesw5-dev]
+    build:
+      configuration: "--with-screen=ncursesw"
+      make_command: build
+      reconf: no
+
   roles:
-    - { role: source_install,
-        name: tin,
-        repo: "http://bzr.tin.org/",
-        repo_type: bzr,
-        reconf: no,
-        configuration: "--with-screen=ncursesw",
-        apt: [bison, libncursesw5-dev],
-        make_command: build }
+    - source_install

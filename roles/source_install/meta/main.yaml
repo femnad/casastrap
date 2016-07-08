@@ -9,6 +9,5 @@ dependencies:
       dnf_yum: "{{ dependencies.dnf_yum }}",
       pkg: "{{ dependencies.pkg }}",
       portage: "{{ dependencies.portage }}" }
-  - { role: util, when: edit_config }
   - { role: autotools, name: "{{ repo.name }}",
       source_path: "{{ release_path }}" }

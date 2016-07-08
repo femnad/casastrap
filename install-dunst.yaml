@@ -1,20 +1,23 @@
 ---
 - hosts: all
+
   vars_files:
     - paths.yaml
+
   vars:
-    - project: dunst
-    - repo: https://github.com/knopwob/dunst.git
-    - configuration_path: "{{user_home}}/.config/dunst"
+    repo:
+      name: dunst
+      url: https://github.com/knopwob/dunst.git
+    deps:
+      apt: [libcairo2-dev, libdbus-1-dev, libpango1.0-dev,
+            libxdg-basedir-dev, libxss-dev]
+      dnf_yum: [cairo-devel, dbus-devel, libxdg-basedir-devel,
+                libXScrnSaver-devel, pango-devel]
+    configuration_path: "{{user_home}}/.config/dunst"
+
   roles:
-    - { role: os_packages,
-        apt: [libcairo2-dev, libdbus-1-dev, libpango1.0-dev,
-                     libxdg-basedir-dev, libxss-dev],
-        dnf_yum: [cairo-devel, dbus-devel, libxdg-basedir-devel,
-                         libXScrnSaver-devel, pango-devel],
-        portage: dev-libs/libxdg-basedir }
-    - git_clone
-    - autotools_project
+    - { role: source_install, configure: false }
+
   tasks:
     - name: Create configuration directory
       file: path={{configuration_path}} state=directory

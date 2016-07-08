@@ -3,3 +3,4 @@ _apt_deps: [autoconf, automake, libtool, make, pkg-config]
 _dnf_yum_deps: [autoconf, automake, libtool, make, pkgconfig]
 _pkg_deps: [autoconf, automake, libtool, gmake, pkgconf]
 _portage_deps: []
+_build: "{{ _build_defaults | combine(build) }}"
