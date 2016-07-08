@@ -12,6 +12,13 @@
     "{{comment_in_lines}}"
   when: edit_config
   tags: build, config-edit
+- name: Change line in config
+  replace: dest={{ release_path }}/{{ config_file }} regexp={{ item.before }}
+           replace={{ item.after }}
+  when: edit_config
+  with_items:
+    "{{ lines_to_change }}"
+  tags: build, config-edit
 - name: Link {{_name}} executable
   file: src="{{ release_path }}/{{ _name }}"
         dest="{{ link_directory }}/{{ _name }}" state=link

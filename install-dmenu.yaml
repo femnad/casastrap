@@ -11,4 +11,7 @@
         portage: [x11-libs/libXinerama],
         clean: true,
         configure: false,
-        generated_artifacts: ["config.h"] }
+        edit_config: yes,
+        config_file: "config.h",
+        lines_to_change: [ { "before": "monospace:size=[0-9]+",
+                             "after": "monospace:size=11" } ] }
