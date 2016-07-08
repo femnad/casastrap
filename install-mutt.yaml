@@ -1,26 +1,28 @@
 ---
 - hosts: all
+
   vars_files:
     - paths.yaml
     - misc.yaml
+
   vars:
-    - configuration: "--enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl"
+    repo:
+      name: mutt
+      url: http://dev.mutt.org/hg/mutt
+    deps:
+      apt: [libncurses5-dev, libncursesw5-dev, libssl-dev,
+                libtokyocabinet-dev, libsasl2-dev]
+      dnf_yum: [cyrus-sasl-devel, ncurses-devel, openssl-devel,
+                tokyocabinet-devel]
+    configuration: "--enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl"
+    repo_type: hg
+
   roles:
-    - { role: source_install,
-        name: mutt,
-        repo: "http://dev.mutt.org/hg/mutt",
-        repo_type: "hg",
-        apt: [libncurses5-dev, libncursesw5-dev, libssl-dev,
-              libtokyocabinet-dev, libsasl2-dev],
-        dnf_yum: [ cyrus-sasl-devel, openssl-devel, tokyocabinet-devel] }
+    - source_install
+
   tasks:
-    - name: Generate header caches
-      file: path="{{mutt_header_directory}}/{{item}}header" state=directory
-      with_items:
-        "{{mutt_prefixes}}"
-      tags: cache-header
-    - name: Generate message caches
-      file: path="{{mutt_header_directory}}/{{item}}message" state=directory
-      with_items:
-        "{{mutt_prefixes}}"
-      tags: cache-message
+    - name: Generate header and message caches
+      file: path="{{mutt_header_directory}}/{{ item[0] }}{{ item[1] }}" state=directory
+      with_nested:
+        - "{{mutt_prefixes}}"
+        - ['header', 'message']

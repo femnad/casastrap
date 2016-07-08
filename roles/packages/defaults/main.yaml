@@ -1,5 +1,4 @@
 ---
-_name:
 apt:
   []
 dnf_yum:

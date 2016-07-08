@@ -1,16 +1,29 @@
 ---
 - hosts: all
+
   vars_files:
     - user_vars.yaml
+
+  roles:
+    - { role: packages, apt: sudo, dnf_yum: sudo, initiator: self }
+
   tasks:
+    - name: Set sudo group
+      set_fact:
+        sudo_group: sudo
+      when: ansible_os_family != "RedHat"
+    - name: Set sudo group
+      set_fact:
+        sudo_group: wheel
+      when: ansible_os_family == "RedHat"
     - name: Add user {{username}}
-      user: name={{username}} group=users groups=sudo shell=/bin/bash
+      user: name={{username}} group=users groups={{ sudo_group }} shell=/bin/bash
       tags: user
     - name: Add authorized ssh key
       authorized_key: user={{ username }}
                       key={{ lookup('file', ssh_public_key) }}
       tags: ssh-key
     - name: Set passwordless sudo for the sudo group
-      lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo   ALL=(ALL:ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
+      lineinfile: "dest=/etc/sudoers state=present regexp='^%{{ sudo_group }}' line='%{{ sudo_group }}   ALL=(ALL:ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
       become: yes
       tags: sudo

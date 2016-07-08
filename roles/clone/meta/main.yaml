@@ -1,9 +1,8 @@
+---
 dependencies:
-  - { role: packages, apt: git, dnf_yum: git, pkg: git,
-      portage: dev-vcs/git,
-      when: repo_type == "git" }
-  - { role: packages, apt: mercurial, dnf_yum: mercurial, pkg: mercurial,
-      portage: dev-vcs/mercurial, when: repo_type == "hg" }
-  - { role: packages, apt: bzr, dnf_yum: bzr, pkg: bzr,
-      portage: dev-vcs/bzr,
-      when: repo_type == "bzr" }
+  - role: pre_clone
+  - { role: packages,
+      apt: "{{ clone_dependency.apt }}",
+      dnf_yum: "{{ clone_dependency.dnf_yum }}",
+      pkg: "{{ clone_dependency.pkg }}",
+      portage: "{{ clone_dependency.portage }}" }

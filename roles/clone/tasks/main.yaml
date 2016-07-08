@@ -1,3 +1,4 @@
+---
 - name: Clone {{ name }} with git
   git: repo={{ url }} dest={{ clone_path }} accept_hostkey={{ accept_hostkey }}
        force={{ force_discard }} version={{version | default(omit)}}

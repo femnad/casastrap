@@ -1,0 +1,37 @@
+---
+- name: Set clone dependency for git
+  set_fact:
+    clone_dependency:
+      apt:
+        git
+      dnf_yum:
+        git
+      pkg:
+        git
+      portage:
+        dev-vcs/git
+  when: repo_type == "git"
+- name: Set clone dependency for hg
+  set_fact:
+    clone_dependency:
+      apt:
+        mercurial
+      dnf_yum:
+        mercurial
+      pkg:
+        mercurial
+      portage:
+        dev-vcs/mercurial
+  when: repo_type == "hg"
+- name: Set clone dependency for bzr
+  set_fact:
+    clone_dependency:
+      apt:
+        bzr
+      dnf_yum:
+        bzr
+      pkg:
+        bzr
+      portage:
+        dev-vcs/bzr
+  when: repo_type == "bzr"
