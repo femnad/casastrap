@@ -1,0 +1,4 @@
+---
+gpg_export_dir: "{{ user_home }}/y/shred-me"
+gpg_key_location: "{{ gpg_export_dir }}/fff.key"
+gpg_id: femnad

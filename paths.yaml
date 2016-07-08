@@ -1,9 +1,5 @@
 ---
-gpg_export_dir: "{{ user_home }}/y/shred-me"
-gpg_key_location: "{{ gpg_export_dir }}/fff.key"
+user_home: "{{ ansible_env.HOME }}"
+user_bin: "{{ user_home }}/bin"
 release_store_path: "{{ user_home }}/z/dy"
 repo_clone_path: "{{ user_home }}/z/gl"
-tarsnap_key_dir: "{{ user_home }}/z/zr"
-tarsnap_key_file: "{{ tarsnap_key_dir }}/2016-feb.key"
-user_bin: "{{ user_home }}/bin"
-user_home: "{{ ansible_env.HOME }}"

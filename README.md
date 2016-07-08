@@ -1,13 +1,13 @@
 Why?
 ====
 
-Because installing and setting everything by hand is insufferable. I mean, I can't remember the time the compilation of some packages failed with the same errors and I had to lookup which package contained the necessary header files.
+Because Ansible is too much fun.
 
 
 How?
 ====
 
-Edit `paths.yaml` to your heart's content and run the desired playbooks. For installing the fish-shell from git:
+Edit `paths.yaml` and run the desired playbook(s). For installing fish-shell from git:
 
-    ansible-playbook install-fish.yaml
+    ansible-playbook install-fish.yaml [ <other Ansible parameters> ]
 

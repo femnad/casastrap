@@ -1,7 +1,10 @@
 ---
 - hosts: all
+
   vars_files:
     - paths.yaml
+    - tarsnap_vars.yaml
+
   tasks:
     - name: Create key file directory
       file: name={{tarsnap_key_dir}} state=directory

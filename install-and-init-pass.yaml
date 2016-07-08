@@ -1,14 +1,13 @@
 ---
-- include: install_os_packages.yaml
-  vars:
-    apt:
-      - gnupg2
-      - git
-      - pass
 - hosts: all
+
   vars_files:
-    - creds.yaml
     - paths.yaml
+    - gpg_vars.yaml
+
+  roles:
+    - { role: packages, apt: [gnupg2, git, pass] }
+
   tasks:
     - name: Ensure that the export directory exists
       local_action: file path={{gpg_export_dir}} state=directory
