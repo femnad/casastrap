@@ -1,10 +1,20 @@
 ---
-- name: Init Private Internet Access OpenVPN scripts
+- name: Init Private Internet Access scripts
+
   hosts: all
 
   vars_files:
     - paths.yaml
     - pia_openvpn.yaml
+
+  roles:
+    - { role: packages, apt: openvpn }
+
+  pre_tasks:
+    - name: Get Private Internet Access username and password
+      local_action: command pass {{ pia_pass_filename }}
+      register: up
+      tags: pia-password
 
   tasks:
     - name: Create scripts directory
@@ -19,12 +29,8 @@
       find: paths={{vpn_scripts_dir}} patterns='*.ovpn'
       register: scripts
       tags: extract-scripts, edit-scripts
-    - name: Get Private Internet Access username and password
-      command: pass {{ pia_pass_filename }}
-      register: up
-      tags: pia-password
     - name: Create Private Internet Access user password file
-      file: path={{pia_user_password_file}} state=touch
+      file: path={{ pia_user_password_file }} state=file
       tags: pia-password
     - name: Save username and password into file
       lineinfile: dest={{ pia_user_password_file }} insertafter=EOF
@@ -34,8 +40,7 @@
         - "{{ up.stdout_lines[0] }}"
       tags: pia-password
     - name: Correct username in file
-      replace: dest={{ pia_user_password_file }} regexp={{ username_regexp }}
-               replace='\1'
+      replace: "dest={{ pia_user_password_file }} regexp={{ '^user: (.*)' }} replace='\\1'"
       tags: pia-password
     - name: Set permissions for username password file
       file: path={{ pia_user_password_file }} mode=0400
@@ -44,15 +49,9 @@
       lineinfile: dest={{ item[0].path }} insertafter=EOF line={{ item[1] }}
       with_nested:
         - "{{scripts.files}}"
-        - ["auth-user-pass {{ pia_user_password_file }}", "auth-nocache"]
+        - ["auth-user-pass {{ pia_user_password_filename }}", "auth-nocache"]
       tags: edit-scripts
     - name: Remove empty lines from scripts
       replace: dest={{ item.path }} regexp='^$\n'
       with_items: "{{ scripts.files }}"
       tags: edit-scripts
-
-- include: install_os_packages.yaml
-  vars:
-    apt:
-      - openvpn
-      - unzip
