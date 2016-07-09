@@ -1,8 +1,3 @@
 ---
 dependencies:
-  - role: pre_clone
-  - { role: packages,
-      apt: "{{ clone_dependency.apt }}",
-      dnf_yum: "{{ clone_dependency.dnf_yum }}",
-      pkg: "{{ clone_dependency.pkg }}",
-      portage: "{{ clone_dependency.portage }}" }
+  - { role: packages, deps: "{{ _clone_deps }}" }

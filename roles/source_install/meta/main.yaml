@@ -1,13 +1,6 @@
 ---
 dependencies:
-  - { role: clone, url: "{{ repo.url }}",
-      name: "{{ repo.name }}",
-      when: clone_source }
-  - { role: download, file: "{{ release }}",
-      when: not clone_source }
-  - { role: packages, apt: "{{ dependencies.apt }}",
-      dnf_yum: "{{ dependencies.dnf_yum }}",
-      pkg: "{{ dependencies.pkg }}",
-      portage: "{{ dependencies.portage }}" }
+  - clone
+  - packages
   - { role: autotools, name: "{{ repo.name }}",
       source_path: "{{ release_path }}" }

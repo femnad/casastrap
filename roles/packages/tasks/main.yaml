@@ -1,36 +1,36 @@
 ---
-- name: "Install packages with apt (initiator: {{ initiator }})"
-  apt: name={{item}} state=latest update_cache={{update_cache}}
+- name: Install packages with apt
+  apt: name={{ item }} state=latest update_cache={{ update_cache }}
   with_items:
-    "{{ apt }}"
+    "{{ _deps.apt }}"
   when: ansible_os_family == "Debian"
   become: yes
   tags: reqs, reqs-apt
-- name: "Install packages with dnf (initiator: {{ initiator }})"
-  dnf: name={{item}} state=latest
+- name: Install packages with dnf
+  dnf: name={{ item }} state=latest
   with_items:
-    "{{ dnf_yum }}"
+    "{{ _deps.dnf_yum }}"
   when: ansible_distribution == "Fedora"
   become: yes
   tags: reqs, reqs-dnf
-- name: "Install packages with pkg (initiator: {{ initiator }})"
+- name: Install packages with pkg
   pkgng: name={{ item }} state=present
   with_items:
-    "{{ pkg }}"
+    "{{ _deps.pkg }}"
   when: ansible_distribution == "FreeBSD"
   become: yes
   tags: reqs, reqs-pkg
-- name: "Install packages with portage (initiator: {{ initiator }})"
-  portage: name={{item}} state=present
+- name: Install packages with portage
+  portage: name={{ item }} state=present
   with_items:
-    "{{ portage }}"
+    "{{ _deps.portage }}"
   when: ansible_distribution == "Gentoo"
   become: yes
   tags: reqs, reqs-portage
-- name: "Install packages with yum (initiator: {{ initiator }})"
-  yum: name={{item}} state=latest
+- name: Install packages with yum
+  yum: name={{ item }} state=latest
   with_items:
-    "{{ dnf_yum }}"
+    "{{ _deps.dnf_yum }}"
   when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
   become: yes
   tags: reqs, reqs-yum

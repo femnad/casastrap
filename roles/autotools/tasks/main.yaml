@@ -1,11 +1,11 @@
 ---
-- name: Generate {{ name }} build configuration
+- name: Generate build configuration
   command: autoreconf -i
   args:
     chdir: "{{ source_path }}"
   when: _build.reconf and _build.configure
   tags: build, autoconf
-- name: Configure {{ name }}
+- name: Configure
   command: ./configure {{ _build.configuration }}
   args:
     chdir: "{{ source_path }}"
@@ -18,7 +18,7 @@
   when:
     ansible_distribution == "FreeBSD"
   tags: build, make, install
-- name: Clean {{ name }} artifacts
+- name: Clean artifacts
   command: "{{ _make_executable }} clean"
   args:
     chdir: "{{ source_path}}"
@@ -29,13 +29,13 @@
   with_items:
     "{{ _build.generated_artifacts }}"
   tags: build, clean
-- name: Build {{ name }}
+- name: Build
   command: "{{ _make_executable }} {{ _build.make_command }}"
   args:
     chdir: "{{ source_path }}"
   when: _build.make
   tags: build, make
-- name: Install {{ name }}
+- name: Install
   command: "{{ _make_executable }} install"
   args:
     chdir: "{{ source_path }}"

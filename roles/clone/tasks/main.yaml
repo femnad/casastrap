@@ -1,19 +1,19 @@
 ---
-- name: Clone {{ name }} with git
-  git: repo={{ url }} dest={{ clone_path }} accept_hostkey={{ accept_hostkey }}
+- name: Clone {{ _repo.name }} with git
+  git: repo={{ _repo.url }} dest={{ _clone_path }} accept_hostkey={{ accept_hostkey }}
        force={{ force_discard }} version={{version | default(omit)}}
-  when: repo_type == "git"
+  when: _repo.type == "git"
   tags: clone
-- name: Clone {{ name }} with Mercurial
-  hg: repo={{ url }} dest={{ clone_path }}
-  when: repo_type == "hg"
+- name: Clone {{ _repo.name }} with Mercurial
+  hg: repo={{ _repo.url }} dest={{ _clone_path }}
+  when: _repo.type == "hg"
   tags: clone
-- name: Clone {{ name }} with Bazaar
-  bzr: name={{ url }} dest={{ clone_path }}
-  when: repo_type == "bzr"
+- name: Clone {{ _repo.name }} with Bazaar
+  bzr: name={{ _repo.url }} dest={{ _clone_path }}
+  when: _repo.type == "bzr"
   tags: clone
 - name: Set release path
   set_fact:
     release_path:
-      "{{ clone_path }}"
+      "{{ _clone_path }}"
   tags: clone, build, install, make

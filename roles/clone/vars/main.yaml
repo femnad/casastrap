@@ -1,2 +1,12 @@
 ---
-clone_path: "{{ repo_clone_path }}/{{ name }}"
+_clone_deps:
+  apt:
+    git
+  dnf_yum:
+    git
+  pkg:
+    git
+  portage:
+    dev-vcs/git
+_clone_path: "{{ repo_clone_path }}/{{ _repo.name }}"
+_repo: "{{ _default_repo | combine(repo) }}"

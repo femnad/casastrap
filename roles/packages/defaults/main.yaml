@@ -1,10 +1,14 @@
 ---
-apt:
-  []
-dnf_yum:
-  []
-pkg:
-  []
-portage:
-  []
+_default_deps:
+  apt:
+    []
+  dnf_yum:
+    []
+  pkg:
+    []
+  portage:
+    []
+
+deps: {}
+
 update_cache: false
