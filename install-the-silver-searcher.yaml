@@ -1,10 +1,20 @@
 ---
 - hosts: all
+
   vars_files:
     - paths.yaml
+
+  vars:
+
+    deps:
+      apt:
+        [liblzma-dev, libpcre3-dev]
+      dnf_yum:
+        [pcre-devel, xz-devel]
+
+    repo:
+      name: the_silver_searcher
+      url: https://github.com/ggreer/the_silver_searcher.git
+
   roles:
-    - { role: source_install,
-        name: "the_silver_searcher",
-        repo: "https://github.com/ggreer/the_silver_searcher.git",
-        apt: [liblzma-dev, libpcre3-dev],
-        dnf_yum: [pcre-devel, xz-devel] }
+    - source_install

@@ -1,10 +1,21 @@
 ---
 - hosts: all
+
   vars_files:
     - paths.yaml
+
+  vars:
+
+    deps:
+      apt:
+        [libgpm-dev, libncurses5-dev, libncursesw5-dev,
+         libpcre3-dev,libreadline-dev, libsqlite3-dev, zlib1g-dev]
+      dnf_yum:
+        [pcre-devel, readline-devel, sqlite-devel, zlib-devel]
+
+    repo:
+      name: lnav
+      url: https://github.com/tstack/lnav.git
+
   roles:
-    - { role: source_install,
-        name: lnav,
-        repo: "https://github.com/tstack/lnav.git",
-        apt: [libgpm-dev, libncurses5-dev, libncursesw5-dev, libpcre3-dev,
-              libreadline-dev, libsqlite3-dev, zlib1g-dev] }
+    - source_install

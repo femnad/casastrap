@@ -1,0 +1,9 @@
+---
+- hosts: all
+  name: Install MWE (Minimum Workable Environment)
+
+- include: install-fish.yaml
+
+- include: install-dev-tools.yaml
+
+- include: init-dotfiles.yaml

@@ -1,8 +1,19 @@
 ---
-- name: Install jo, jq and lnav
+- name: Install ag, jq and all the rest
   hosts: all
-- include: install-jo.yaml
+
+  vars:
+    deps:
+      apt:
+        [tmux, vim]
+      dnf_yum:
+        [tmux, vim]
+
+  roles:
+    - packages
+
 - include: install-jq.yaml
-- include: install-lnav.yaml
+  tags: jq
+
 - include: install-the-silver-searcher.yaml
   tags: ag

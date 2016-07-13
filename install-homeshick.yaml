@@ -8,11 +8,11 @@
     - homesick_vars.yaml
 
   vars:
-    name:
-      homeshick
+
     repo:
-      url:
-        https://github.com/andsens/homeshick.git
+      name: homeshick
+      url: https://github.com/andsens/homeshick.git
+
     clone_path:
       "{{ homesick_repos_path }}/homeshick"
 
