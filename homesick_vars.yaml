@@ -1,10 +1,9 @@
 gitlab_base_url:
-  git@gitlab.com
+  https://gitlab.com
 gitlab_username:
   femnad
 homesick_repos:
   - base
-  - homebin
-  - "{{ ansible_hostname }}"
+  - basic
 homesick_repos_path:
   "{{ user_home }}/.homesick/repos"
