@@ -1,12 +1,12 @@
 ---
 _clone_deps:
   apt:
-    git
+    [git]
   dnf_yum:
-    git
+    [git]
   pkg:
-    git
+    [git]
   portage:
-    dev-vcs/git
-_clone_path: "{{ repo_clone_path }}/{{ _repo.name }}"
+    [dev-vcs/git]
+
 _repo: "{{ _default_repo | combine(repo) }}"

@@ -5,9 +5,11 @@
     - paths.yaml
 
   vars:
+
     repo:
       name: fish-shell
       url: https://github.com/fish-shell/fish-shell.git
+
     deps:
       apt: [g++, ncurses-dev]
       dnf_yum: [gcc-c++, ncurses-devel]

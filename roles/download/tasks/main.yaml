@@ -3,16 +3,19 @@
   file: path={{ release_store_path }} state=directory
   tags: download-release, extract-release
 - name: Download and extract the release
-  unarchive: src={{ release }} dest={{ release_store_path }} copy=no
+  unarchive: src={{ release.url }} dest={{ release_store_path }} copy=no
   tags: download-release, extract-release
 - name: Locate the extraction directory
-  find: path={{ release_store_path }} patterns="{{ name }}*" file_type="directory"
+  find: path={{ release_store_path }} patterns="{{ release.name }}*" file_type="directory"
   register: extract_path
   tags: build, make, install
 - name: Check whether only a single extraction directory was located
   assert: { that: " {{ extract_path.matched == 1 }} " }
-- name: Set release path
+- name: Set source variable
   set_fact:
-    release_path:
-      "{{extract_path.files[0].path}}"
+    source:
+      path:
+        "{{ extract_path.files[0].path }}"
+      name:
+        "{{ release.name }}"
   tags: build, make, install

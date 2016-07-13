@@ -1,11 +1,20 @@
 ---
-- include: clone_repo.yaml
+- name: Clone homeshick
+
+  hosts: all
+
+  vars_files:
+    - paths.yaml
+    - homesick_vars.yaml
+
   vars:
     name:
       homeshick
     repo:
-      "https://github.com/andsens/homeshick.git"
-- hosts: all
-  vars_files:
-    - paths.yaml
-    - homesick_vars.yaml
+      url:
+        https://github.com/andsens/homeshick.git
+    clone_path:
+      "{{ homesick_repos_path }}/homeshick"
+
+  roles:
+    - clone
