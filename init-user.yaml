@@ -1,11 +1,19 @@
 ---
-- hosts: all
+- name: Install sudo, add user to sudo/wheel group and allow passwordless sudo
+  hosts: all
 
   vars_files:
     - user_vars.yaml
 
+  vars:
+    deps:
+      apt: sudo
+      dnf_yum: sudo
+      pkg: sudo
+      portage: sudo
+
   roles:
-    - { role: packages, apt: sudo, dnf_yum: sudo, initiator: self }
+    - packages
 
   tasks:
     - name: Set sudo group
