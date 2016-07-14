@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  name: Install MWE (Minimum Workable Environment)
+  name: Initialize a MWE (Minimum Workable Environment)
 
 - include: install-fish.yaml
 

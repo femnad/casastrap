@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  name: Install fish-shell
 
   vars_files:
     - paths.yaml

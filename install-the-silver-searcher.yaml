@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  name: Install the silver searcher
 
   vars_files:
     - paths.yaml

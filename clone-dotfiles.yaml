@@ -18,7 +18,7 @@
     - name: Link homesick repos
       shell: |
         source $HOME/.homesick/repos/homeshick/homeshick.sh
-        homeshick link -f {[ item }}
+        homeshick link -f {{ item }}
       args:
         executable: /bin/bash
       with_items:

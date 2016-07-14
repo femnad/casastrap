@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  name: Install jq
 
   vars_files:
     - paths.yaml
@@ -8,7 +9,9 @@
 
     deps:
       apt:
-        flex
+        bison
+      dnf_yum:
+        bison
 
     repo:
       name: jq
