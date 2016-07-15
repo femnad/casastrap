@@ -46,3 +46,15 @@
 
     - name: Add entry to local SSH configuration file
       local_action: lineinfile dest={{ local_user_home }}/.ssh/config insertafter=EOF line={{ ssh_config_lines }}
+
+    - name: Find Ansible inventory file location
+      local_action: "shell cat {{ local_user_home }}/.ansible.cfg | grep inventory | awk -F '=' '{print $2}' | grep -oE '\\S+'"
+      register: inventory_file
+      tags: inventory
+
+    - name: Add entry to Ansible Inventory file
+      local_action: lineinfile dest={{ inventory_file }} insertafter=BOF line={{ droplet_name }}
+      tags: inventory
+
+    - debug: var=inventory_file
+      tags: inventory
