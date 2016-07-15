@@ -1,40 +1,32 @@
 ---
-- include: install_os_packages.yaml
-  vars:
-    apt:
-      - gcc
-      - gstreamer0.10-plugins-good
-      - gstreamer0.10-plugins-ugly
-      - gstreamer0.10-tools
-      - python-dev
-      - python-gst0.10
-    dnf_yum:
-      - gstreamer-python
-      - gstreamer-plugins-good
-      - gstreamer-plugins-ugly
-      - gstreamer-plugins-bad-free
-      - gstreamer-plugins-bad-nonfree
-      - libffi-devel
-      - python-devel
-      - python-pip
-    portage:
-      - dev-python/pygobject
-      - media-libs/gstreamer
-      - media-libs/gst-plugins-bad
-      - media-libs/gst-plugins-base
-      - media-libs/gst-plugins-good
-      - media-libs/gst-plugins-ugly
-
 - include: install-libspotify.yaml
 
-- hosts: all
+- name: Install mopidy
+  hosts: all
 
   vars_files:
     - paths.yaml
     - virtualenv_vars.yaml
 
   vars:
-    - virtualenv_path: "{{ base_virtualenv_path }}/mopidy"
+
+    virtualenv_path: "{{ base_virtualenv_path }}/mopidy"
+
+    deps:
+      apt:
+        [gcc, gstreamer0.10-plugins-good, gstreamer0.10-plugins-ugly,
+         gstreamer0.10-tools, python-dev, python-gst0.10]
+      dnf_yum:
+        [gstreamer-python, gstreamer-plugins-good, gstreamer-plugins-ugly,
+         gstreamer-plugins-bad-free, gstreamer-plugins-bad-nonfree, libffi-devel,
+         python-devel, python-pip]
+      portage:
+        [dev-python/pygobject, media-libs/gstreamer, media-libs/gst-plugins-bad,
+         media-libs/gst-plugins-base, media-libs/gst-plugins-good,
+         media-libs/gst-plugins-ugly]
+
+  roles:
+    - packages
 
   tasks:
     - name: Install pip packages

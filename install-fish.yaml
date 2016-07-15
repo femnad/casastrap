@@ -12,8 +12,10 @@
       url: https://github.com/fish-shell/fish-shell.git
 
     deps:
-      apt: [g++, ncurses-dev]
-      dnf_yum: [gcc-c++, ncurses-devel]
+      apt: [bc, g++, ncurses-dev]
+      dnf_yum: [bc, gcc-c++, ncurses-devel]
+      pkg: [gnubc]
+      portage: [sys-devel/bc]
 
   roles:
     - source_install
