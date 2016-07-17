@@ -56,5 +56,5 @@
       local_action: lineinfile dest={{ inventory_file }} insertafter=BOF line={{ droplet_name }}
       tags: inventory
 
-    - debug: var=inventory_file
-      tags: inventory
+    - name: Show droplet details
+      debug: var=droplet.droplet.name
