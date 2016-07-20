@@ -1,0 +1,12 @@
+---
+- hosts: all
+
+  vars:
+
+    deps:
+      apt:
+        [libffi-dev, libssl-dev, libyaml-dev, python-dev, python-virtualenv]
+
+  roles:
+
+    - packages
