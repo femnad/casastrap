@@ -1,6 +1,7 @@
 ---
 - name: Install sudo, add user to sudo/wheel group and allow passwordless sudo
   hosts: all
+  remote_user: root
 
   vars_files:
     - user_vars.yaml
