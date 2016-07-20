@@ -57,4 +57,7 @@
       tags: inventory
 
     - name: Show droplet details
-      debug: var=droplet.droplet.name
+      debug: var={{ item }}
+      with_items:
+        - droplet.droplet.name
+        - droplet.droplet.ip_address
