@@ -1,5 +1,5 @@
 ---
-- name: Install ag, jq and all the rest
+- name: Install tmux, vim and ag
   hosts: all
 
   vars:
@@ -8,12 +8,11 @@
         [tmux, vim]
       dnf_yum:
         [tmux, vim]
+      pkg:
+        [tmux, vim]
 
   roles:
     - packages
-
-- include: install-jq.yaml
-  tags: jq
 
 - include: install-the-silver-searcher.yaml
   tags: ag

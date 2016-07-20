@@ -3,7 +3,10 @@
   name: Initialize a MWE (Minimum Workable Environment)
 
 - include: install-fish.yaml
+  tags: fish
 
 - include: install-dev-tools.yaml
+  tags: dev
 
 - include: init-dotfiles.yaml
+  tags: dot
