@@ -1,5 +1,5 @@
 ---
-- name: Install tmux, vim and ag
+- name: Install tmux, vim and all the rest
   hosts: all
 
   vars:
@@ -16,3 +16,6 @@
 
 - include: install-the-silver-searcher.yaml
   tags: ag
+
+- include: install-jq.yaml
+  tags: jq
