@@ -9,9 +9,9 @@
 
     deps:
       apt:
-        bison
+        [bison, flex]
       dnf_yum:
-        bison
+        [bison, flex]
 
     repo:
       name: jq

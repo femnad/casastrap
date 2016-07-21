@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  name: Clone dotfiles
 
   vars_files:
     - paths.yaml
