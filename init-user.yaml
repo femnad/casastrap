@@ -31,35 +31,37 @@
         sudo_group: wheel
       when: ansible_os_family in wheel_users
       tags: sudo
+
     - name: Set sudoers file
       set_fact:
         sudo_file: /usr/local/etc/sudoers
       when: ansible_os_family == "FreeBSD"
       tags: sudo
+
     - name: Add user {{username}}
       user: name={{username}} group=users groups={{ sudo_group }} shell=/bin/bash
       when: ansible_os_family != "FreeBSD"
-      tags: user
+      become: yes
+      tags: user, group
+
     - name: Add group {{ username }}
       group: name={{ username }}
       when: ansible_os_family == "FreeBSD"
       become: yes
+      tags: group
+
     - name: Add user {{username}}
       user: name={{ username }} group={{ username }} groups={{ sudo_group }} shell=/bin/sh
       when: ansible_os_family == "FreeBSD"
       become: yes
       tags: user
+
     - name: Add authorized ssh key
       authorized_key: user={{ username }}
                       key={{ lookup('file', ssh_public_key) }}
-      when: ansible_os_family != "FreeBSD"
-      tags: ssh-key
-    - name: Add authorized ssh key
-      authorized_key: user={{ username }}
-                      key={{ lookup('file', ssh_public_key) }}
-      when: ansible_os_family == "FreeBSD"
       become: yes
       tags: ssh-key
+
     - name: Set passwordless sudo for the sudo group
       lineinfile: "dest={{ sudo_file }} state=present regexp='^%{{ sudo_group }}' line='%{{ sudo_group }}   ALL=(ALL:ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
       become: yes
