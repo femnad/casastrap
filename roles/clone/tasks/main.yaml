@@ -9,7 +9,7 @@
   when: _repo.type == "hg"
   tags: clone
 - name: Clone {{ _repo.name }} with Bazaar
-  bzr: name={{ _repo.url }} dest={{ clone_path }}
+  bzr: name={{ _repo.url }} dest={{ clone_path }} force={{ force_discard }}
   when: _repo.type == "bzr"
   tags: clone
 - name: Set source variable

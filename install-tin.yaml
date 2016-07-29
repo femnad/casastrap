@@ -12,7 +12,7 @@
     deps:
       apt: [bison, libncursesw5-dev]
     build:
-      configuration: "--with-screen=ncursesw"
+      configuration: "--with-screen=ncursesw --mandir=/usr/local/share/man"
       make_command: build
       reconf: no
 

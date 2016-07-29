@@ -1,12 +1,22 @@
 ---
 _clone_deps:
-  apt:
-    [git]
-  dnf_yum:
-    [git]
-  pkg:
-    [git]
-  portage:
-    [dev-vcs/git]
+  git:
+    apt:
+      [git]
+    dnf_yum:
+      [git]
+    pkg:
+      [git]
+    portage:
+      [dev-vcs/git]
+  bzr:
+    apt:
+      bzr
+    dnf_yum:
+      bzr
+    pkg:
+      bzr
+    portage:
+      dev-vcs/bzr
 
 _repo: "{{ _default_repo | combine(repo) }}"
