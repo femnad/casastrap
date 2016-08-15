@@ -1,12 +1,17 @@
 ---
 - hosts: all
+
   vars_files:
     - paths.yaml
+
   vars:
-    - project: slock
-    - repo: git://git.suckless.org/slock
-    - apt: libxrandr-dev
+    - repo:
+        name: slock
+        url: git://git.suckless.org/slock
+    - deps:
+        apt: libxrandr-dev
+    - build:
+        configure: false
+
   roles:
-    - os_packages
-    - git_clone
-    - autotools_project
+    - source_install
