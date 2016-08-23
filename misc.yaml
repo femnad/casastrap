@@ -2,5 +2,4 @@
 mutt_prefixes:
   - fm
   - gm
-  - sa
 mutt_header_directory: "{{user_home}}/.cache/mutt"

@@ -27,3 +27,4 @@
       with_nested:
         - "{{mutt_prefixes}}"
         - ['header', 'message']
+      tags: caches

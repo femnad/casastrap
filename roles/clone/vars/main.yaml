@@ -18,5 +18,14 @@ _clone_deps:
       bzr
     portage:
       dev-vcs/bzr
+  hg:
+    apt:
+      mercurial
+    dnf_yum:
+      mercurial
+    pkg:
+      mercurial
+    portage:
+      dev-vcs/mercurial
 
 _repo: "{{ _default_repo | combine(repo) }}"
