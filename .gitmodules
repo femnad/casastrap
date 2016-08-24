@@ -1,3 +1,6 @@
 [submodule "roles/packages"]
 	path = roles/packages
 	url = git@github.com:femnad/packages.git
+[submodule "roles/clone"]
+	path = roles/clone
+	url = git@github.com:femnad/clone.git
