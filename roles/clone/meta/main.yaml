@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: packages, deps: "{{ _clone_deps[_repo.type] }}" }
