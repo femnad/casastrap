@@ -1,5 +1,0 @@
----
-dependencies:
-  - clone
-  - packages
-  - autotools

@@ -1,5 +1,0 @@
----
-dependencies:
-  - download
-  - packages
-  - autotools

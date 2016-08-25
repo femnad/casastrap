@@ -1,4 +1,0 @@
----
-dependencies:
-  - { role: packages, deps: "{{ _build_deps }}",
-      when: _build.make or _build.configure }
