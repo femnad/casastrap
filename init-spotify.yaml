@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Effect ability to listen to Spotify
+
+- include: install-mopidy.yaml
+  tags: mopidy
+
+- include: install-ncmpcpp.yaml
+  tags: ncmpcpp
+
+- include: install-abduco.yaml
+  tags: abduco

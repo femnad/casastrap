@@ -1,0 +1,19 @@
+---
+- hosts: all
+  name: Install abduco
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+
+    repo:
+      name: abduco
+      url: https://github.com/martanne/abduco.git
+
+    build:
+      configure: false
+
+  roles:
+
+    - source_install
