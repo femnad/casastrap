@@ -25,16 +25,16 @@
          media-libs/gst-plugins-base, media-libs/gst-plugins-good,
          media-libs/gst-plugins-ugly]
 
+    pip_deps:
+      Mopidy:
+        2.0.1
+      pyspotify:
+        2.0.5
+      Mopidy-Spotify:
+        3.0.0
+      Mopidy-Spotify-Tunigo:
+        1.0.0
+
   roles:
     - packages
-
-  tasks:
-    - name: Install pip packages
-      pip: name={{item}} virtualenv={{ virtualenv_path }}
-           virtualenv_python=python2.7 virtualenv_site_packages=yes
-      with_items:
-        - mopidy
-        - pyspotify
-        - Mopidy-Spotify
-        - Mopidy-Spotify-Tunigo
-      tags: pip-install
+    - pip_packages
