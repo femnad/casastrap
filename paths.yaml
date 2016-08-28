@@ -1,5 +1,0 @@
----
-user_home: "{{ ansible_env.HOME }}"
-user_bin: "{{ user_home }}/bin"
-release_store_path: "{{ user_home }}/z/dy"
-repo_clone_path: "{{ user_home }}/z/gl"
