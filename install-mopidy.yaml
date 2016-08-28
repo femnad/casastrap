@@ -5,17 +5,18 @@
   hosts: all
 
   vars_files:
-    - paths.yaml
-    - virtualenv_vars.yaml
+    - vars/paths.yaml
+    - pass_vars.yaml
 
   vars:
 
-    virtualenv_path: "{{ base_virtualenv_path }}/mopidy"
+    virtualenv_path: "{{ virtualenv_base }}/mopidy"
 
     deps:
       apt:
-        [gcc, gstreamer0.10-plugins-good, gstreamer0.10-plugins-ugly,
-         gstreamer0.10-tools, python-dev, python-gst0.10]
+        [gcc, gir1.2-gstreamer-1.0, gir1.2-gst-plugins-base-1.0,
+        gstreamer1.0-plugins-good, gstreamer1.0-plugins-ugly,
+        gstreamer1.0-tools, python-dev, python-gst-1.0]
       dnf_yum:
         [gstreamer-python, gstreamer-plugins-good, gstreamer-plugins-ugly,
          gstreamer-plugins-bad-free, gstreamer-plugins-bad-nonfree, libffi-devel,
@@ -26,6 +27,8 @@
          media-libs/gst-plugins-ugly]
 
     pip_deps:
+      cffi:
+        1.4.2
       Mopidy:
         2.0.1
       pyspotify:
@@ -35,6 +38,40 @@
       Mopidy-Spotify-Tunigo:
         1.0.0
 
+  pre_tasks:
+    - name: Create virtualenv with site-package access
+      command: virtualenv {{ virtualenv_path }} --system-site-packages
+      tags: virtualenv
+
   roles:
     - packages
     - pip_packages
+
+  post_tasks:
+    - name: Generate Mopidy configuration
+      shell: |
+        source {{ virtualenv_path }}/bin/activate
+        mopidy config
+      args:
+        executable:
+          /bin/bash
+      tags: config
+
+    - name: Store Spotify username
+      command: pass {{ spotify_entry }}
+      register: spotify_secrets
+      tags: config
+
+    - set_fact:
+        spotify_credentials:
+          username:
+            "{{ spotify_secrets.stdout_lines[1] }}"
+          password:
+            "{{ spotify_secrets.stdout_lines[0] }}"
+      tags: config
+
+    - name: Set Spotify username and password
+      ini_file: dest={{ user_home }}/.config/mopidy/mopidy.conf
+                section=spotify option={{ item.key }} value={{ item.value }}
+      with_dict: "{{ spotify_credentials }}"
+      tags: config
