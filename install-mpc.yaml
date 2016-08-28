@@ -1,0 +1,14 @@
+---
+- hosts: all
+  name: Install mpc
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      name: mpc
+      url: git://git.musicpd.org/master/mpc.git
+
+  roles:
+    - source_install
