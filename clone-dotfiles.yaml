@@ -3,7 +3,7 @@
   name: Clone dotfiles
 
   vars_files:
-    - paths.yaml
+    - vars/paths.yaml
     - homesick_vars.yaml
 
   tasks:

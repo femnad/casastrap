@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars_files:
-    - paths.yaml
+    - vars/paths.yaml
   vars:
     project: rofi
     repo: https://github.com/DaveDavenport/rofi.git

@@ -3,7 +3,7 @@
   name: Install fish-shell
 
   vars_files:
-    - paths.yaml
+    - vars/paths.yaml
 
   vars:
 

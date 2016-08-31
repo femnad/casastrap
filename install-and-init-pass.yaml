@@ -2,7 +2,7 @@
 - hosts: all
 
   vars_files:
-    - paths.yaml
+    - vars/paths.yaml
     - gpg_vars.yaml
 
   roles:

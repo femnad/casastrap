@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars_files:
-    - paths.yaml
+    - vars/paths.yaml
   vars:
     - project: stumpwm
     - repo: https://github.com/stumpwm/stumpwm
