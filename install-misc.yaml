@@ -1,19 +1,17 @@
 ---
-- include: install_os_packages.yaml
+- hosts: all
+  name: Install several useful things
+
   vars:
-    apt:
-      - emacs
-      - screen
-      - surfraw
-      - tmux
-      - vim
-      - w3m
-      - xdotool
-    dnf_yum:
-      - emacs
-      - screen
-      - surfraw
-      - tmux
-      - vim
-      - w3m
-      - xdotool
+    deps:
+      apt:
+        - emacs
+        - screen
+        - surfraw
+        - tmux
+        - vim
+        - w3m
+        - xdotool
+
+  roles:
+    - packages
