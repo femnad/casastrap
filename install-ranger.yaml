@@ -1,0 +1,15 @@
+---
+- hosts: all
+  name: Install Ranger
+
+  vars:
+    deps:
+      apt:
+        python-pip
+
+  roles:
+    - packages
+
+  tasks:
+    - name: Install Ranger for the current user
+      command: pip install git+https://github.com/ranger/ranger.git --user

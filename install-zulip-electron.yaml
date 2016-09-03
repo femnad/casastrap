@@ -1,0 +1,42 @@
+---
+- include: install-node.yaml
+  tags: node
+
+- hosts: all
+  name: Install Zulip Electron client
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      name: zulip-electron
+      url: https://github.com/zulip/zulip-electron.git
+    script_content: |
+      zulip_electron_dir=$(readlink -f .)
+      cat << EOF > {{ user_bin }}/zulip-electron
+      #!/usr/bin/env bash
+      cd $zulip_electron_dir
+      npm start
+      EOF
+
+  roles:
+    - clone
+
+  tasks:
+    - name: Install npm dependencies
+      command: npm install
+      args:
+        chdir: "{{ source.path }}"
+      tags: install
+
+    - name: Add launcher script
+      shell: "{{ script_content }}"
+      args:
+        chdir: "{{ source.path }}"
+        executable: /bin/bash
+      tags: script
+
+    - name: Make the launcher script executable
+      file: path="{{ user_bin }}/zulip-electron" mode="u+x"
+      tags: script
