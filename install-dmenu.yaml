@@ -1,17 +1,28 @@
 ---
 - hosts: all
+  name: Install dmenu
+
   vars_files:
     - vars/paths.yaml
+
+  vars:
+    deps:
+      apt: [libfreetype6-dev, libxft-dev, libxinerama-dev]
+      dnf: [freetype-devel, libXft-devel, libXinerama-devel]
+      portage: [x11-libs/libXinerama]
+
+    repo:
+      name: dmenu
+      url: git://git.suckless.org/dmenu
+
+    build:
+      clean: true
+      configure: false
+
   roles:
-    - { role: source_install,
-        name: dmenu,
-        repo: "git://git.suckless.org/dmenu",
-        apt: [libfreetype6-dev, libxft-dev, libxinerama-dev],
-        dnf: [freetype-devel, libXft-devel, libXinerama-devel],
-        portage: [x11-libs/libXinerama],
-        clean: true,
-        configure: false,
-        edit_config: yes,
-        config_file: "config.h",
-        lines_to_change: [ { "before": "monospace:size=[0-9]+",
-                             "after": "monospace:size=11" } ] }
+    - source_install
+    - {role: util, edit_config: yes,
+                   config_file: config.h,
+                   lines_to_change: [
+                   { "before": "monospace:size=[0-9]+",
+                   "after": "monospace:size=11" } ] }

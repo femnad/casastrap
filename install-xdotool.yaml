@@ -1,11 +1,21 @@
 ---
 - hosts: all
+  name: Install xdotool
+
   vars_files:
     - vars/paths.yaml
+
+  vars:
+    repo:
+      name: xdotool
+      url: https://github.com/jordansissel/xdotool
+
+    deps:
+      apt: [libxkbcommon-dev, libxtst-dev]
+      dnf_yum: [libxkbcommon-devel, libXtst-devel]
+
+    build:
+      configure: no
+
   roles:
-    - { role: source_install,
-        name: xdotool,
-        repo: "https://github.com/jordansissel/xdotool",
-        apt: [libxkbcommon-dev, libxtst-dev],
-        dnf_yum: [libxkbcommon-devel, libXtst-devel],
-        configure: no }
+    - source_install

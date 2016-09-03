@@ -1,7 +1,25 @@
 ---
-- include: clone_repo.yaml
+- hosts: all
+  name: Install ysnpassmenu
+
+  vars_files:
+    - vars/paths.yaml
+
   vars:
-    name: ysnpassmenu
-    repo: "https://github.com/femnad/ysnpassmenu.git"
+    repo:
+      name: ysnpassmenu
+      url: "https://github.com/femnad/ysnpassmenu.git"
+    util:
+      link: true
+      link_directory: "{{ user_bin }}"
+      link_file: ysnpassmenu
+
+  roles:
+    - clone
+    - util
+
 - include: install-dmenu.yaml
+  tags: dmenu
+
 - include: install-xdotool.yaml
+  tags: xdotool

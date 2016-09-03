@@ -11,7 +11,6 @@
         - tmux
         - vim
         - w3m
-        - xdotool
 
   roles:
     - packages
