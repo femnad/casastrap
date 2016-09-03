@@ -5,8 +5,12 @@
     - vars/paths.yaml
     - gpg_vars.yaml
 
+  vars:
+    deps:
+      apt: [gnupg2, git, pass]
+
   roles:
-    - { role: packages, apt: [gnupg2, git, pass] }
+    - packages
 
   tasks:
     - name: Ensure that the export directory exists

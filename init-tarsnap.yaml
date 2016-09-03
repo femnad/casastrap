@@ -1,4 +1,10 @@
 ---
+- include: install-and-init-pass.yaml
+  tags: pass
+
+- include: install-tarsnap.yaml
+  tags: tarsnap
+
 - hosts: all
 
   vars_files:
@@ -8,5 +14,16 @@
   tasks:
     - name: Create key file directory
       file: name={{tarsnap_key_dir}} state=directory
+      tags: tarsnap-copy
     - name: Copy latest Tarsnap key file
       copy: src={{tarsnap_key_file}} dest={{tarsnap_key_file}}
+      tags: tarsnap-copy
+    - name: Copy the Tarsnap Rc file
+      copy: src={{ tarsnap_rc_file }} dest={{ tarsnap_rc_file }}
+      tags: tarsnap-copy
+    - name: Copy the Tarsnap Sync Script
+      copy: src={{ tarsnap_sync_script }} dest={{ tarsnap_sync_script }}
+      tags: tarsnap-copy
+    - name: Mark the Tarsnap Sync Script as Executable
+      file: path={{ tarsnap_sync_script }} mode="u+x"
+      tags: tarsnap-copy
