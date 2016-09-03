@@ -1,0 +1,26 @@
+---
+- hosts: all
+  name: Install Rust
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    version:
+      1.11.0
+
+  tasks:
+    - name: Download and extract Rust version {{ version }}
+      unarchive:
+        src: https://static.rust-lang.org/dist/rust-{{ version }}-x86_64-unknown-linux-gnu.tar.gz
+        dest: "{{ download_path }}"
+        remote_src: yes
+      tags: download
+
+    - name: Install Rust version {{ version }}
+      command: ./install.sh
+      args:
+        chdir: "{{ download_path }}/rust-{{ version }}-x86_64-unknown-linux-gnu"
+      become: yes
+      tags: install
+
