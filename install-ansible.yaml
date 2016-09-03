@@ -1,0 +1,16 @@
+---
+- hosts: all
+  name: Install Ansible
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    virtualenv_path:
+      "{{ virtualenv_base }}/ans"
+    pip_deps:
+      ansible:
+        2.1.0
+
+  roles:
+    - pip_packages
