@@ -11,6 +11,7 @@
         - tmux
         - vim
         - w3m
+        - xsel
 
   roles:
     - packages

@@ -1,13 +1,36 @@
 ---
 - hosts: all
+  name: Install StumpWM
+
   vars_files:
     - vars/paths.yaml
+
   vars:
-    - project: stumpwm
-    - repo: https://github.com/stumpwm/stumpwm
-    - apt: [sbcl, x11-utils, texinfo]
-    - portage: dev-lisp/sbcl
+    repo:
+      name: stumpwm
+      url: https://github.com/stumpwm/stumpwm
+
+    deps:
+      apt: [sbcl, x11-utils, texinfo]
+      portage: dev-lisp/sbcl
+
+  pre_tasks:
+    - name: Download quicklisp
+      get_url:
+        url: https://beta.quicklisp.org/quicklisp.lisp
+        dest: "{{ download_path }}"
+      tags: quicklisp
+
+    - name: Install Quicklisp and add it to init file
+      command: sbcl --load "{{ download_path }}/quicklisp.lisp" --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)'
+      tags: quicklisp
+
+    - name: Install packages with Quicklisp
+      command: sbcl --eval '(ql:quickload "{{ item }}")'
+      with_items:
+        - clx
+        - cl-ppcre
+      tags: quicklisp
+
   roles:
-    - os_packages
-    - git_clone
-    - autotools_project
+    - source_install
