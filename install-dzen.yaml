@@ -1,14 +1,23 @@
 ---
 - hosts: all
+  name: Install Dzen
+
   vars_files:
     - vars/paths.yaml
+
+  vars:
+    repo:
+      name: dzen
+      url: https://github.com/robm/dzen.git
+    deps:
+      apt: [libxft-dev, libxpm-dev]
+    build:
+      configure: no
+    util:
+      config_file: config.mk
+      comment_out_lines: ["LIBS", "CFLAGS"]
+      comment_in_lines: ["LIBS", "CFLAGS = -Wall"]
+      edit_config: yes
+
   roles:
-    - { role: source_install,
-        name: dzen,
-        repo: "https://github.com/robm/dzen.git",
-        apt: [libxft-dev, libxpm-dev],
-        configure: false,
-        edit_config: yes,
-        config_file: "config.mk",
-        comment_out_lines: ["LIBS", "CFLAGS"],
-        comment_in_lines: ["LIBS", "CFLAGS = -Wall"] }
+    - source_install
