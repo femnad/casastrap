@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  name: Install Dunst
 
   vars_files:
     - vars/paths.yaml
@@ -13,15 +14,17 @@
             libxdg-basedir-dev, libxss-dev]
       dnf_yum: [cairo-devel, dbus-devel, libxdg-basedir-devel,
                 libXScrnSaver-devel, pango-devel]
+    build:
+      configure: false
     configuration_path: "{{user_home}}/.config/dunst"
 
   roles:
-    - { role: source_install, configure: false }
+    - source_install
 
   tasks:
     - name: Create configuration directory
-      file: path={{configuration_path}} state=directory
+      file: path={{ configuration_path }} state=directory
       tags: config
     - name: Copy sample configuration
-      command: cp {{clone_path}}/dunstrc {{configuration_path}}
+      command: cp {{ source.path }}/dunstrc {{ configuration_path }}
       tags: config
