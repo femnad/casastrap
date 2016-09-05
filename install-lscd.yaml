@@ -1,12 +1,25 @@
 ---
 - hosts: all
+  name: Clone and link lscd
+
   vars_files:
     - vars/paths.yaml
-  roles:
-    - { role: source_install,
-        name: lscd,
-        repo: "https://github.com/hut/lscd.git",
-        configure: false,
-        make: false,
-        link_directory: "{{ user_bin }}" }
 
+  vars:
+    repo:
+      name: lscd
+      url: https://github.com/hut/lscd.git
+    util:
+      link_file: lscd
+      link_directory: "{{ user_bin }}"
+
+  roles:
+    - clone
+    - util
+
+  post_tasks:
+    - name: Change shebang line for Debian/Ubuntu
+      replace: dest={{ source.path }}/lscd regexp="#!/bin/sh"
+           replace="#!/bin/bash"
+      when: ansible_os_family == "Debian"
+      tags: change-shebang
