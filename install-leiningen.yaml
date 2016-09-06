@@ -1,0 +1,23 @@
+---
+- hosts: all
+  name: Download and bootstrap Leiningen
+
+  vars_files:
+    - vars/paths.yaml
+
+  tasks:
+    - name: Download stable Leiningen
+      get_url:
+        url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+        dest: "{{ user_bin }}"
+      tags: download
+
+    - name: Make the script executable
+      file:
+        path: "{{ user_bin }}/lein"
+        mode: "u+x"
+      tags: executable
+
+    - name: Bootstrap Leiningen
+      command: lein
+      tags: bootstrap
