@@ -12,9 +12,9 @@
       type: hg
     deps:
       apt: [libncurses5-dev, libncursesw5-dev, libssl-dev,
-                libtokyocabinet-dev, libsasl2-dev]
+                libtokyocabinet-dev, libsasl2-dev, urlview]
       dnf_yum: [cyrus-sasl-devel, ncurses-devel, openssl-devel,
-                tokyocabinet-devel]
+                tokyocabinet-devel, urlview]
     build:
       configuration: "--enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl"
 

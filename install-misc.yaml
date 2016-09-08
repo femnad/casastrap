@@ -10,6 +10,7 @@
         - surfraw
         - tmux
         - vim
+        - vim-gtk3
         - w3m
         - xsel
 

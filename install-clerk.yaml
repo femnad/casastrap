@@ -1,0 +1,33 @@
+---
+- include: install-rofi.yaml
+  tags: rofi
+
+- hosts: all
+  name: Install clerk
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    config_directory:
+      "{{ user_home }}/.config/clerk"
+    repo:
+      name: clerk
+      url: https://github.com/carnager/clerk.git
+    build:
+      configure: no
+      make: no
+
+  roles:
+    - source_install
+
+  post_tasks:
+    - name: Create config directory
+      file:
+        path: "{{ config_directory }}"
+        state: directory
+    - name: Copy config file
+      copy:
+        src: "{{ source.path }}/config.clerk"
+        dest: "{{ config_directory }}/config"
+        remote_src: yes
