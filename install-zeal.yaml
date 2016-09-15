@@ -1,0 +1,24 @@
+---
+- hosts: all
+  name: Install zeal
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    deps:
+      apt:
+        - libarchive-dev
+        - libqt5webkit5-dev
+        - libxcb-keysyms1-dev
+
+    repo:
+      url: https://github.com/zealdocs/zeal.git
+      name: zeal
+
+    build:
+      reconf: no
+      configure_command: qmake -qt5
+
+  roles:
+    - source_install
