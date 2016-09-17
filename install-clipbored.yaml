@@ -1,0 +1,50 @@
+---
+- hosts: all
+  name: Install clipbored
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url: https://github.com/trapd00r/clipbored.git
+      name: clipbored
+
+    build:
+      reconf:
+        no
+      configure_command:
+        perl Makefile.PL
+
+    util:
+      replace:
+        - file:
+            scripts/dmenuclip
+          before:
+            /usr/local/bin/sorter
+          after:
+            sorter
+        - file:
+            scripts/dmenuclip
+          before:
+            "\\$ENV{XDG_DATA_HOME}"
+          after:
+            "{{ user_home }}/.config"
+        - file:
+            scripts/dmenurl
+          before:
+            "\\$ENV{XDG_DATA_HOME}"
+          after:
+            "{{ user_home }}/.config"
+      link:
+        - scripts/sorter
+        - scripts/dmenuclip
+        - scripts/dmenurl
+
+  pre_tasks:
+    - name: Create clips directory
+      file: path={{ user_home }}/.config/clipbored/clips state=touch
+
+  roles:
+    - source_install
+    - util
