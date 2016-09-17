@@ -29,21 +29,21 @@
           before:
             "\\$ENV{XDG_DATA_HOME}"
           after:
-            "{{ user_home }}/.config"
+            "{{ user_home }}/.local"
         - file:
             scripts/dmenurl
           before:
             "\\$ENV{XDG_DATA_HOME}"
           after:
-            "{{ user_home }}/.config"
+            "{{ user_home }}/.local"
       link:
         - scripts/sorter
         - scripts/dmenuclip
         - scripts/dmenurl
 
   pre_tasks:
-    - name: Create clips directory
-      file: path={{ user_home }}/.config/clipbored/clips state=touch
+    - name: Create clips file
+      file: path={{ user_home }}/.local/clipbored/clips state=touch
 
   roles:
     - source_install
