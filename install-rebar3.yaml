@@ -1,0 +1,30 @@
+---
+- hosts: all
+  name: Install rebar3
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      name: rebar3
+      url: https://github.com/erlang/rebar3.git
+
+  roles:
+    - clone
+
+  tasks:
+    - name: Run bootstrap script
+      command: ./bootstrap
+      args:
+        chdir: "{{ source.path }}"
+      tags: bootstrap
+    - name: Link rebar3 executable
+      file:
+        src:
+          "{{ source.path }}/_build/default/bin/rebar3"
+        dest:
+          "{{ user_bin }}/rebar3"
+        state:
+          link
+      tags: link
