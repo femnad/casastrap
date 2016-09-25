@@ -14,11 +14,15 @@
       url: git://repo.or.cz/ncmpcpp.git
 
     deps:
-      apt: [libmpdclient-dev, libboost-all-dev, libreadline-dev,
-            libncurses5-dev, libncursesw5-dev]
+      apt: [libcurl4-openssl-dev, libmpdclient-dev, libboost-all-dev,
+            libreadline-dev, libncurses5-dev, libncursesw5-dev]
       dnf_yum: [boost, boost-devel, boost-filesystem, boost-locale,
                 boost-program-options, boost-regex, boost-thread,
                 libmpdclient-devel, ncurses-devel, readline-devel]
+
+    build:
+      configuration:
+        "--with-curl"
 
   roles:
     - source_install
