@@ -12,9 +12,11 @@
       name: profanity
       url: https://github.com/boothj5/profanity.git
     deps:
-      apt: [libcurl4-openssl-dev, libglib2.0-dev, libncursesw5-dev,
-            libnotify-dev, libreadline-dev]
-    configuration: "--enable-notifications"
+      apt: [autoconf-archive, libcurl4-openssl-dev, libglib2.0-dev,
+            libncursesw5-dev, libnotify-dev, libreadline-dev]
+    build:
+      configuration:
+        --enable-notifications
 
   roles:
     - source_install

@@ -13,3 +13,9 @@
 
   roles:
     - source_install
+
+  post_tasks:
+
+    - name: Run ldconfig
+      command: ldconfig
+      become: yes
