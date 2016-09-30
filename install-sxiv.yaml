@@ -1,0 +1,22 @@
+---
+- hosts: all
+  name: Install sxiv
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    deps:
+      apt:
+        - libexif-dev
+        - libimlib2-dev
+
+    repo:
+      url: https://github.com/muennich/sxiv.git
+      name: sxiv
+
+    build:
+      configure: no
+
+  roles:
+    - source_install
