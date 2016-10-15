@@ -7,8 +7,13 @@
     - vars/paths.yaml
     - pia_openvpn.yaml
 
+  vars:
+    deps:
+      apt:
+        openvpn
+
   roles:
-    - { role: packages, apt: openvpn }
+    - packages
 
   pre_tasks:
     - name: Get Private Internet Access username and password
@@ -30,7 +35,7 @@
       register: scripts
       tags: extract-scripts, edit-scripts
     - name: Create Private Internet Access user password file
-      file: path={{ pia_user_password_file }} state=file
+      file: path={{ pia_user_password_file }} state=touch
       tags: pia-password
     - name: Save username and password into file
       lineinfile: dest={{ pia_user_password_file }} insertafter=EOF
