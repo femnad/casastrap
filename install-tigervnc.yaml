@@ -1,0 +1,24 @@
+---
+- hosts: all
+  name: Install TigerVNC
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      name:
+        tigervnc
+      url:
+        git@github.com:TigerVNC/tigervnc.git
+
+    deps:
+      apt:
+        - libfltk1.3-dev
+
+    build:
+      cmake:
+        yes
+
+  roles:
+    - source_install
