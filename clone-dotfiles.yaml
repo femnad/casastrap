@@ -18,6 +18,17 @@
       set_fact:
         bash_executable: /usr/local/bin/bash
       when: ansible_distribution == "FreeBSD"
+      tags: link
+
+    - name: Mount fdescfs
+      mount:
+        name: /dev/fd
+        src: fdesc
+        fstype: fdescfs
+        state: present
+      become: yes
+      when: ansible_distribution == "FreeBSD"
+      tags: link
 
   tasks:
 
