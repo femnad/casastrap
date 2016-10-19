@@ -6,6 +6,19 @@
     - vars/paths.yaml
     - homesick_vars.yaml
 
+  vars:
+    deps:
+      pkg:
+        bash
+    bash_executable:
+      /bin/bash
+
+  pre_tasks:
+    - name: Set bash executable
+      set_fact:
+        bash_executable: /usr/local/bin/bash
+      when: ansible_distribution == "FreeBSD"
+
   tasks:
 
     - name: Clone homesick repos
@@ -21,7 +34,10 @@
         source $HOME/.homesick/repos/homeshick/homeshick.sh
         homeshick link -f {{ item }}
       args:
-        executable: /bin/bash
+        executable: "{{ bash_executable }}"
       with_items:
         "{{ homesick_repos }}"
       tags: link
+
+  roles:
+    - packages
