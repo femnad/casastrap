@@ -1,0 +1,39 @@
+---
+- hosts: all
+  name: Install Highlight
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    release:
+      name: highlight
+      url: http://www.andre-simon.de/zip/highlight-3.32.tar.bz2
+    deps:
+      apt:
+        - liblua5.2-dev
+        - lua5.2
+    build:
+      reconf:
+        no
+      configure:
+        no
+      edit_config:
+        yes
+    util:
+      replace:
+        - file:
+            src/makefile
+          before:
+            LUA_CFLAGS=.*
+          after:
+            LUA_CFLAGS=$(shell pkg-config --cflags lua5.2) -DUSE_LUA52
+        - file:
+            src/makefile
+          before:
+            LUA_LIBS=.*
+          after:
+            LUA_LIBS=$(shell pkg-config --libs lua5.2)
+
+  roles:
+    - release_install
