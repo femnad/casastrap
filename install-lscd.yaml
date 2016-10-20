@@ -10,7 +10,7 @@
       name: lscd
       url: https://github.com/hut/lscd.git
     util:
-      link_file: lscd
+      link: lscd
       link_directory: "{{ user_bin }}"
 
   roles:
