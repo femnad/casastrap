@@ -2,20 +2,11 @@
 - name: Install tmux, vim and all the rest
   hosts: all
 
-  vars:
-    deps:
-      apt:
-        [tmux, vim]
-      dnf_yum:
-        [tmux, vim]
-      pkg:
-        [tmux, vim]
-
-  roles:
-    - packages
-
 - include: install-the-silver-searcher.yaml
   tags: ag
 
 - include: install-jq.yaml
   tags: jq
+
+- include: install-misc.yaml
+  tags: misc

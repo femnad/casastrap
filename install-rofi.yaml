@@ -11,9 +11,19 @@
       url: https://github.com/DaveDavenport/rofi.git
     deps:
       apt:
-        [libstartup-notification0-dev, libxcb-ewmh-dev, libxcb-icccm4-dev,
-        libxcb-randr0-dev, libxcb-util-dev, libxcb-xinerama0-dev,
-        libxcb-xkb-dev, libxkbcommon-x11-dev]
+        - libcairo2-dev
+        - libglib2.0-dev
+        - libpango1.0-dev
+        - libstartup-notification0-dev
+        - libx11-dev
+        - libx11-xcb-dev
+        - libxcb-ewmh-dev
+        - libxcb-icccm4-dev
+        - libxcb-randr0-dev
+        - libxcb-util-dev
+        - libxcb-xinerama0-dev
+        - libxcb-xkb-dev
+        - libxkbcommon-x11-dev
 
   roles:
     - { role: source_install, version: 1.0.1,
