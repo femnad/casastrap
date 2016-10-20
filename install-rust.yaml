@@ -7,7 +7,7 @@
 
   vars:
     version:
-      1.11.0
+      1.12.0
 
   tasks:
     - name: Download and extract Rust version {{ version }}
