@@ -1,12 +1,17 @@
 ---
 - hosts: all
+  name: Install Python development packages
 
   vars:
-
     deps:
       apt:
-        [libffi-dev, libssl-dev, libyaml-dev, python-dev, python-virtualenv]
+        - libffi-dev
+        - libssl-dev
+        - libyaml-dev
+        - python-dev
+        - python3-dev
+        - python-virtualenv
+        - python3-virtualenv
 
   roles:
-
     - packages
