@@ -13,11 +13,11 @@
       apt: [libxft-dev, libxpm-dev]
     build:
       configure: no
+      edit_config: yes
     util:
       config_file: config.mk
       comment_out_lines: ["LIBS", "CFLAGS"]
       comment_in_lines: ["LIBS", "CFLAGS = -Wall"]
-      edit_config: yes
 
   roles:
     - source_install
