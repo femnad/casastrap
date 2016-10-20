@@ -10,9 +10,8 @@
       name: ysnpassmenu
       url: "https://github.com/femnad/ysnpassmenu.git"
     util:
-      link: true
+      link: ysnpassmenu
       link_directory: "{{ user_bin }}"
-      link_file: ysnpassmenu
 
   roles:
     - clone
