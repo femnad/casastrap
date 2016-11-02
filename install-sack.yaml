@@ -1,0 +1,24 @@
+---
+- hosts: all
+  name: Install sack
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      name:
+        sack
+      url:
+        https://github.com/femnad/sack
+
+  roles:
+    - clone
+
+  tasks:
+    - name: Run install script
+      command:
+        ./install_sack.sh
+      args:
+        chdir:
+          "{{ clone_path }}"
