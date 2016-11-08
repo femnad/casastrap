@@ -14,7 +14,11 @@
       apt: [sbcl, x11-utils, texinfo]
       portage: dev-lisp/sbcl
 
-  pre_tasks:
+  roles:
+    - packages
+    - clone
+
+  post_tasks:
     - name: Download quicklisp
       get_url:
         url: https://beta.quicklisp.org/quicklisp.lisp
@@ -23,6 +27,8 @@
 
     - name: Install Quicklisp and add it to init file
       command: sbcl --load "{{ download_path }}/quicklisp.lisp" --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)'
+      args:
+        creates: "{{ user_home }}/.sbclrc"
       tags: quicklisp
 
     - name: Install packages with Quicklisp
@@ -32,5 +38,20 @@
         - cl-ppcre
       tags: quicklisp
 
-  roles:
-    - source_install
+    - name: Build stumpwm
+      shell:
+        |
+          ./autogen.sh
+          ./configure
+          make
+      args:
+        chdir:
+          "{{ clone_path }}"
+      tags: build
+
+    - name: Install stumpwm
+      command: make install
+      args:
+        chdir:
+          "{{ clone_path }}"
+      become: yes
