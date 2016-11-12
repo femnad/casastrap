@@ -18,6 +18,19 @@
       "{{ user_home }}/{{ go_path_suffix }}"
 
   tasks:
+    - name: Locate .profile file
+      command:
+        readlink -f {{ user_home }}/.profile
+      register:
+        readlink_profile_file
+      tags: profile
+
+    - name: Set profile file path
+      set_fact:
+        profile_file:
+          "{{ readlink_profile_file.stdout }}"
+      tags: profile
+
     - name: Download and extract Go archive
       unarchive:
         src:
