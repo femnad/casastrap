@@ -1,0 +1,47 @@
+---
+- hosts: all
+  name: Install Go
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    go_version:
+      1.7.3
+    archive_file_url:
+      https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz
+    profile_file:
+      "{{ user_home }}/.profile"
+
+  tasks:
+    - name: Download and extract Go archive
+      unarchive:
+        src:
+          "{{ archive_file_url }}"
+        dest:
+          "{{ release_store_path }}"
+        remote_src:
+          yes
+      tags: download
+
+    - name: Set GOROOT
+      lineinfile:
+        dest:
+          "{{ profile_file }}"
+        state:
+          present
+        line:
+          export GOROOT=$HOME/{{ release_store_suffix }}/go
+        insertbefore:
+          ^export PATH.*
+      tags: goroot, profile
+
+    - name: Add GOROOT/bin to PATH
+      replace:
+        dest:
+          "{{ profile_file }}"
+        regexp:
+          ^(export PATH=.*)$
+        replace:
+          \1:$GOROOT/bin
+      tags: goroot, path
