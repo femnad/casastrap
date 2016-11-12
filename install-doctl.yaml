@@ -1,0 +1,17 @@
+---
+- hosts: all
+  name: Install doctl
+
+  vars_files:
+    - vars/paths.yaml
+
+  tasks:
+    - name: Install doctl from source
+      command:
+        go get github.com/digitalocean/doctl/cmd/doctl
+      ignore_errors:
+        yes
+
+    - name: Install doctl again for good measure
+      command:
+        go get github.com/digitalocean/doctl/cmd/doctl

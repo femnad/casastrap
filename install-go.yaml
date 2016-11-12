@@ -12,6 +12,10 @@
       https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz
     profile_file:
       "{{ user_home }}/.profile"
+    go_path_suffix:
+      z/sc/gocode
+    go_path:
+      "{{ user_home }}/{{ go_path_suffix }}"
 
   tasks:
     - name: Download and extract Go archive
@@ -36,6 +40,18 @@
           ^export PATH.*
       tags: goroot, profile
 
+    - name: Set GOPATH
+      lineinfile:
+        dest:
+          "{{ profile_file }}"
+        state:
+          present
+        line:
+          export GOPATH=$HOME/{{ go_path_suffix }}
+        insertbefore:
+          ^export PATH.*
+      tags: profile, gopath
+
     - name: Add GOROOT/bin to PATH
       replace:
         dest:
@@ -45,3 +61,21 @@
         replace:
           \1:$GOROOT/bin
       tags: goroot, path
+
+    - name: Add GOPATH/bin to PATH
+      replace:
+        dest:
+          "{{ profile_file }}"
+        regexp:
+          ^(export PATH=.*)$
+        replace:
+          \1:$GOPATH/bin
+      tags: gopath, path
+
+    - name: Create GOPATH directory
+      file:
+        path:
+          "{{ go_path }}"
+        state:
+          directory
+      tags: profile, gopath
