@@ -13,6 +13,14 @@
         - vim-gtk3
         - w3m
         - xsel
+      dnf_yum:
+        - emacs
+        - screen
+        - tmux
+        - vim-minimal
+        - vim-X11
+        - w3m
+        - xsel
 
   roles:
     - packages

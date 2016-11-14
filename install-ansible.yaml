@@ -6,11 +6,15 @@
     - vars/paths.yaml
 
   vars:
+    deps:
+      apt:
+        sshpass
     virtualenv_path:
       "{{ virtualenv_base }}/ans"
     pip_deps:
       ansible:
-        2.1.0
+        2.2.0
 
   roles:
+    - packages
     - pip_packages
