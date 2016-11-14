@@ -17,7 +17,7 @@
         - emacs
         - screen
         - tmux
-        - vim-minimal
+        - vim-enhanced
         - vim-X11
         - w3m
         - xsel

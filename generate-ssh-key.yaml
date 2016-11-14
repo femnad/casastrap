@@ -1,0 +1,10 @@
+---
+- hosts: all
+  name: Generate SSH key
+
+  vars_files:
+    - vars/paths.yaml
+
+  tasks:
+    - name: Generate passwordless SSH key
+      command: ssh-keygen -f "{{ user_home }}/.ssh/id_rsa" -P ''

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Init a NGH (non-generic host)
+
+- include: init-mwe.yaml
+
+- include: init-tarsnap.yaml
+
+- include: generate-ssh-key.yaml
+
+- include: add-github-ssh-key.yaml

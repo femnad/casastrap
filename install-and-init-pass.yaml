@@ -8,6 +8,7 @@
   vars:
     deps:
       apt: [gnupg2, git, pass]
+      dnf_yum: [gnupg2, git, pass]
 
   roles:
     - packages
