@@ -21,12 +21,12 @@
     - name: region
       prompt: "Region?"
       private: no
-      default: nyc1
+      default: fra1
 
     - name: size
       prompt: "Size?"
       private: no
-      default: 4gb
+      default: 1gb
 
     - name: image
       prompt: "Image?"
