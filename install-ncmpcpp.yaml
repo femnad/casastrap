@@ -18,7 +18,8 @@
             libreadline-dev, libncurses5-dev, libncursesw5-dev]
       dnf_yum: [boost, boost-devel, boost-filesystem, boost-locale,
                 boost-program-options, boost-regex, boost-thread,
-                libmpdclient-devel, ncurses-devel, readline-devel]
+                libcurl-devel, libmpdclient-devel, ncurses-devel,
+                readline-devel]
 
     build:
       configuration:

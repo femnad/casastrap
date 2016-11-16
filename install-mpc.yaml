@@ -9,6 +9,9 @@
     repo:
       name: mpc
       url: git://git.musicpd.org/master/mpc.git
+    deps:
+      dnf_yum:
+        - autoconf-archive
 
   roles:
     - source_install

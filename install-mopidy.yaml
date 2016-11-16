@@ -21,7 +21,7 @@
       dnf_yum:
         [gstreamer-python, gstreamer-plugins-good, gstreamer-plugins-ugly,
          gstreamer-plugins-bad-free, gstreamer-plugins-bad-nonfree, libffi-devel,
-         python-devel, python-pip]
+         python-devel, python-gobject, python-gobject-base, python-pip]
       portage:
         [dev-python/pygobject, media-libs/gstreamer, media-libs/gst-plugins-bad,
          media-libs/gst-plugins-base, media-libs/gst-plugins-good,
@@ -43,6 +43,15 @@
     - name: Create virtualenv with site-package access
       command: virtualenv {{ virtualenv_path }} --system-site-packages
       tags: virtualenv
+
+    - name: Enable RPM Fusion
+      dnf: name={{ item }}
+      with_items:
+        - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
+        - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm
+      when: ansible_distribution == "Fedora"
+      become: yes
+      tags: dnf-repo
 
   roles:
     - packages
