@@ -11,6 +11,8 @@
     deps:
       apt:
         openvpn
+      dnf_yum:
+        openvpn
 
   roles:
     - packages
