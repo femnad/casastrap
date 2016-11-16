@@ -18,3 +18,14 @@
 
   roles:
     - release_install
+
+  post_tasks:
+    - name: Add local lib to ld cache
+      shell: echo '/usr/local/lib' > /etc/ld.so.conf.d/usr-local-lib.conf
+      become: yes
+      tags: ld-conf
+
+    - name: Run ldconfig
+      command: ldconfig
+      become: yes
+      tags: ld-conf
