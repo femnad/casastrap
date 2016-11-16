@@ -24,6 +24,7 @@
         - python3-pip
         - python-virtualenv
         - python3-virtualenv
+        - redhat-rpm-config
 
   roles:
     - packages

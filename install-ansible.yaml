@@ -1,4 +1,7 @@
 ---
+- include:
+    init-dev-python.yaml
+
 - hosts: all
   name: Install Ansible
 
@@ -8,6 +11,8 @@
   vars:
     deps:
       apt:
+        sshpass
+      dnf_yum:
         sshpass
     virtualenv_path:
       "{{ virtualenv_base }}/ans"
