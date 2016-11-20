@@ -1,8 +1,16 @@
 ---
 - hosts: all
+  name: Install xchainkeys
+
   vars_files:
     - vars/paths.yaml
+
+  vars:
+    repo:
+      name:
+        xchainkeys
+      url:
+        https://github.com/hbekel/xchainkeys.git
+
   roles:
-    - { role: source_install,
-        name: xchainkeys,
-        repo: "https://github.com/hbekel/xchainkeys.git" }
+    - source_install
