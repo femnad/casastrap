@@ -11,5 +11,8 @@
 - include: install-jq.yaml
   tags: jq
 
+- include: install-lscd.yaml
+  tags: lscd
+
 - include: install-misc.yaml
   tags: misc
