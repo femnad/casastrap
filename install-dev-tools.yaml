@@ -5,6 +5,9 @@
 - include: install-the-silver-searcher.yaml
   tags: ag
 
+- include: install-sack.yaml
+  tags: sack
+
 - include: install-jq.yaml
   tags: jq
 
