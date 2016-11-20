@@ -10,8 +10,6 @@
       1.7.3
     archive_file_url:
       https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz
-    profile_file:
-      "{{ user_home }}/.profile"
     go_path_suffix:
       z/sc/gocode
     go_path:
@@ -19,16 +17,14 @@
 
   tasks:
     - name: Locate .profile file
-      command:
-        readlink -f {{ user_home }}/.profile
-      register:
-        readlink_profile_file
+      find: path="{{ user_home }}" patterns=".*profile" hidden=yes file_type=file
+      register: profile_file_path
       tags: profile
 
-    - name: Set profile file path
+    - name: Set profile file
       set_fact:
         profile_file:
-          "{{ readlink_profile_file.stdout }}"
+          "{{ profile_file_path.files[0].path }}"
       tags: profile
 
     - name: Download and extract Go archive
