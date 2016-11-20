@@ -10,6 +10,11 @@
       apt:
         - libexif-dev
         - libimlib2-dev
+      dnf_yum:
+        - giflib-devel
+        - imlib2-devel
+        - libexif-devel
+        - libXft-devel
 
     repo:
       url: https://github.com/muennich/sxiv.git
