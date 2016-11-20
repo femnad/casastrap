@@ -7,8 +7,12 @@
 
   vars:
     repo:
-      name: xdotool
-      url: https://github.com/jordansissel/xdotool
+      name:
+        xdotool
+      url:
+        https://github.com/jordansissel/xdotool
+      version:
+        v3.20160805.1
 
     deps:
       apt: [libxkbcommon-dev, libxtst-dev]
