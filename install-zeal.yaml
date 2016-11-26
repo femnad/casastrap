@@ -13,6 +13,13 @@
         - libxcb-keysyms1-dev
         - libqt5x11extras5-dev
         - libsqlite3-dev
+      dnf_yum:
+        - libarchive-devel
+        - libsqlite3x-devel
+        - qt5-qtbase-devel
+        - qt5-qtwebengine-devel
+        - qt5-qtx11extras-devel
+        - xcb-util-keysyms-devel
 
     repo:
       url: https://github.com/zealdocs/zeal.git
@@ -20,7 +27,22 @@
 
     build:
       reconf: no
-      configure_command: qmake -qt5
+      configure_command: "{{ _configure_command }}"
+
+  pre_tasks:
+    - name: Set configure command for Debian based distros
+      set_fact:
+        _configure_command:
+          qmake -qt5
+      when:
+        ansible_os_family == "Debian"
+
+    - name: Set configure command for Fedora
+      set_fact:
+        _configure_command:
+          qmake-qt5
+      when:
+        ansible_distribution == "Fedora"
 
   roles:
     - source_install
