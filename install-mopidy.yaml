@@ -68,7 +68,7 @@
       tags: config
 
     - name: Store Spotify username
-      command: pass {{ spotify_entry }}
+      local_action: command pass {{ spotify_entry }}
       register: spotify_secrets
       tags: config
 
