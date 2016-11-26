@@ -19,9 +19,10 @@
         gstreamer1.0-plugins-good, gstreamer1.0-plugins-ugly,
         gstreamer1.0-tools, python-dev, python-gst-1.0]
       dnf_yum:
-        [gstreamer-python, gstreamer-plugins-good, gstreamer-plugins-ugly,
-         gstreamer-plugins-bad-free, gstreamer-plugins-bad-nonfree, libffi-devel,
-         python-devel, python-gobject, python-gobject-base, python-pip]
+        [gstreamer1-libav, gstreamer-python, gstreamer-plugins-good,
+         gstreamer-plugins-ugly, gstreamer-plugins-bad-free,
+         gstreamer-plugins-bad-nonfree, libffi-devel, python-devel,
+         python-gobject, python-gobject-base, python-pip]
       portage:
         [dev-python/pygobject, media-libs/gstreamer, media-libs/gst-plugins-bad,
          media-libs/gst-plugins-base, media-libs/gst-plugins-good,
