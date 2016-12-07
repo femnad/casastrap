@@ -6,9 +6,13 @@
     - vars/paths.yaml
 
   vars:
+
     repo:
       name: rofi
       url: https://github.com/DaveDavenport/rofi.git
+
+    version: HEAD
+
     deps:
       apt:
         - libcairo2-dev
@@ -24,7 +28,19 @@
         - libxcb-xinerama0-dev
         - libxcb-xkb-dev
         - libxkbcommon-x11-dev
+      dnf_yum:
+        - libxkbcommon-x11-devel
+        - startup-notification-devel
+        - xcb-util-xrm-devel
+        - xcb-util-devel
+        - xcb-util-wm-devel
+
+  pre_tasks:
+  - name: Set version for Ubuntu <= 16.04
+    set_fact:
+      version:
+        1.0.1
+    when: "ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('16.04', '<=')"
 
   roles:
-    - { role: source_install, version: 1.0.1,
-        when: "ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('16.04', '<=')" }
+    - source_install
