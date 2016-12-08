@@ -12,6 +12,8 @@
 
     deps:
       apt: [sbcl, x11-utils, texinfo]
+      dnf_yum:
+        - sbcl
       portage: dev-lisp/sbcl
 
   roles:
