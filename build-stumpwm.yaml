@@ -1,0 +1,6 @@
+---
+- hosts: all
+  name: Build and install stumpwm
+
+  roles:
+    - autotools

@@ -1,4 +1,7 @@
 ---
+- include: install-x.yaml
+  tags: xorg
+
 - hosts: all
   name: Install StumpWM
 
@@ -21,6 +24,14 @@
     - clone
 
   post_tasks:
+    - name: Create download path
+      file:
+        path:
+          "{{ download_path }}"
+        state:
+          directory
+      tags: quicklisp
+
     - name: Download quicklisp
       get_url:
         url: https://beta.quicklisp.org/quicklisp.lisp
@@ -38,22 +49,7 @@
       with_items:
         - clx
         - cl-ppcre
-      tags: quicklisp
+      tags: quicklisp, quicklisp-deps
 
-    - name: Build stumpwm
-      shell:
-        |
-          ./autogen.sh
-          ./configure
-          make
-      args:
-        chdir:
-          "{{ clone_path }}"
-      tags: build
-
-    - name: Install stumpwm
-      command: make install
-      args:
-        chdir:
-          "{{ clone_path }}"
-      become: yes
+- include: build-stumpwm.yaml
+  tags: build, install
