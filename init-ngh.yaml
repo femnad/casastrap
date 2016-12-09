@@ -3,6 +3,7 @@
   name: Init a NGH (non-generic host)
 
 - include: init-mwe.yaml
+  tags: mwe
 
 - include: init-tarsnap.yaml
 

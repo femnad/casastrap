@@ -10,7 +10,7 @@
         - surfraw
         - tmux
         - vim
-        - vim-gtk3
+        - vim-gtk
         - w3m
         - xsel
       dnf_yum:

@@ -6,6 +6,9 @@
     - vars/paths.yaml
 
   vars:
+    deps:
+      apt:
+        curl
     repo:
       name:
         sack
@@ -13,6 +16,7 @@
         https://github.com/femnad/sack
 
   roles:
+    - packages
     - clone
 
   tasks:
