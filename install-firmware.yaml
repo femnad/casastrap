@@ -1,0 +1,13 @@
+---
+- hosts: all
+  name: Install Linux firmware
+
+  vars:
+    _default_release:
+      jessie-backports
+    deps:
+      apt:
+        - firmware-linux-nonfree
+
+  roles:
+    - packages

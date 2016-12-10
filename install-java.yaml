@@ -1,0 +1,14 @@
+---
+- hosts: all
+  name: Install Java
+
+  vars:
+    deps:
+      apt:
+        - openjdk-8-jdk
+        - openjdk-8-jre
+    _default_release:
+      jessie-backports
+
+  roles:
+    - packages

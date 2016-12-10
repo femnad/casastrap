@@ -1,0 +1,26 @@
+---
+- hosts: all
+  name: Add Debian backports repository
+
+  tasks:
+    - name: Add backports repository
+      apt_repository:
+        repo:
+          deb http://ftp.debian.org/debian jessie-backports main
+        state:
+          present
+      become:
+        yes
+      tags: apt-backports
+
+    - name: Upgrade apt packages
+      apt:
+        update_cache:
+          yes
+        upgrade:
+          yes
+        default_release:
+          jessie-backports
+      become:
+        yes
+      tags: apt-update, apt-upgrade

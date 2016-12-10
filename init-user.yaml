@@ -20,7 +20,8 @@
       pkg: sudo
       portage: sudo
 
-    update_cache : yes
+    _update_cache:
+      yes
 
   roles:
     - packages

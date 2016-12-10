@@ -1,0 +1,28 @@
+---
+- hosts: all
+  name: Add contrib and non-free repos
+
+  tasks:
+    - shell: |
+        grep http /etc/apt/sources.list | head -n 1 | awk '{print $2}'
+      register:
+        current_repo
+
+    - name: Add repositories
+      apt_repository:
+        repo:
+          deb {{ current_repo.stdout }} {{ ansible_distribution_release }} {{ item }}
+        state:
+          present
+      with_items:
+        - contrib
+        - non-free
+      become:
+        yes
+
+    - name: Update apt
+      apt:
+        update_cache:
+          yes
+      become:
+        yes
