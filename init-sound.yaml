@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Initialize the ability to hears sounds
+
+  vars:
+    deps:
+      apt:
+        - alsa-utils
+        - pulseaudio
+
+  roles:
+    - packages

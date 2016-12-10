@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Install laptop tools
+
+  vars:
+    deps:
+      apt:
+        - acpi
+        - xbacklight
+
+  roles:
+    - packages

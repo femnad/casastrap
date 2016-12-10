@@ -2,5 +2,11 @@
 - hosts: all
   name: Initialize a workstation
 
+- include: init-sound.yaml
+  tags: sound
+
+- include: install-laptop-tools.yaml
+  tags: laptop
+
 - include: install-ysnpassmenu.yaml
   tags: ysnpassmenu
