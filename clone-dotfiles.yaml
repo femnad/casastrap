@@ -4,13 +4,13 @@
 
   vars_files:
     - vars/paths.yaml
-    - homesick_vars.yaml
 
   vars:
-    homesick_repos:
-      - base
-      - basic
-      - homebin
+    homeshick:
+      repos:
+        - base
+        - basic
+        - homebin
 
   roles:
     - homeshick
