@@ -26,6 +26,14 @@
     - pip_packages
 
   post_tasks:
+    - name: Add authorized SSH key
+      authorized_key:
+        user:
+          "{{ ansible_user_id }}"
+        key:
+          "{{ lookup('file', remote_user_ssh_public_key) }}"
+      tags: ssh-key
+
     - name: Find Ansible inventory file location
       local_action: "shell cat {{ local_user_home }}/.ansible.cfg | grep inventory | awk -F '=' '{print $2}' | grep -oE '\\S+'"
       # Can't name this as inventory_file for some reason
@@ -53,5 +61,8 @@
         dest:
           "{{ inventory_file_path.stdout }}"
         line:
-          "{{ ansible_hostname}} ansible_connection=local"
+          "{{ item }}"
+      with_items:
+        - local ansible_connection=local
+        - "{{ ansible_hostname}}"
       tags: inventory

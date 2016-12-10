@@ -14,5 +14,8 @@
 - include: install-lscd.yaml
   tags: lscd
 
+- include: install-ranger.yaml
+  tags: ranger
+
 - include: install-misc.yaml
   tags: misc
