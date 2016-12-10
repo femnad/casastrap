@@ -39,7 +39,7 @@
       args:
         chdir:
           "{{ clone_path }}/vimperator"
-      tags: xpi, xpi-build
+      tags: vimperator, xpi, xpi-build
 
     - name: Locate the XPI file
       find:
@@ -49,8 +49,12 @@
           "vimperator*.xpi"
       register:
         xpi_path
-      tags: xpi, xpi-install
+      tags: vimperator, xpi, xpi-install
 
     - name: Install the XPI file
       command: firefox '{{ xpi_path.files[0].path }}'
-      tags: xpi, xpi-install
+      tags: vimperator, xpi, xpi-install
+
+    - name: Install FireGestures
+      command: firefox https://addons.mozilla.org/firefox/downloads/latest/firegestures/addon-6366-latest.xpi?src=dp-btn-primary
+      tags: firegestures
