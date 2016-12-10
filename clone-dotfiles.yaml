@@ -10,6 +10,7 @@
     homesick_repos:
       - base
       - basic
+      - homebin
 
   roles:
     - homeshick

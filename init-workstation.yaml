@@ -1,0 +1,6 @@
+---
+- hosts: all
+  name: Initialize a workstation
+
+- include: install-ysnpassmenu.yaml
+  tags: ysnpassmenu
