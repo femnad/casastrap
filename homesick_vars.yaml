@@ -1,9 +1,0 @@
-gitlab_base_url:
-  https://gitlab.com
-gitlab_username:
-  femnad
-homesick_repos:
-  - base
-  - basic
-homesick_repos_path:
-  "{{ user_home }}/.homesick/repos"

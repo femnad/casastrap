@@ -10,3 +10,10 @@
 - include: generate-ssh-key.yaml
 
 - include: add-github-ssh-key.yaml
+  tags: github
+
+- include: add-gitlab-ssh-key.yaml
+  tags: gitlab
+
+- include: clone-ngh-dotfiles.yaml
+  tags: dotfiles

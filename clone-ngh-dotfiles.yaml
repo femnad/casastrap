@@ -1,0 +1,17 @@
+---
+- hosts: all
+  name: Clone host specific dotfiles
+
+  vars_files:
+    - vars/paths.yaml
+    - homesick_vars.yaml
+
+  vars:
+    homeshick:
+      repos:
+        - "{{ ansible_hostname }}"
+      clone_type:
+        ssh
+
+  roles:
+    - homeshick
