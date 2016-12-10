@@ -4,12 +4,12 @@
 
   vars_files:
     - vars/paths.yaml
-    - homesick_vars.yaml
 
   vars:
     homeshick:
       repos:
         - "{{ ansible_hostname }}"
+        - cache
       clone_type:
         ssh
 
