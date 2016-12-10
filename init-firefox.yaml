@@ -1,29 +1,56 @@
 ---
 - hosts: all
+  name: Install and initialize Firefox
+
   vars_files:
     - vars/paths.yaml
+
   vars:
-    dactyl_path: "{{repo_clone_path}}/dactyl"
+    firefox_package_name:
+      firefox
+    deps:
+      apt:
+        - "{{ firefox_package_name }}"
+        - zip
+      dnf_yum:
+        - firefox
+        - zip
+    repo:
+      url:
+        https://github.com/vimperator/vimperator-labs
+      name:
+        vimperator-labs
+
   pre_tasks:
-    - apt: name={{item}} state=latest
-      become: yes
-      with_items:
-        - firefox
-        - zip
-      when: ansible_os_family == "Debian"
-    - dnf: name={{item}} state=latest
-      become: yes
-      with_items:
-        - firefox
-        - zip
-      when: ansible_distribution == "Fedora"
-  tasks:
-    - name: Clone dactyl
-      git: repo=https://github.com/5digits/dactyl dest={{dactyl_path}}
-      tags: clone
-    - name: Install pentadactyl
-      shell: |
-        DISPLAY=:0 make installxpi
+    - name: Set name of Firefox package
+      set_fact:
+        firefox_package_name:
+          firefox-esr
+      when:
+        ansible_distribution == "Debian"
+
+  roles:
+    - packages
+    - clone
+
+  post_tasks:
+    - name: Build Vimperator XPI
+      command: make xpi
       args:
-        chdir: "{{dactyl_path}}/pentadactyl"
-      tags: install
+        chdir:
+          "{{ clone_path }}/vimperator"
+      tags: xpi, xpi-build
+
+    - name: Locate the XPI file
+      find:
+        path:
+          "{{ clone_path }}/downloads"
+        pattern:
+          "vimperator*.xpi"
+      register:
+        xpi_path
+      tags: xpi, xpi-install
+
+    - name: Install the XPI file
+      command: firefox '{{ xpi_path.files[0].path }}'
+      tags: xpi, xpi-install
