@@ -5,6 +5,9 @@
 - include: init-sound.yaml
   tags: sound
 
+- include: init-x.yaml
+  tags: xorg
+
 - include: install-laptop-tools.yaml
   tags: laptop
 
