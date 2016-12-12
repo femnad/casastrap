@@ -1,0 +1,24 @@
+---
+- include: install-rust.yaml
+  tags: rust
+
+- hosts: all
+  name: Install over-here
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      name:
+        over-here
+      url:
+        https://github.com/femnad/over-here.git
+    util:
+      link:
+        target/release/over-here
+
+  roles:
+    - clone
+    - cargo
+    - util

@@ -1,9 +1,19 @@
 ---
-- hosts: all
-  name: Initialize Xorg
-
 - include: install-x.yaml
   tags: xorg
 
 - include: install-dzen.yaml
   tags: dzen
+
+- hosts: all
+  name: Initialize Xorg
+
+  vars:
+    deps:
+      apt:
+        libnotify-bin
+
+  roles:
+    - packages
+
+- include: install-over-here.yaml
