@@ -1,0 +1,25 @@
+---
+- hosts:
+    all
+  name:
+    Install visage
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    deps:
+      apt:
+        libnotify-dev
+    repo:
+      name:
+        visage
+      url:
+        https://github.com/femnad/visage.git
+    build:
+      configure:
+        no
+
+  roles:
+    - source_install
+

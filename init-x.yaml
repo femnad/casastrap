@@ -17,3 +17,7 @@
     - packages
 
 - include: install-over-here.yaml
+  tags: non-conformist-wm
+
+- include: init-notification-receivers.yaml
+  tags: non-conformist-wm

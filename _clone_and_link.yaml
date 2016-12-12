@@ -1,0 +1,12 @@
+---
+- hosts:
+    all
+  name:
+    Clone and link {{ repo.name }}
+
+  vars_files:
+    - vars/paths.yaml
+
+  roles:
+    - clone
+    - util

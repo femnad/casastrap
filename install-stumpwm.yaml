@@ -53,3 +53,6 @@
 
 - include: build-stumpwm.yaml
   tags: build, install
+
+- include: install-stumpwm-utils.yaml
+  tags: utils
