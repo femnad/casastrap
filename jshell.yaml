@@ -1,0 +1,21 @@
+---
+- hosts: all
+  name: Download and link jshell
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    release:
+      url:
+        http://www.java.net/download/java/jdk9/archive/148/binaries/jdk-9-ea+148_linux-x64_bin.tar.gz
+      name:
+        jshell
+
+    util:
+      link:
+        - bin/jshell
+
+  roles:
+    - download
+    - util
