@@ -8,6 +8,7 @@
         - emacs
         - screen
         - surfraw
+        - tig
         - tmux
         - vim
         - vim-gtk
@@ -16,6 +17,7 @@
       dnf_yum:
         - emacs
         - screen
+        - tig
         - tmux
         - vim-enhanced
         - vim-X11
