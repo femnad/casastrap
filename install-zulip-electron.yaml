@@ -1,4 +1,12 @@
 ---
+- include:
+    install-node.yaml
+  tags:
+    node
+  when:
+    # Debian (jessie) packages are too old
+    ansible_distribution == "Debian"
+
 - hosts: all
   name: Install Zulip Electron client
 
@@ -16,7 +24,8 @@
       url: https://github.com/zulip/zulip-electron.git
 
   roles:
-    - packages
+    # Debian (Jessie) packages are too old
+    - { role: packages, when: ansible_distribution != "Debian" }
     - clone
 
   tasks:
