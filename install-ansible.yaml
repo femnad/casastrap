@@ -15,15 +15,13 @@
         sshpass
       dnf_yum:
         sshpass
-    virtualenv_path:
-      "{{ virtualenv_base }}/ans"
-    pip_deps:
-      ansible:
-        2.2.0
+    repo:
+      url:
+        https://github.com/ansible/ansible.git
 
   roles:
     - packages
-    - pip_packages
+    - setuptools
 
   post_tasks:
     - name: Add authorized SSH key

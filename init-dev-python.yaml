@@ -28,7 +28,3 @@
 
   roles:
     - packages
-
-  tasks:
-    - name: Install flake8
-      command: pip install flake8 --user

@@ -4,15 +4,39 @@
 
   vars_files:
     - vars/paths.yaml
+    - secrets.yaml
 
   vars:
-    repo:
-      url:
-        https://github.com/DTVD/rainbowstream.git
     deps:
       apt:
         - libjpeg-dev
+    repo:
+      url:
+        https://github.com/DTVD/rainbowstream.git
+    setuptools:
+      command:
+        develop
+    createfile:
+      path:
+        "{{ source.path }}/rainbowstream/consumer.py"
+      content: |
+       CONSUMER_KEY = '{{ rainbowstream_api_key }}'
+       CONSUMER_SECRET = '{{ rainbowstream_api_secret }}'
+       PCKT_CONSUMER_KEY = 'PocketAPIKey'
 
   roles:
     - packages
-    - setuptools
+    - clone
+
+  post_tasks:
+    - name: Create the consumer.py file
+      include_role:
+        name:
+          createfile
+      tags: path, post
+
+    - name: Run the setuptools role
+      include_role:
+        name:
+          setuptools
+      tags: path, post
