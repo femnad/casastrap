@@ -6,6 +6,7 @@
     deps:
       apt:
         - emacs
+        - htop
         - screen
         - surfraw
         - tig
@@ -16,6 +17,7 @@
         - xsel
       dnf_yum:
         - emacs
+        - htop
         - screen
         - tig
         - tmux
