@@ -1,0 +1,18 @@
+---
+- hosts: all
+  name: Install rainbowstream
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url:
+        https://github.com/DTVD/rainbowstream.git
+    deps:
+      apt:
+        - libjpeg-dev
+
+  roles:
+    - packages
+    - setuptools
