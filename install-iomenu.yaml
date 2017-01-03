@@ -1,0 +1,17 @@
+---
+- hosts: all
+  name: Install iomenu
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url:
+        git://repo.or.cz/iomenu.git
+    build:
+      configure:
+        no
+
+  roles:
+    - source_install
