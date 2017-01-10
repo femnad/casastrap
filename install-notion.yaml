@@ -1,0 +1,27 @@
+---
+- hosts: all
+  name: Install notion
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url:
+        https://github.com/raboof/notion
+    deps:
+      apt:
+        - gettext
+        - liblua5.1-0-dev
+        - libsm-dev
+        - libx11-dev
+        - libxext-dev
+        - libxinerama-dev
+        - libxrandr-dev
+        - lua5.1
+    build:
+      configure:
+        no
+
+  roles:
+    - source_install
