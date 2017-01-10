@@ -54,7 +54,13 @@
     - name: Install the XPI file
       command: firefox '{{ xpi_path.files[0].path }}'
       tags: vimperator, xpi, xpi-install
+      environment:
+        DISPLAY:
+          :0.0
 
     - name: Install FireGestures
       command: firefox https://addons.mozilla.org/firefox/downloads/latest/firegestures/addon-6366-latest.xpi?src=dp-btn-primary
       tags: firegestures
+      environment:
+        DISPLAY:
+          :0.0
