@@ -2,5 +2,8 @@
 - hosts: all
   name: Build and install stumpwm
 
+  vars_files:
+    - vars/paths.yaml
+
   roles:
     - autotools
