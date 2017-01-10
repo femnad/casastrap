@@ -11,6 +11,8 @@
         - base
         - basic
         - homebin
+    homeshick_init:
+      yes
 
   roles:
     - homeshick

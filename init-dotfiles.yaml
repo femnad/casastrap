@@ -2,8 +2,5 @@
 - hosts: all
   name: Install homeshick and clone dotfiles
 
-- include: clone-homeshick.yaml
-  tags: homeshick
-
 - include: clone-dotfiles.yaml
   tags: clone, link
