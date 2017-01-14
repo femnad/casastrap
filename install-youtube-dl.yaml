@@ -1,0 +1,14 @@
+---
+- hosts: all
+  name: Install youtube-dl
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url:
+        https://github.com/rg3/youtube-dl.git
+
+  roles:
+    - setuptools

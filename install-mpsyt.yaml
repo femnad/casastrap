@@ -1,4 +1,11 @@
 ---
+- include:
+    install-youtube-dl.yaml
+  vars:
+    setuptools:
+      virtualenv_name:
+        mpsyt
+
 - hosts: all
   name: Install mpyst
 
@@ -6,6 +13,9 @@
     - vars/paths.yaml
 
   vars:
+    deps:
+      apt:
+        mpv
     repo:
       url:
         https://github.com/mps-youtube/mps-youtube.git
@@ -14,4 +24,5 @@
         mpsyt
 
   roles:
+    - packages
     - setuptools
