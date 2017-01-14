@@ -1,0 +1,17 @@
+---
+- hosts: all
+  name: Install mpyst
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url:
+        https://github.com/mps-youtube/mps-youtube.git
+    setuptools:
+      virtualenv_name:
+        mpsyt
+
+  roles:
+    - setuptools
