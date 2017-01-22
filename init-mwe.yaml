@@ -2,6 +2,9 @@
 - hosts: all
   name: Initialize a MWE (Minimum Workable Environment)
 
+- include: update-os.yaml
+  tags: update
+
 - include: install-fish.yaml
   tags: fish
 
