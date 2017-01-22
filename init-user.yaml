@@ -6,7 +6,7 @@
     - user_vars.yaml
 
   vars:
-
+    username: "{{ local_user }}"
     sudo_group: sudo
     sudo_file: /etc/sudoers
 
