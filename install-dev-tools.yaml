@@ -19,3 +19,6 @@
 
 - include: install-misc.yaml
   tags: misc
+
+- include: install-fzf.yaml
+  tags: fzf

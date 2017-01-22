@@ -5,8 +5,9 @@
   vars_files:
     - vars/paths.yaml
 
-  tasks:
-    - name:
-        Build and install fzf
-      command:
-        go get -u github.com/junegunn/fzf/src/fzf
+  vars:
+    go_get:
+      packages:
+        github.com/junegunn/fzf/src/fzf
+  roles:
+    - go_get
