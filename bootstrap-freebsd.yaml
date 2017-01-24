@@ -1,0 +1,8 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Install Python2
+      raw: pkg install -y python
+      become: yes
