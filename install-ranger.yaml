@@ -2,22 +2,13 @@
 - hosts: all
   name: Install Ranger
 
+  vars_files:
+    - vars/paths.yaml
+
   vars:
-    deps:
-      apt:
-        python-pip
+    repo:
+      url:
+        https://github.com/ranger/ranger.git
 
   roles:
-    - packages
-
-  tasks:
-    - name: Install Ranger for the current user
-      command: pip install git+https://github.com/ranger/ranger.git --user
-
-    - name: Add local Python bin to PATH
-      lineinfile:
-        dest:
-          "{{ ansible_user_dir }}/.profile"
-        line:
-          PATH="$PATH:$HOME/.local/bin"
-      tags: path
+    - setuptools
