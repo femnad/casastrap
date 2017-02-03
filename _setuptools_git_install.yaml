@@ -1,0 +1,13 @@
+---
+- hosts: all
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url:
+        "{{ repo_url }}"
+
+  roles:
+    - setuptools

@@ -1,0 +1,9 @@
+---
+- hosts: all
+  name: Install mycli
+
+- include:
+    _setuptools_git_install.yaml
+  vars:
+    repo_url:
+      https://github.com/dbcli/mycli.git
