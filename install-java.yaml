@@ -7,8 +7,7 @@
       apt:
         - openjdk-8-jdk
         - openjdk-8-jre
-    _default_release:
-      jessie-backports
+        - openjdk-8-source
 
   roles:
     - packages
