@@ -19,5 +19,5 @@
       tags: executable
 
     - name: Bootstrap Leiningen
-      command: lein
+      command: "{{ user_bin }}/lein"
       tags: bootstrap
