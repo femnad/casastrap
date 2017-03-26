@@ -6,6 +6,11 @@
     - vars/paths.yaml
 
   vars:
+
+    deps:
+      apt:
+        libx11-dev
+
     repo:
       name:
         xchainkeys
