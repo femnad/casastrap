@@ -9,7 +9,7 @@
 
   vars_files:
     - vars/paths.yaml
-    - tarsnap_vars.yaml
+    - vaults/tarsnap_vars.yaml
 
   tasks:
     - name: Create key file directory
