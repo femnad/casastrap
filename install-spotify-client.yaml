@@ -3,18 +3,21 @@
   name: Install Spotify desktop client
 
   tasks:
-    - apt_key:
+    - name: Add apt key
+      apt_key:
         keyserver: hkp://keyserver.ubuntu.com:80
         id: BBEBDCB318AD50EC6865090613B00F1FD2C19886
       become: yes
 
-    - apt_repository:
+    - name: Add apt repository
+      apt_repository:
         repo: deb http://repository.spotify.com stable non-free
         state: present
         filename: spotify
       become: yes
 
-    - apt:
+    - name: Install Spotify client
+      apt:
         name: spotify-client
         state: present
         update-cache: yes
