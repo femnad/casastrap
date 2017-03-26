@@ -31,36 +31,3 @@
         key:
           "{{ lookup('file', remote_user_ssh_public_key) }}"
       tags: ssh-key
-
-    - name: Find Ansible inventory file location
-      local_action: "shell cat {{ local_user_home }}/.ansible.cfg | grep inventory | awk -F '=' '{print $2}' | grep -oE '\\S+'"
-      # Can't name this as inventory_file for some reason
-      register: inventory_file_path
-      tags: inventory
-
-    - name: Create the inventory directory
-      file:
-        path:
-          "{{ inventory_file_path.stdout | dirname }}"
-        state:
-          directory
-      tags: inventory
-
-    - name: Create the inventory file
-      file:
-        path:
-          "{{ inventory_file_path.stdout }}"
-        state:
-          touch
-      tags: inventory
-
-    - name: Initialize inventory file
-      lineinfile:
-        dest:
-          "{{ inventory_file_path.stdout }}"
-        line:
-          "{{ item }}"
-      with_items:
-        - local ansible_connection=local
-        - "{{ ansible_hostname}}"
-      tags: inventory
