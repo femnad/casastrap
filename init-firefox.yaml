@@ -6,54 +6,20 @@
     - vars/paths.yaml
 
   vars:
-    firefox_package_name:
-      firefox
     deps:
       apt:
-        - "{{ firefox_package_name }}"
-        - zip
+        - firefox
       dnf_yum:
         - firefox
-        - zip
-    repo:
-      url:
-        https://github.com/vimperator/vimperator-labs
-      name:
-        vimperator-labs
-
-  pre_tasks:
-    - name: Set name of Firefox package
-      set_fact:
-        firefox_package_name:
-          firefox-esr
-      when:
-        ansible_distribution == "Debian"
 
   roles:
     - packages
-    - clone
+
 
   post_tasks:
-    - name: Build Vimperator XPI
-      command: make xpi
-      args:
-        chdir:
-          "{{ clone_path }}/vimperator"
-      tags: vimperator, xpi, xpi-build
-
-    - name: Locate the XPI file
-      find:
-        path:
-          "{{ clone_path }}/downloads"
-        pattern:
-          "vimperator*.xpi"
-      register:
-        xpi_path
-      tags: vimperator, xpi, xpi-install
-
-    - name: Install the XPI file
-      command: firefox '{{ xpi_path.files[0].path }}'
-      tags: vimperator, xpi, xpi-install
+    - name: Install vimperator
+      command: firefox https://addons.mozilla.org/firefox/downloads/latest/vimperator/addon-4891-latest.xpi?src=dp-btn-primary
+      tags: firefox
       environment:
         DISPLAY:
           :0.0
