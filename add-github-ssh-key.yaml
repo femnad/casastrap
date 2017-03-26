@@ -4,10 +4,7 @@
 
   vars_files:
     - vars/paths.yaml
-
-  vars_prompt:
-    - name: access_token
-      prompt: "GitHub access token?"
+    - vaults/github_vars.yaml
 
   tasks:
     - name: Read SSH key
@@ -23,4 +20,4 @@
         pubkey:
           "{{ ssh_pubkey.stdout }}"
         token:
-          "{{ access_token }}"
+          "{{ github_access_token }}"

@@ -3,15 +3,12 @@
 
   vars_files:
     - vars/paths.yaml
+    - vaults/gitlab_vars.yaml
 
   vars:
     deps:
       apt:
         curl
-
-  vars_prompt:
-    - name: access_token
-      prompt: "Gitlab access token?"
 
   roles:
     - packages
@@ -26,5 +23,5 @@
       command:
         # Can't seem to able to this with the uri module
         curl https://gitlab.com/api/v3/user/keys -F 'title={{ ansible_user_id }}@{{ ansible_hostname }}'
-            -F 'key={{ ssh_pubkey.stdout }}' -F 'private_token={{ access_token }}'
+            -F 'key={{ ssh_pubkey.stdout }}' -F 'private_token={{ gitlab_access_token }}'
       tags: key-add
