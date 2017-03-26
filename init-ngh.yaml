@@ -6,8 +6,10 @@
   tags: mwe
 
 - include: init-tarsnap.yaml
+  tags: tarsnap
 
 - include: generate-ssh-key.yaml
+  tags: ssh-key
 
 - include: add-github-ssh-key.yaml
   tags: github
@@ -16,4 +18,4 @@
   tags: gitlab
 
 - include: clone-ngh-dotfiles.yaml
-  tags: dotfiles
+  tags: ngh-dotfiles
