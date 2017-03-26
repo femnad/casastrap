@@ -1,0 +1,15 @@
+---
+- hosts: all
+  name: Add authorized keys
+
+  vars_prompt:
+    - name: key_name
+      prompt: Host to add authorized keys for?
+      private: no
+
+  tasks:
+    - name: Set authorized keys from file
+      authorized_key:
+        user: "{{ ansible_user_id }}"
+        state: present
+        key: "{{ lookup('file', '/tmp/{{ key_name }}-public-key') }}"

@@ -17,5 +17,8 @@
 - include: add-gitlab-ssh-key.yaml
   tags: gitlab
 
+- include: add-digital-ocean-ssh-key.yaml
+  tags: digital-ocean
+
 - include: clone-ngh-dotfiles.yaml
   tags: ngh-dotfiles

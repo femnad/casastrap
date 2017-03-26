@@ -1,0 +1,23 @@
+---
+- hosts: all
+
+  vars_files:
+    - user_vars.yaml
+
+  vars:
+    key_name:
+      "{{ ansible_hostname }}"
+    fetch_destination:
+      "/tmp/{{ ansible_hostname }}-public-key"
+
+  tasks:
+    - fetch:
+        src:
+          "{{ remote_user_ssh_public_key }}"
+        dest:
+          "{{ fetch_destination }}"
+        flat: yes
+      tags: fetch-pubkey
+
+    # Your face is `dopy required for this module'
+    - local_action: command doctl compute ssh-key import {{ key_name }} --public-key-file {{ fetch_destination }}
