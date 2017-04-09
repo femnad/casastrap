@@ -1,0 +1,25 @@
+---
+- hosts: all
+  name: Download and link {{ name }}
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    path:
+      "{{ user_bin }}/{{ name }}"
+
+  tasks:
+    - name: Download {{ name }}
+      get_url:
+        url:
+          "{{ url }}"
+        dest:
+          "{{ path }}"
+
+    - name: Make {{ name }} executable
+      file:
+        path:
+          "{{ path }}"
+        mode:
+          0744
