@@ -2,9 +2,6 @@
 - name: Install tmux, vim and all the rest
   hosts: all
 
-- include: install-the-silver-searcher.yaml
-  tags: ag
-
 - include: install-sack.yaml
   tags: sack
 

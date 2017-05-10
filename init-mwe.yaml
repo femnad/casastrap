@@ -5,9 +5,6 @@
 - include: update-os.yaml
   tags: update
 
-- include: install-fish.yaml
-  tags: fish
-
 - include: install-dev-tools.yaml
   tags: dev
 

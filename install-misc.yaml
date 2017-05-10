@@ -9,8 +9,11 @@
     deps:
       apt:
         - emacs
+        - fish
         - htop
+        - jq
         - screen
+        - silversearcher-ag
         - surfraw
         - tig
         - tmux
@@ -36,6 +39,7 @@
   post_tasks:
     - name: Create vim swap directory
       file:
-        "{{ user_home }}/.vim/swap"
-      state:
-        path
+        path:
+          "{{ user_home }}/.vim/swap"
+        state:
+          directory
