@@ -1,0 +1,7 @@
+---
+- include:
+    _setuptools_git_install.yaml
+  vars:
+    repo:
+      url:
+        https://github.com/apenwarr/sshuttle.git
