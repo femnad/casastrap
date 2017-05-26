@@ -4,3 +4,4 @@
   tasks:
     - name: Install Python2 and Python DNF library
       raw: dnf install -y python2 python2-dnf libselinux-python
+      become: yes
