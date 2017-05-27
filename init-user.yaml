@@ -13,10 +13,12 @@
     wheel_users:
       - FreeBSD
       - RedHat
+      - Archlinux
 
     deps:
       apt: sudo
       dnf_yum: sudo
+      pacman: sudo
       pkg: sudo
       portage: sudo
 
