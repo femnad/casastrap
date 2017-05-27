@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Install Broadcom driver with restricted license
+
+  vars:
+    deps:
+      pacman:
+        - broadcom-wl-dkms
+        - linux-headers
+
+  roles:
+    - packages
