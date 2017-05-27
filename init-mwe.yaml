@@ -5,6 +5,9 @@
 - include: update-os.yaml
   tags: update
 
+- include: init-user.yaml
+  tags: user
+
 - include: install-dev-tools.yaml
   tags: dev
 
