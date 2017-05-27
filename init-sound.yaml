@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  name: Initialize the ability to hears sounds
+  name: Initialize the ability to hear sounds
 
   vars:
     deps:
@@ -11,6 +11,7 @@
         - alsa-utils
         - alsa-plugins-pulseaudio
         - pulseaudio
+        - pulseaudio-utils
 
   roles:
     - packages
