@@ -24,7 +24,9 @@
 
       dnf_yum:
         - emacs
+        - fish
         - htop
+        - jq
         - screen
         - tig
         - tmux

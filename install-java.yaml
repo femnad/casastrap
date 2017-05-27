@@ -8,6 +8,8 @@
         - openjdk-8-jdk
         - openjdk-8-jre
         - openjdk-8-source
+      dnf_yum:
+        - java-1.8.0-openjdk
 
   roles:
     - packages

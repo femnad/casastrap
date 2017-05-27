@@ -2,12 +2,6 @@
 - name: Install tmux, vim and all the rest
   hosts: all
 
-- include: install-sack.yaml
-  tags: sack
-
-- include: install-jq.yaml
-  tags: jq
-
 - include: install-lscd.yaml
   tags: lscd
 
