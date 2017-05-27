@@ -22,7 +22,7 @@
         [gstreamer1-libav, gstreamer-python, gstreamer-plugins-good,
          gstreamer-plugins-ugly, gstreamer-plugins-bad-free,
          gstreamer-plugins-bad-nonfree, libffi-devel, python-devel,
-         python-gobject, python-gobject-base, python-pip]
+         python-gobject, python-gobject-base, python-pip, python-virtualenv]
       portage:
         [dev-python/pygobject, media-libs/gstreamer, media-libs/gst-plugins-bad,
          media-libs/gst-plugins-base, media-libs/gst-plugins-good,
@@ -41,9 +41,6 @@
         1.0.0
 
   pre_tasks:
-    - name: Create virtualenv with site-package access
-      command: virtualenv {{ virtualenv_path }} --system-site-packages
-      tags: virtualenv
 
     - name: Enable RPM Fusion
       dnf: name={{ item }}
@@ -59,6 +56,11 @@
     - pip_packages
 
   post_tasks:
+
+    - name: Create virtualenv with site-package access
+      command: virtualenv {{ virtualenv_path }} --system-site-packages
+      tags: virtualenv
+
     - name: Generate Mopidy configuration
       shell: |
         source {{ virtualenv_path }}/bin/activate
