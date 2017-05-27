@@ -7,6 +7,10 @@
       apt:
         - alsa-utils
         - pulseaudio
+      dnf_yum:
+        - alsa-utils
+        - alsa-plugins-pulseaudio
+        - pulseaudio
 
   roles:
     - packages

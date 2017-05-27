@@ -2,6 +2,9 @@
 - hosts: all
   name: Effect ability to listen to Spotify
 
+- include: init-sound.yaml
+  tags: sound
+
 - include: install-mopidy.yaml
   tags: mopidy
 
