@@ -8,6 +8,9 @@
 - include: init-user.yaml
   tags: user
 
+- include: init-paths.yaml
+  tags: paths
+
 - include: install-dev-tools.yaml
   tags: dev
 

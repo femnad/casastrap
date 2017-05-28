@@ -4,6 +4,8 @@
 
   vars:
     deps:
+      apt:
+        - bcmwl-kernel-source
       pacman:
         - broadcom-wl-dkms
         - linux-headers

@@ -1,0 +1,13 @@
+- name: Initialize paths
+  hosts: all
+
+  vars_files:
+    - vars/paths.yaml
+
+  tasks:
+    - name: Init user bin directory
+      file:
+        path:
+          "{{ user_bin }}"
+        state:
+          directory
