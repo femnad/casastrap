@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  name: Initialize Password Store
 
   vars_files:
     - vars/paths.yaml

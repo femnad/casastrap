@@ -1,7 +1,4 @@
 ---
-- include: install-go.yaml
-  tags: go
-
 - hosts: all
   name: Install doctl
 

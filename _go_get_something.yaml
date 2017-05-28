@@ -1,0 +1,13 @@
+---
+- hosts: all
+  name: Install Go Package
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    go_get:
+      packages:
+        "{{ go_package}}"
+  roles:
+    - go_get

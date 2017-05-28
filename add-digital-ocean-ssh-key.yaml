@@ -1,4 +1,7 @@
 ---
+- include: install-doctl.yaml
+  tags: doctl
+
 - hosts: all
 
   vars_files:
