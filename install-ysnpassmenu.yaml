@@ -10,10 +10,16 @@
       name: ysnpassmenu
       url: "https://github.com/femnad/ysnpassmenu.git"
     util:
-      link: ysnpassmenu
+      link:
+        - ysnpassmenu
+        - contrib/ysnrofi
+    deps:
+      apt:
+        - rofi
 
   roles:
     - clone
+    - packages
     - util
 
 - include: install-dmenu.yaml

@@ -2,6 +2,9 @@
 - hosts: all
   name: Initialize a workstation
 
+- include: init-ngh.yaml
+  tags: ngh
+
 - include: init-sound.yaml
   tags: sound
 

@@ -15,6 +15,9 @@
 
     deps:
       apt:
+        - bison
+        - check
+        - flex
         - libcairo2-dev
         - libglib2.0-dev
         - libpango1.0-dev
@@ -27,6 +30,7 @@
         - libxcb-util-dev
         - libxcb-xinerama0-dev
         - libxcb-xkb-dev
+        - libxcb-xrm-dev
         - libxkbcommon-x11-dev
       dnf_yum:
         - libxkbcommon-x11-devel
