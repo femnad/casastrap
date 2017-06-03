@@ -1,5 +1,0 @@
----
-ssh_public_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
-remote_user_ssh_public_key: "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
-local_user_home: "{{ lookup('env', 'HOME') }}"
-local_user: "{{ lookup('env', 'USER') }}"

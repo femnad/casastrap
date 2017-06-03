@@ -9,7 +9,7 @@
           HostName {{ droplet.droplet.ip_address }}
   vars_files:
     - digital_ocean_vars.yaml
-    - user_vars.yaml
+    - vars/user_vars.yaml
 
   vars_prompt:
 

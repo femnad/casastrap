@@ -7,7 +7,7 @@
 
   vars_files:
     - vars/paths.yaml
-    - user_vars.yaml
+    - vars/user_vars.yaml
 
   vars:
     deps:

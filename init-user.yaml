@@ -3,7 +3,7 @@
   hosts: all
 
   vars_files:
-    - user_vars.yaml
+    - vars/user_vars.yaml
 
   vars:
     username: "{{ local_user }}"
@@ -59,13 +59,10 @@
       become: yes
       tags: user
 
-    - name: Add authorized ssh key
-      authorized_key: user={{ username }}
-                      key={{ lookup('file', ssh_public_key) }}
-      become: yes
-      tags: ssh-key
-
     - name: Set passwordless sudo for the sudo group
       lineinfile: "dest={{ sudo_file }} state=present regexp='^%{{ sudo_group }}' line='%{{ sudo_group }}   ALL=(ALL:ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
       become: yes
       tags: sudo
+
+- include:
+    add-authorized-ssh-key.yaml
