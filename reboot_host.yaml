@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Reboot server
+
+  tasks:
+    - name: Reboot server
+      command:
+        systemctl reboot
+      become:
+        yes
+      when:
+        ansible_service_mgr == "systemd"
