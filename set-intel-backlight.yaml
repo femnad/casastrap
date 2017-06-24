@@ -1,0 +1,16 @@
+- hosts: all
+  name: Set intel backlight in xorg.conf
+
+  vars:
+    createfile:
+      path:
+        /etc/X11/xorg.conf
+      content: |
+        Section "Device"
+        Identifier  "Card0"
+        Driver      "intel"
+        Option      "Backlight"  "intel_backlight"
+        EndSection
+
+  roles:
+    createfile
