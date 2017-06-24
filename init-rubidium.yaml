@@ -1,6 +1,28 @@
 ---
-- hosts: rubidium
-  name: Initialize rubidium
-
 - include:
     init-workstation.yaml
+  tags:
+    workstation
+
+- include:
+    install-ratpoison.yaml
+  tags:
+    ratpoison
+
+- include:
+    init-nonfree-debian-repos.yaml
+  tags:
+    nonfree
+
+- hosts: all
+  name: Initialize rubidium
+
+  vars:
+    deps:
+      apt:
+        - firmware-linux
+        - firmware-linux-free
+        - firmware-linux-nonfree
+
+  roles:
+    - packages
