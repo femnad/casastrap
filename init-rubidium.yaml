@@ -20,9 +20,12 @@
   vars:
     deps:
       apt:
+        - firmware-iwlwifi
         - firmware-linux
         - firmware-linux-free
         - firmware-linux-nonfree
+        - fonts-3270
+        - rxvt-unicode-256color
 
   roles:
     - packages
