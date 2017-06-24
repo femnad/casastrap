@@ -6,6 +6,7 @@
 
   vars_files:
     - vars/user_vars.yaml
+    - vars/paths.yaml
 
   vars:
     key_name:
@@ -22,5 +23,6 @@
         flat: yes
       tags: fetch-pubkey
 
-    # Your face is `dopy required for this module'
-    - local_action: command doctl compute ssh-key import {{ key_name }} --public-key-file {{ fetch_destination }}
+    - name: Import public key to Digital Ocean
+      local_action:
+        command doctl compute ssh-key import {{ ansible_hostname }} --public-key-file {{ remote_user_ssh_public_key }}

@@ -1,0 +1,6 @@
+---
+- hosts: rubidium
+  name: Initialize rubidium
+
+- include:
+    init-workstation.yaml

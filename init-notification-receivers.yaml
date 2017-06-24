@@ -1,0 +1,10 @@
+---
+- hosts: all
+  name: Install notify-recv
+
+- include:
+    _clone_and_link.yaml
+  vars:
+    repo:
+      url:
+        https://github.com/femnad/notify-recv.git

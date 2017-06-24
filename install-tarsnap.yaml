@@ -1,23 +1,10 @@
 ---
-- hosts: all
+- include:
+    install-tarsnap-from-source.yaml
+  when:
+    ansible_os_family != 'Debian'
 
-  vars_files:
-    - vars/paths.yaml
-
-  vars:
-
-    release:
-      name: tarsnap
-      url: https://www.tarsnap.com/download/tarsnap-autoconf-1.0.37.tgz
-
-    deps:
-      apt:
-        [gcc, libc6-dev, libssl-dev, zlib1g-dev, e2fslibs-dev]
-      dnf_yum:
-        [gcc, glibc-devel, openssl-devel, zlib-devel, e2fsprogs-devel]
-
-    build:
-      reconf: no
-
-  roles:
-    - release_install
+- include:
+    install-tarsnap-from-deb.yaml
+  when:
+    ansible_os_family == 'Debian'

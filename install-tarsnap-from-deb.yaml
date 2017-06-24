@@ -1,0 +1,34 @@
+---
+- hosts: all
+  name: Install Tarsnap deb package
+
+  tasks:
+    - name: Add Tarsnap apt key
+      apt_key:
+        url:
+          https://pkg.tarsnap.com/tarsnap-deb-packaging-key.asc
+        state:
+          present
+      become:
+        yes
+
+    - name: Add Tarsnap apt repository
+      apt_repository:
+        repo:
+          deb http://pkg.tarsnap.com/deb/{{ ansible_lsb.codename }} ./
+        state:
+          present
+        filename:
+          tarsnap
+      become:
+        yes
+
+    - apt:
+        name:
+          tarsnap
+        state:
+          present
+        update-cache:
+          yes
+      become:
+        yes

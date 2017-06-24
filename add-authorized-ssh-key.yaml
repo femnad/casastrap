@@ -3,7 +3,7 @@
   name: Add authorized ssh key
 
   vars_files:
-    - vars/vars/user_vars.yaml
+    - vars/user_vars.yaml
 
   vars:
     username: "{{ local_user }}"

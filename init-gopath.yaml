@@ -1,0 +1,24 @@
+---
+- hosts: all
+  name: Initialize and set GOPATH
+
+  vars_files:
+    - vars/paths.yaml
+
+  tasks:
+    - name: Initialize GOPATH
+      file:
+        path:
+          "{{ gopath }}"
+        state:
+          directory
+
+    - name: Add gopath/bin to path
+      lineinfile:
+        dest:
+          "{{ bash_profile }}"
+        line:
+          "{{ item }}"
+      with_items:
+        - export GOPATH={{ gopath }}
+        - export PATH=$PATH:{{ gopath }}/bin
