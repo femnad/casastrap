@@ -10,10 +10,14 @@
       name: dzen
       url: https://github.com/robm/dzen.git
     deps:
-      apt: [libxft-dev, libxpm-dev]
+      apt:
+        - libxinerama-dev
+        - libxft-dev
+        - libxpm-dev
       dnf_yum:
         - libXft-devel
         - libXpm-devel
+
     build:
       configure: no
       edit_config: yes

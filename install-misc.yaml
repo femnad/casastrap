@@ -37,11 +37,3 @@
 
   roles:
     - packages
-
-  post_tasks:
-    - name: Create vim swap directory
-      file:
-        path:
-          "{{ user_home }}/.vim/swap"
-        state:
-          directory

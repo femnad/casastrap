@@ -9,6 +9,9 @@
     - vars/paths.yaml
 
   vars:
+    deps:
+      apt:
+        - libdbus-1-dev
     repo:
       name:
         over-here
@@ -19,6 +22,7 @@
         target/release/over-here
 
   roles:
+    - packages
     - clone
     - cargo
     - util

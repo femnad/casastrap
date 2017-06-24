@@ -1,5 +1,6 @@
-- name: Initialize paths
-  hosts: all
+---
+- hosts: all
+  name: Initialize directories
 
   vars_files:
     - vars/paths.yaml
