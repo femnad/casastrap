@@ -1,0 +1,31 @@
+---
+- hosts: all
+  name: Instal urxvt extensions
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    extension_dir:
+      "{{ user_home }}/.urxvt/ext"
+    repo:
+      url:
+        "{{ extension.url }}"
+
+    util:
+      link_destination:
+        "{{ extension_dir }}"
+      link:
+        "{{ extension.file }}"
+
+  pre_tasks:
+    - name: Init extension directory
+      file:
+        path:
+          "{{ extension_dir }}"
+        state:
+          directory
+
+  roles:
+    - clone
+    - util

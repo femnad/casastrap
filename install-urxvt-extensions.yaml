@@ -1,0 +1,21 @@
+---
+- hosts: all
+  name: Instal urxvt extensions
+
+- include:
+    _install_urxvt_extension.yaml
+  vars:
+    extension:
+      url:
+        https://github.com/muennich/urxvt-perls
+      file:
+        keyboard-select
+
+- include:
+    _install_urxvt_extension.yaml
+  vars:
+    extension:
+      url:
+        https://github.com/majutsushi/urxvt-font-size
+      file:
+        font-size

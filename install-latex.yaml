@@ -1,0 +1,13 @@
+---
+- hosts: all
+  name: Install LaTeX packages
+
+  vars:
+    deps:
+      apt:
+        - texlive-latex-base
+        - texlive-latex-extra
+        - texlive-latex-recommended
+
+  roles:
+    - packages
