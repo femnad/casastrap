@@ -25,6 +25,7 @@
         - firmware-linux-free
         - firmware-linux-nonfree
         - fonts-3270
+        - network-manager
         - rxvt-unicode-256color
 
   roles:
