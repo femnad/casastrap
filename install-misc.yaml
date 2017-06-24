@@ -21,6 +21,7 @@
         - vim-gtk
         - w3m
         - xsel
+        - zathura
 
       dnf_yum:
         - emacs
