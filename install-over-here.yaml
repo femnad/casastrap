@@ -11,6 +11,7 @@
   vars:
     deps:
       apt:
+        - dbus-x11
         - libdbus-1-dev
     repo:
       name:

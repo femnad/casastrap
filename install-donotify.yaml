@@ -1,0 +1,9 @@
+---
+- include:
+    _clone_and_link.yaml
+  vars:
+    repo:
+      url:
+        https://github.com/femnad/donotify.git
+      name:
+        donotify

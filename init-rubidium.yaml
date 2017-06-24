@@ -19,6 +19,16 @@
   tags:
     backlight
 
+- include:
+    cnl-notify-recv.yaml
+  tags:
+    notify-recv
+
+- include:
+    install-rossa.yaml
+  tags:
+    rossa
+
 - hosts: all
   name: Initialize rubidium
 

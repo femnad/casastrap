@@ -1,0 +1,20 @@
+---
+- hosts: all
+  name: Install rossa
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    deps:
+      apt:
+        - libnotify-dev
+    repo:
+      url:
+        https://github.com/femnad/rossa.git
+    build:
+      configure:
+        no
+
+  roles:
+    - source_install
