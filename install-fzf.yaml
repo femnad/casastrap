@@ -2,12 +2,25 @@
 - hosts: all
   name: Install fzf
 
+  vars:
+    install_script_directory:
+      "{{ user_home }}/.fzf"
+    install_script:
+      "{{ install_script_directory }}/install"
+
   vars_files:
     - vars/paths.yaml
 
-  vars:
-    go_get:
-      packages:
-        github.com/junegunn/fzf/src/fzf
-  roles:
-    - go_get
+  tasks:
+    - name: Clone fzf for installation
+      git:
+        repo:
+          https://github.com/junegunn/fzf.git
+        depth:
+          1
+        dest:
+          "{{ install_script_directory }}"
+
+    - name: Run fzf installation script
+      command:
+        "{{ install_script }}"
