@@ -9,7 +9,11 @@
     - pass_vars.yaml
 
   vars:
-
+    spotify_api_credentials:
+      client_id:
+        fac34a4b-7b0e-497b-a0fe-0d42ecbf40d0
+      client_secret:
+        GhS4Q8INWe0t4oD8v6LhrQIAsCJlXG8u0JI1ze54ybM=
     virtualenv_path: "{{ virtualenv_base }}/mopidy"
 
     deps:
@@ -86,5 +90,5 @@
     - name: Set Spotify username and password
       ini_file: dest={{ user_home }}/.config/mopidy/mopidy.conf
                 section=spotify option={{ item.key }} value={{ item.value }}
-      with_dict: "{{ spotify_credentials }}"
+      with_dict: "{{ spotify_credentials | combine(spotify_api_credentials) }}"
       tags: config
