@@ -1,0 +1,7 @@
+---
+- include:
+    _autotools_source_install.yaml
+  vars:
+    build:
+      cmake:
+        yes

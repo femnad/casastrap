@@ -1,0 +1,15 @@
+---
+- include:
+    _cmake_source_install.yaml
+  vars:
+    url:
+      https://github.com/MisterTea/EternalTCP.git
+    deps:
+      apt:
+        - libboost-dev
+        - libsodium-dev
+        - libncurses5-dev
+        - libprotobuf-dev
+        - protobuf-compiler
+        - libgoogle-glog-dev
+        - libgflags-dev
