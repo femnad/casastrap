@@ -7,11 +7,6 @@
   vars_files:
     - vars/paths.yaml
 
-  vars:
-    util:
-      link:
-        "{{ repo.name }}"
-
   roles:
     - clone
     - util

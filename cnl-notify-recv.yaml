@@ -3,10 +3,10 @@
     _clone_and_link.yaml
   vars:
     repo:
-      name:
-        notify-recv
       url:
         https://github.com/femnad/notify-recv.git
+      name:
+        notify-recv
     util:
       link:
         - dzenotify

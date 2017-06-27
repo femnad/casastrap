@@ -1,0 +1,20 @@
+---
+- include:
+    init-workstation.yaml
+  tags:
+    workstation
+
+- include:
+    install-stumpwm.yaml
+  tags:
+    stumpwm
+
+- hosts: all
+  name: Initialize natrium
+
+  vars:
+    deps:
+      apt: []
+
+  roles:
+    - { role: packages, tags: host-specific }

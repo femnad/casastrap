@@ -24,7 +24,7 @@
     util:
       replace:
         - file:
-            config.h
+            config.def.h
           before:
             "monospace:size=10"
           after:

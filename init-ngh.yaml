@@ -5,7 +5,7 @@
 - include: init-mwe.yaml
   tags: mwe
 
-- include: init-tarsnap.yaml
+- include: install-tarsnap.yaml
   tags: tarsnap
 
 - include: generate-ssh-key.yaml

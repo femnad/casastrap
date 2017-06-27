@@ -19,5 +19,5 @@
 - include: install-over-here.yaml
   tags: non-conformist-wm
 
-- include: init-notification-receivers.yaml
+- include: cnl-notify-recv.yaml
   tags: non-conformist-wm

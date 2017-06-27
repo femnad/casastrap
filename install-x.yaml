@@ -1,12 +1,15 @@
 ---
 - hosts: all
-  tasks:
-    - apt: name={{item}} state=latest
-      become: yes
-      with_items:
+  name: Install X
+
+  vars:
+    deps:
+      apt:
         - xinit
         - xinput
         - mesa-utils
         - xfonts-scalable
         - xdm
-      when: ansible_os_family == "Debian"
+
+  roles:
+    - packages
