@@ -19,6 +19,9 @@
         - sbcl
       portage: dev-lisp/sbcl
 
+    sbclrc:
+      "{{ user_home }}/.sbclrc"
+
   roles:
     - packages
     - clone
@@ -38,15 +41,30 @@
         dest: "{{ download_path }}"
       tags: quicklisp
 
-    - name: Install Quicklisp and add it to init file
-      command: sbcl --load "{{ download_path }}/quicklisp.lisp" --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)'
-      args:
-        creates: "{{ user_home }}/.sbclrc"
+    - name: Install Quicklisp
+      command: sbcl --load "{{ download_path }}/quicklisp.lisp" --eval '(quicklisp-quickstart:install)' --non-interactive
       tags: quicklisp
+      args:
+        creates:
+          "{{ user_home }}/quicklisp"
+
+    - name: Add Quicklisp to SBCL init file
+      lineinfile:
+        create:
+          yes
+        path:
+          "{{ sbclrc }}"
+        line: |
+          #-quicklisp
+          (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                                 (user-homedir-pathname))))
+            (when (probe-file quicklisp-init)
+              (load quicklisp-init)))
 
     - name: Install packages with Quicklisp
       command: sbcl --eval '(ql:quickload "{{ item }}")'
       with_items:
+        - alexandria
         - clx
         - cl-ppcre
       tags: quicklisp, quicklisp-deps
