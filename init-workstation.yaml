@@ -5,6 +5,9 @@
 - include: init-ngh.yaml
   tags: ngh
 
+- include: add-user-to-groups
+  tags: groups
+
 - include: init-sound.yaml
   tags: sound
 

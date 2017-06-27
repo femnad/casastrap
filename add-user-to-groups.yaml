@@ -1,0 +1,16 @@
+---
+- hosts: all
+  name: Add user to groups
+
+  tasks:
+    - name: Add user to groups
+      user:
+        name:
+          "{{ ansible_user_id }}"
+        append:
+          yes
+        groups:
+          - audio
+          - video
+      become:
+        yes
