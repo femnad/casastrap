@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Install browsers
+
+  vars:
+    deps:
+      apt:
+        - chromium-browser
+
+- include:
+    init-firefox.yaml

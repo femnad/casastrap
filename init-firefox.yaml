@@ -17,16 +17,16 @@
 
 
   post_tasks:
-    - name: Install vimperator
-      command: firefox https://addons.mozilla.org/firefox/downloads/latest/vimperator/addon-4891-latest.xpi?src=dp-btn-primary
-      tags: firefox
+    - name: Install FireGestures
+      command: firefox https://addons.mozilla.org/firefox/downloads/latest/firegestures/addon-6366-latest.xpi?src=dp-btn-primary
+      tags: firegestures
       environment:
         DISPLAY:
           :0.0
 
-    - name: Install FireGestures
-      command: firefox https://addons.mozilla.org/firefox/downloads/latest/firegestures/addon-6366-latest.xpi?src=dp-btn-primary
-      tags: firegestures
+    - name: Install vimperator
+      command: firefox https://addons.mozilla.org/firefox/downloads/latest/vimperator/addon-4891-latest.xpi?src=dp-btn-primary
+      tags: firefox
       environment:
         DISPLAY:
           :0.0

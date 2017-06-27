@@ -5,7 +5,7 @@
 - include: init-ngh.yaml
   tags: ngh
 
-- include: add-user-to-groups
+- include: add-user-to-groups.yaml
   tags: groups
 
 - include: init-sound.yaml
@@ -13,6 +13,9 @@
 
 - include: init-x.yaml
   tags: xorg
+
+- include: install-browsers.yaml
+  tags: browser
 
 - include: install-laptop-tools.yaml
   tags: laptop
