@@ -1,0 +1,25 @@
+---
+- hosts:
+    all
+  name:
+    Install vimperator
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    repo:
+      url:
+        https://github.com/vimperator/vimperator-labs.git
+    build:
+      make_install:
+        no
+      configure:
+        no
+      make_command:
+        xpi
+      makefile_path:
+        vimperator
+
+  roles:
+    - source_install
