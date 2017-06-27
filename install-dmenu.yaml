@@ -18,11 +18,18 @@
     build:
       clean: true
       configure: false
+      edit_config:
+        true
+
+    util:
+      replace:
+        - file:
+            config.h
+          before:
+            "monospace:size=10"
+          after:
+            "monospace:size=12"
 
   roles:
     - source_install
-    - {role: util, edit_config: yes,
-                   config_file: config.h,
-                   lines_to_change: [
-                   { "before": "monospace:size=[0-9]+",
-                   "after": "monospace:size=11" } ] }
+    - util

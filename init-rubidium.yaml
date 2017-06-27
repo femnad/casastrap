@@ -40,8 +40,9 @@
         - firmware-linux-free
         - firmware-linux-nonfree
         - fonts-3270
+        - lxterminal
         - network-manager
         - rxvt-unicode-256color
 
   roles:
-    - packages
+    - { role: packages, tags: host-specific }
