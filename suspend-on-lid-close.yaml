@@ -1,0 +1,16 @@
+---
+- hosts:
+    all
+  name:
+    Suspend when lid is closed in docked/multi display mode
+
+  tasks:
+    - name:
+        Comment in and change line
+      lineinfile:
+        line:
+          HandleLidSwitchDocked=suspend
+        path:
+          /etc/systemd/logind.conf
+      become:
+        yes
