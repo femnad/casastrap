@@ -13,3 +13,6 @@
 
 - include: install-fzf.yaml
   tags: fzf
+
+- include: install-tag.yaml
+  tags: tag
