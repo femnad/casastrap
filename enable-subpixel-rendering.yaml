@@ -1,0 +1,29 @@
+---
+- hosts:
+    all
+  name:
+    Enable subpixel rendering
+
+  vars:
+    font_config_dir:
+      "{{ user_home }}/.config/fontconfig/conf.d"
+
+  vars_files:
+    - vars/paths.yaml
+
+  tasks:
+    - name:
+        Initialize fontconfig directory
+      file:
+        path:
+          "{{ font_config_dir }}"
+        state:
+          directory
+
+    - name:
+        Enable subpixel rendering
+      file:
+        src:
+          /etc/fonts/conf.avail/10-sub-pixel-rgb.conf
+        path:
+          "{{ font_config_dir }}"

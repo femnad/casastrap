@@ -22,3 +22,6 @@
 
 - include: install-ysnpassmenu.yaml
   tags: ysnpassmenu
+
+- include: enable-subpixel-rendering.yaml
+  tags: fonts
