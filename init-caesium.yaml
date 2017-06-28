@@ -9,14 +9,18 @@
   tags:
     stumpwm
 
+- include:
+    set-install-backlight
+  tags:
+    backlight
+
 - hosts: all
   name: Initialize caesium
 
   vars:
     deps:
       apt:
-        - chromium-browser
         - network-manager
 
   roles:
-    - { role: packages, tags: host-specific }
+    - packages

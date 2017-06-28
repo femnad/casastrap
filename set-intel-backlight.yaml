@@ -3,6 +3,8 @@
 
   vars:
     createfile:
+      become:
+        yes
       path:
         /etc/X11/xorg.conf
       content: |
