@@ -8,6 +8,11 @@
 - include: install-misc.yaml
   tags: misc
 
+- include:
+    init-vim.yaml
+  tags:
+    vim
+
 - include: install-fzf.yaml
   tags: fzf
 
