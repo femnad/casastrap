@@ -1,0 +1,30 @@
+---
+- hosts:
+    all
+  name:
+    Install clipster
+
+  vars_files:
+    - vars/paths.yaml
+
+  vars:
+    deps:
+      apt:
+        - gir1.2-gtk-3.0
+        - python-gi-dev
+
+  roles:
+    - packages
+
+  post_tasks:
+    - name:
+        Install clipster in virtualenv with site packages access
+      pip:
+        name:
+          git+https://github.com/mrichar1/clipster.git
+        editable:
+          false
+        virtualenv:
+          "{{ virtualenv_base }}/clipster"
+        virtualenv_site_packages:
+          yes

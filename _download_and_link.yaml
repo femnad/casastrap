@@ -1,0 +1,27 @@
+---
+- hosts:
+    all
+  name:
+    Download archive and link executable
+
+  vars_files:
+    - vars/paths.yaml
+
+  tasks:
+    - name:
+        Unarchive
+      unarchive:
+        src:
+          "{{ url }}"
+        dest:
+          "{{ release_store_path }}"
+        remote_src:
+          yes
+
+    - name:
+        Link executable
+      file:
+        src:
+          "{{ release_store_path }}"
+        path:
+          "{{ user_bin }}"
