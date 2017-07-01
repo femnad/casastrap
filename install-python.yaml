@@ -1,0 +1,10 @@
+---
+- include:
+    _release_install.yaml
+  vars:
+    release:
+      name: python3
+      url: https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
+    deps:
+      apt:
+        - libreadline-dev

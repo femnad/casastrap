@@ -2,17 +2,20 @@
 - hosts: all
   name: Effect ability to listen to Spotify
 
+  vars:
+    deps:
+      apt:
+        - mpc
+        - ncmpcpp
+
+  roles:
+    - packages
+
 - include: init-sound.yaml
   tags: sound
 
 - include: install-mopidy.yaml
   tags: mopidy
-
-- include: install-ncmpcpp.yaml
-  tags: ncmpcpp
-
-- include: install-mpc.yaml
-  tags: mpc
 
 - include: install-abduco.yaml
   tags: abduco

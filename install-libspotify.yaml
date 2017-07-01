@@ -12,15 +12,25 @@
       url: https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Linux-x86_64-release.tar.gz
 
     build:
-      configure: no
-      make: no
+      configure:
+        no
+      make:
+        no
+      make_install:
+        yes
 
   roles:
     - release_install
 
   post_tasks:
     - name: Add local lib to ld cache
-      shell: echo '/usr/local/lib' > /etc/ld.so.conf.d/usr-local-lib.conf
+      lineinfile:
+        path:
+          /etc/ld.so.conf.d/usr-local-lib.conf
+        create:
+          yes
+        line:
+          /usr/local/lib
       become: yes
       tags: ld-conf
 

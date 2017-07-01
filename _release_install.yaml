@@ -1,0 +1,11 @@
+---
+- name:
+    Download and install release
+  hosts:
+    all
+
+  vars_files:
+    - vars/paths.yaml
+
+  roles:
+    - release_install
