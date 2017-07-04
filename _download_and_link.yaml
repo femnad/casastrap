@@ -17,11 +17,23 @@
           "{{ release_store_path }}"
         remote_src:
           yes
+        list_files:
+          yes
+      register:
+        extract_path
+      tags:
+        download
 
     - name:
         Link executable
       file:
         src:
-          "{{ release_store_path }}"
+          "{{ release_store_path }}/{{ extract_path.files | first | dirname }}/{{ item.key }}"
         path:
-          "{{ user_bin }}"
+          "{{ user_bin }}/{{ item.value }}"
+        state:
+          link
+      with_dict:
+        "{{ link }}"
+      tags:
+        link

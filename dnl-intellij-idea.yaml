@@ -1,0 +1,9 @@
+---
+- include:
+    _download_and_link.yaml
+  vars:
+    url:
+      https://download.jetbrains.com/idea/ideaIC-2017.1.4.tar.gz
+    link:
+      bin/idea.sh:
+        idea
