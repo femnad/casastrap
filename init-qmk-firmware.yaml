@@ -1,0 +1,24 @@
+---
+- hosts:
+    all
+  name:
+    Clone qmk-firmware and install its requirements
+
+  vars:
+    repo:
+      url:
+        https://github.com/femnad/qmk_firmware.git
+    deps:
+      apt:
+        - gcc-avr
+        - binutils-avr
+        - avr-libc
+        - dfu-programmer
+        - dfu-util
+        - gcc-arm-none-eabi
+        - binutils-arm-none-eabi
+        - libnewlib-arm-none-eabi
+
+  roles:
+    - clone
+    - packages
