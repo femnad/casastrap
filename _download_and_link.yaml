@@ -9,6 +9,14 @@
 
   tasks:
     - name:
+        Initialize release store path
+      file:
+        path:
+          "{{ release_store_path }}"
+        state:
+          directory
+
+    - name:
         Unarchive
       unarchive:
         src:
