@@ -6,13 +6,16 @@
     - vars/paths.yaml
 
   vars:
-    release:
-      name: highlight
-      url: http://www.andre-simon.de/zip/highlight-3.32.tar.bz2
+    repo:
+      url:
+        https://github.com/andre-simon/highlight.git
+
     deps:
       apt:
+        - libboost-dev
         - liblua5.2-dev
         - lua5.2
+
     build:
       reconf:
         no
@@ -20,6 +23,7 @@
         no
       edit_config:
         yes
+
     util:
       replace:
         - file:
@@ -36,4 +40,4 @@
             LUA_LIBS=$(shell pkg-config --libs lua5.2)
 
   roles:
-    - release_install
+    - source_install

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Install Java tools
+
+  vars:
+    deps:
+      apt:
+        - gradle
+        - maven
+
+  roles:
+    - packages
