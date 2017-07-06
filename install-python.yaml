@@ -7,4 +7,5 @@
       url: https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
     deps:
       apt:
+        - libncursesw5-dev
         - libreadline-dev
