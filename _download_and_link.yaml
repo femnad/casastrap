@@ -36,7 +36,7 @@
         Link executable
       file:
         src:
-          "{{ release_store_path }}/{{ extract_path.files | first | dirname }}/{{ item.key }}"
+          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ item.key }}"
         path:
           "{{ user_bin }}/{{ item.value }}"
         state:

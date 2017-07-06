@@ -1,0 +1,20 @@
+---
+- hosts:
+    all
+  name:
+    Install Python tools
+
+  vars:
+    deps:
+      apt:
+        - flake8
+        - pyflakes
+        - pyflakes3
+        - python-flake8
+        - python-pyflakes
+        - python-pylama
+        - python3-flake8
+        - python3-pyflakes
+
+  roles:
+    - packages
