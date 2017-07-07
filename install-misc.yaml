@@ -13,6 +13,7 @@
         - htop
         - jq
         - mutt
+        - rlwrap
         - screen
         - silversearcher-ag
         - sxiv

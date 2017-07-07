@@ -1,0 +1,8 @@
+---
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      http://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-release-linux64-add-on-devel/1496944705/firefox-54.0.en-US.linux-x86_64-add-on-devel.tar.bz2
+    link_dest:
+      firefox

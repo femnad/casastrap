@@ -1,0 +1,8 @@
+---
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      https://storage-waterfox.netdna-ssl.com/releases/linux64/installer/waterfox-54.0.0.1.en-US.linux-x86_64.tar.bz2
+    link_dest:
+      waterfox

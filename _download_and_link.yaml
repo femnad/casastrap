@@ -36,12 +36,10 @@
         Link executable
       file:
         src:
-          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ item.key }}"
+          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ link_src | default(link_dest) }}"
         path:
-          "{{ user_bin }}/{{ item.value }}"
+          "{{ user_bin }}/{{ link_dest }}"
         state:
           link
-      with_dict:
-        "{{ link }}"
       tags:
         link
