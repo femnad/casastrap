@@ -2,14 +2,11 @@
 - hosts:
     all
   name:
-    Enable subpixel rendering
+    Set font configuration for user
 
   vars:
     font_config_dir:
       "{{ user_home }}/.config/fontconfig/conf.d"
-
-  vars_files:
-    - vars/paths.yaml
 
   tasks:
     - name:
@@ -21,9 +18,12 @@
           directory
 
     - name:
-        Enable subpixel rendering
+        Link desired font configuration files
       file:
         src:
-          /etc/fonts/conf.avail/10-sub-pixel-rgb.conf
+          "{{ item }}"
         path:
           "{{ font_config_dir }}"
+      with_items:
+        - /etc/fonts/conf.avail/10-sub-pixel-rgb.conf
+        - /etc/fonts/conf.avail/10-hinting-full.conf
