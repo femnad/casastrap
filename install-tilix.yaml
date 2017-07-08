@@ -1,0 +1,20 @@
+---
+- hosts:
+    all
+  name:
+    Install tilix
+
+  vars:
+    deps:
+      apt:
+        - autopoint
+        - ldc
+        - libgtkd-3-dev
+        - libvted-3-dev
+        - po4a
+    repo:
+      url:
+        https://github.com/gnunn1/tilix.git
+
+  roles:
+    - source_install

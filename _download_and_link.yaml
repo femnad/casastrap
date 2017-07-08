@@ -36,9 +36,9 @@
         Link executable
       file:
         src:
-          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ link_src | default(link_dest) }}"
+          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ link_src }}"
         path:
-          "{{ user_bin }}/{{ link_dest }}"
+          "{{ user_bin }}/{{ link_dest | default(link_src | basename) }}"
         state:
           link
       tags:
