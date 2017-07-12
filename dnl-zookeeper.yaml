@@ -1,0 +1,6 @@
+---
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      http://mirror.idealhosting.net.tr/Apache/zookeeper/current/zookeeper-3.4.10.tar.gz

@@ -6,5 +6,3 @@
       https://download.jetbrains.com/idea/ideaIC-2017.1.4.tar.gz
     link_src:
       bin/idea.sh
-    link_dest:
-        idea

@@ -1,0 +1,6 @@
+---
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      https://github.com/riemann/riemann/releases/download/0.2.14/riemann-0.2.14.tar.bz2

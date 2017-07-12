@@ -12,6 +12,7 @@
         - fish
         - htop
         - jq
+        - lnav
         - mutt
         - rlwrap
         - screen

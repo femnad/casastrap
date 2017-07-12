@@ -41,5 +41,7 @@
           "{{ user_bin }}/{{ link_dest | default(link_src | basename) }}"
         state:
           link
+      when:
+        link_src | default(false)
       tags:
         link
