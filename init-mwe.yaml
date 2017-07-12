@@ -2,17 +2,14 @@
 - hosts: all
   name: Initialize a MWE (Minimum Workable Environment)
 
-- include: update-os.yaml
+- import_playbook: update-os.yaml
   tags: update
 
-- include: init-user.yaml
-  tags: user
-
-- include: init-paths.yaml
+- import_playbook: init-paths.yaml
   tags: paths
 
-- include: install-dev-tools.yaml
+- import_playbook: install-dev-tools.yaml
   tags: dev
 
-- include: init-dotfiles.yaml
+- import_playbook: init-dotfiles.yaml
   tags: dot
