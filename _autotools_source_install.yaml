@@ -2,9 +2,6 @@
 - name: Install autotools project from source
   hosts: all
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
 
     repo:

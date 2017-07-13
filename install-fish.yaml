@@ -2,14 +2,11 @@
 - hosts: all
   name: Install fish-shell
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
 
     repo:
-      name: fish-shell
-      url: https://github.com/fish-shell/fish-shell.git
+      url:
+        https://github.com/fish-shell/fish-shell.git
 
     deps:
       apt: [bc, g++, ncurses-dev]

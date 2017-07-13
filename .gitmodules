@@ -1,6 +1,3 @@
-[submodule "roles"]
-	path = roles
-	url = git@github.com:femnad/roles.git
 [submodule "vars"]
 	path = vars
 	url = git@github.com:femnad/vars.git
