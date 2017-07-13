@@ -8,7 +8,7 @@
 - import_playbook: init-paths.yaml
   tags: paths
 
-- import_playbook: install-dev-tools.yaml
+- import_playbook: install-mwe-packages.yaml
   tags: dev
 
 - import_playbook: init-dotfiles.yaml

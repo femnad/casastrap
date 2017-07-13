@@ -1,0 +1,25 @@
+---
+- import_playbook: install-misc.yaml
+  tags: misc
+
+- import_playbook: install-lscd.yaml
+  tags: lscd
+
+- import_playbook:
+    init-dev-python.yaml
+  tags:
+    python
+
+- import_playbook: install-ranger.yaml
+  tags: ranger
+
+- import_playbook:
+    init-vim.yaml
+  tags:
+    vim
+
+- import_playbook: install-fzf.yaml
+  tags: fzf
+
+- import_playbook: install-tag.yaml
+  tags: tag

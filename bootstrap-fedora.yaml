@@ -5,3 +5,11 @@
     - name: Install Python2 and Python DNF library
       raw: dnf install -y python2 python2-dnf libselinux-python
       become: yes
+
+    - name:
+        Disable SELinux (to be enabled again after bootstrapping (yeah, right))
+      selinux:
+        state:
+          disabled
+      become:
+        yes
