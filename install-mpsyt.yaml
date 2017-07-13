@@ -6,15 +6,17 @@
       virtualenv_name:
         mpsyt
 
+- import_playbook:
+    enable-rpm-fusion.yaml
+
 - hosts: all
   name: Install mpyst
-
-  vars_files:
-    - vars/paths.yaml
 
   vars:
     deps:
       apt:
+        mpv
+      dnf_yum:
         mpv
     repo:
       url:
