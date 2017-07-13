@@ -21,12 +21,11 @@
         [gcc, gir1.2-gstreamer-1.0, gir1.2-gst-plugins-base-1.0,
         gstreamer1.0-alsa, gstreamer1.0-pulseaudio,
         gstreamer1.0-plugins-good, gstreamer1.0-plugins-ugly,
-        gstreamer1.0-tools, python-dev, python-gst-1.0]
+        gstreamer1.0-tools, python-gst-1.0]
       dnf_yum:
         [gstreamer1-libav, gstreamer-python, gstreamer-plugins-good,
          gstreamer-plugins-ugly, gstreamer-plugins-bad-free,
-         gstreamer-plugins-bad-nonfree, libffi-devel, python-devel,
-         python-gobject, python-gobject-base, python-pip, python-virtualenv]
+         gstreamer-plugins-bad-nonfree, python-gobject, python-gobject-base]
       portage:
         [dev-python/pygobject, media-libs/gstreamer, media-libs/gst-plugins-bad,
          media-libs/gst-plugins-base, media-libs/gst-plugins-good,
@@ -46,14 +45,8 @@
 
   pre_tasks:
 
-    - name: Enable RPM Fusion
-      dnf: name={{ item }}
-      with_items:
-        - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
-        - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm
-      when: ansible_distribution == "Fedora"
-      become: yes
-      tags: dnf-repo
+    - import_tasks:
+        enable-rpm-fusion.yaml
 
   roles:
     - packages

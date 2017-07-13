@@ -6,9 +6,6 @@
       virtualenv_name:
         mpsyt
 
-- import_playbook:
-    enable-rpm-fusion.yaml
-
 - hosts: all
   name: Install mpyst
 
@@ -25,6 +22,9 @@
       virtualenv_name:
         mpsyt
 
+  pre_tasks:
+    - import_tasks:
+        enable-rpm-fusion.yaml
   roles:
     - packages
     - setuptools
