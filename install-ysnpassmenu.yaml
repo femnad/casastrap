@@ -22,8 +22,8 @@
     - packages
     - util
 
-- include: install-dmenu.yaml
+- import_playbook: install-dmenu.yaml
   tags: dmenu
 
-- include: install-xdotool.yaml
+- import_playbook: install-xdotool.yaml
   tags: xdotool

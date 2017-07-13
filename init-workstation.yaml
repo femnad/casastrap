@@ -2,26 +2,26 @@
 - hosts: all
   name: Initialize a workstation
 
-- include: init-ngh.yaml
+- import_playbook: init-ngh.yaml
   tags: ngh
 
-- include: add-user-to-groups.yaml
+- import_playbook: add-user-to-groups.yaml
   tags: groups
 
-- include: init-sound.yaml
+- import_playbook: init-sound.yaml
   tags: sound
 
-- include: init-x.yaml
+- import_playbook: init-x.yaml
   tags: xorg
 
-- include: install-browsers.yaml
+- import_playbook: install-browsers.yaml
   tags: browser
 
-- include: install-laptop-tools.yaml
+- import_playbook: install-laptop-tools.yaml
   tags: laptop
 
-- include: install-ysnpassmenu.yaml
+- import_playbook: install-ysnpassmenu.yaml
   tags: ysnpassmenu
 
-- include: enable-subpixel-rendering.yaml
+- import_playbook: enable-subpixel-rendering.yaml
   tags: fonts

@@ -2,5 +2,5 @@
 - hosts: all
   name: Install homeshick and clone dotfiles
 
-- include: clone-dotfiles.yaml
+- import_playbook: clone-dotfiles.yaml
   tags: clone, link

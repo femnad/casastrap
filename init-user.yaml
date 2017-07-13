@@ -64,5 +64,5 @@
       become: yes
       tags: sudo
 
-- include:
+- import_playbook:
     add-authorized-ssh-key.yaml

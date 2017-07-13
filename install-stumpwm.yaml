@@ -1,5 +1,5 @@
 ---
-- include: install-x.yaml
+- import_playbook: install-x.yaml
   tags: xorg
 
 - hosts: all
@@ -69,8 +69,8 @@
         - cl-ppcre
       tags: quicklisp, quicklisp-deps
 
-- include: build-stumpwm.yaml
+- import_playbook: build-stumpwm.yaml
   tags: build, install
 
-- include: install-stumpwm-utils.yaml
+- import_playbook: install-stumpwm-utils.yaml
   tags: utils

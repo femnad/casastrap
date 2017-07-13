@@ -7,5 +7,5 @@
       apt:
         - chromium-browser
 
-- include:
+- import_playbook:
     init-firefox.yaml

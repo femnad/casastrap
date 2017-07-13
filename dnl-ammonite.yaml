@@ -1,5 +1,5 @@
 ---
-- include:
+- import_playbook:
     _download_and_link_executable.yaml
   vars:
     name:

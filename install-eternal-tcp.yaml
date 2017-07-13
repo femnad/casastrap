@@ -1,5 +1,5 @@
 ---
-- include:
+- import_playbook:
     _cmake_source_install.yaml
   vars:
     url:

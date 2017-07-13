@@ -1,5 +1,5 @@
 ---
-- include:
+- import_playbook:
     init-gopath.yaml
 
 - hosts: all

@@ -11,11 +11,11 @@
   roles:
     - packages
 
-- include: init-sound.yaml
+- import_playbook: init-sound.yaml
   tags: sound
 
-- include: install-mopidy.yaml
+- import_playbook: install-mopidy.yaml
   tags: mopidy
 
-- include: install-abduco.yaml
+- import_playbook: install-abduco.yaml
   tags: abduco

@@ -2,23 +2,23 @@
 - hosts: all
   name: Init a NGH (non-generic host)
 
-- include: init-mwe.yaml
+- import_playbook: init-mwe.yaml
   tags: mwe
 
-- include: install-tarsnap.yaml
+- import_playbook: install-tarsnap.yaml
   tags: tarsnap
 
-- include: generate-ssh-key.yaml
+- import_playbook: generate-ssh-key.yaml
   tags: ssh-key
 
-- include: add-github-ssh-key.yaml
+- import_playbook: add-github-ssh-key.yaml
   tags: github
 
-- include: add-gitlab-ssh-key.yaml
+- import_playbook: add-gitlab-ssh-key.yaml
   tags: gitlab
 
-- include: add-digital-ocean-ssh-key.yaml
+- import_playbook: add-digital-ocean-ssh-key.yaml
   tags: digital-ocean
 
-- include: clone-ngh-dotfiles.yaml
+- import_playbook: clone-ngh-dotfiles.yaml
   tags: ngh-dotfiles

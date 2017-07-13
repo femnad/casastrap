@@ -1,5 +1,5 @@
 ---
-- include:
+- import_playbook:
     _clone_and_link.yaml
   vars:
     repo:

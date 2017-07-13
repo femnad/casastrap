@@ -1,15 +1,15 @@
 ---
-- include:
+- import_playbook:
     init-workstation.yaml
   tags:
     workstation
 
-- include:
+- import_playbook:
     install-stumpwm.yaml
   tags:
     stumpwm
 
-- include:
+- import_playbook:
     set-install-backlight
   tags:
     backlight

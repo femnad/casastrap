@@ -1,5 +1,5 @@
 ---
-- include:
+- import_playbook:
     _setuptools_git_install.yaml
   vars:
     repo:

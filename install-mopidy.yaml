@@ -1,5 +1,5 @@
 ---
-- include: install-libspotify.yaml
+- import_playbook: install-libspotify.yaml
 
 - name: Install mopidy
   hosts: all

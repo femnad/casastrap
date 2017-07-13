@@ -2,7 +2,7 @@
 - hosts: all
   name: Instal urxvt extensions
 
-- include:
+- import_playbook:
     _install_urxvt_extension.yaml
   vars:
     extension:
@@ -11,7 +11,7 @@
       file:
         keyboard-select
 
-- include:
+- import_playbook:
     _install_urxvt_extension.yaml
   vars:
     extension:

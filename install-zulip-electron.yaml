@@ -1,5 +1,5 @@
 ---
-- include:
+- import_playbook:
     install-node.yaml
   tags:
     node

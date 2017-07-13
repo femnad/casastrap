@@ -1,8 +1,8 @@
 ---
-- include: install-x.yaml
+- import_playbook: install-x.yaml
   tags: xorg
 
-- include: install-dzen.yaml
+- import_playbook: install-dzen.yaml
   tags: dzen
 
 - hosts: all
@@ -16,8 +16,8 @@
   roles:
     - packages
 
-- include: install-over-here.yaml
+- import_playbook: install-over-here.yaml
   tags: non-conformist-wm
 
-- include: cnl-notify-recv.yaml
+- import_playbook: cnl-notify-recv.yaml
   tags: non-conformist-wm

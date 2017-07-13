@@ -1,5 +1,5 @@
 ---
-- include: install-rofi.yaml
+- import_playbook: install-rofi.yaml
   tags: rofi
 
 - hosts: all

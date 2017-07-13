@@ -1,5 +1,5 @@
 ---
-- include: install-rust.yaml
+- import_playbook: install-rust.yaml
   tags: rust
 
 - hosts: all

@@ -2,7 +2,7 @@
 - name: Install openfortivpn
   hosts: all
 
-- include:
+- import_playbook:
     _autotools_source_install.yaml
   vars:
     url:

@@ -1,6 +1,6 @@
 ---
-- include: install-and-init-pass.yaml
+- import_playbook: install-and-init-pass.yaml
   tags: pass
 
-- include: install-tarsnap.yaml
+- import_playbook: install-tarsnap.yaml
   tags: tarsnap

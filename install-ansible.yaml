@@ -1,5 +1,5 @@
 ---
-- include:
+- import_playbook:
     init-dev-python.yaml
 
 - hosts: all
