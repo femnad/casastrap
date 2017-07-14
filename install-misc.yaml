@@ -17,8 +17,9 @@
         - rlwrap
         - screen
         - silversearcher-ag
-        - sxiv
+        - strace
         - surfraw
+        - sxiv
         - tig
         - tmux
         - vim
