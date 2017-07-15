@@ -3,7 +3,6 @@
   name: Install rainbowstream
 
   vars_files:
-    - vars/paths.yaml
     - secrets.yaml
 
   vars:
@@ -16,27 +15,24 @@
     setuptools:
       command:
         develop
-    createfile:
-      path:
-        "{{ source.path }}/rainbowstream/consumer.py"
-      content: |
-       CONSUMER_KEY = '{{ rainbowstream_api_key }}'
-       CONSUMER_SECRET = '{{ rainbowstream_api_secret }}'
-       PCKT_CONSUMER_KEY = 'PocketAPIKey'
 
   roles:
     - packages
-    - clone
+    - setuptools
 
   post_tasks:
-    - name: Create the consumer.py file
-      include_role:
-        name:
-          createfile
-      tags: path, post
+    - name:
+        Generate consumer.py
+      template:
+        dest:
+          "{{ source.path }}/rainbowstream/consumer.py"
+        src:
+          consumer.py.j2
 
-    - name: Run the setuptools role
-      include_role:
-        name:
-          setuptools
-      tags: path, post
+    - name:
+        Compile image.so
+      command:
+        cc -fPIC -shared -o {{ user_home }}/.image.so rainbowstream/image.c
+      args:
+        chdir:
+          "{{ source.path }}"
