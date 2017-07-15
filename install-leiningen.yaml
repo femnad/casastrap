@@ -1,4 +1,7 @@
 ---
+- import_playbook:
+    install-java.yaml
+
 - hosts: all
   name: Download and bootstrap Leiningen
 

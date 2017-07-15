@@ -3,7 +3,7 @@
     install-youtube-dl.yaml
   vars:
     setuptools:
-      virtualenv_name:
+      name:
         mpsyt
 
 - hosts: all
@@ -19,12 +19,13 @@
       url:
         https://github.com/mps-youtube/mps-youtube.git
     setuptools:
-      virtualenv_name:
+      name:
         mpsyt
 
   pre_tasks:
     - import_tasks:
         enable-rpm-fusion.yaml
+
   roles:
     - packages
     - setuptools
