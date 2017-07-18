@@ -17,7 +17,7 @@
           directory
 
     - name:
-        Unarchive
+        Download and unarchive {{ url }}
       unarchive:
         src:
           "{{ url }}"
@@ -36,12 +36,14 @@
         Link executable
       file:
         src:
-          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ link_src }}"
+          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ item.src }}"
         path:
-          "{{ user_bin }}/{{ link_dest | default(link_src | basename) }}"
+          "{{ user_bin }}/{{ item.dest | default(item.src | basename) }}"
         state:
           link
       when:
-        link_src | default(false)
+        link | default(false)
+      with_items:
+        "{{ link }}"
       tags:
         link
