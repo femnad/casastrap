@@ -1,0 +1,40 @@
+---
+- hosts:
+    all
+  name:
+    Secure SSH server
+
+  tasks:
+    - lineinfile:
+        regexp:
+          "{{ item.regexp }}"
+        line:
+          "{{ item.line }}"
+        state:
+          present
+        dest:
+          /etc/ssh/sshd_config
+      with_items:
+        - regexp:
+            ^PermitRootLogin
+          line:
+            PermitRootLogin no
+        - regexp:
+            ^PasswordAuthentication
+          line:
+            PasswordAuthentication no
+      become:
+        yes
+      notify:
+        restart-sshd
+
+  handlers:
+    - name:
+        restart-sshd
+      service:
+        name:
+          sshd
+        state:
+          restarted
+      become:
+        yes
