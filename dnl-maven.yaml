@@ -1,0 +1,9 @@
+---
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      http://ftp.itu.edu.tr/Mirror/Apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz
+    link:
+      - src:
+          bin/mvn
