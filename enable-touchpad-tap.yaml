@@ -1,0 +1,41 @@
+---
+- hosts:
+    all
+  name:
+    Enable Touchpad tapping
+
+  vars:
+    apt:
+      - xserver-xorg-input-synaptics
+
+  roles:
+    - packages
+
+  post_tasks:
+    - name:
+        Create Xorg configuration directory
+      file:
+        path:
+          /etc/X11/xorg.conf.d
+        state:
+          directory
+      become:
+        true
+
+    # https://wiki.archlinux.org/index.php/Touchpad_Synaptics#Configuration
+    - name:
+        Enable tapping for button 1
+      blockinfile:
+        path:
+          /etc/X11/xorg.conf.d/70-synaptics.conf
+        create:
+          yes
+        block: |
+          Section "InputClass"
+              Identifier "touchpad"
+              Driver "synaptics"
+              MatchIsTouchpad "on"
+                  Option "TapButton1" "1"
+          EndSection
+      become:
+        true
