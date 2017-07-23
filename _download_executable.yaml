@@ -1,23 +1,20 @@
 ---
 - hosts: all
-  name: Download and link {{ name }}
-
-  vars_files:
-    - vars/paths.yaml
+  name: Download executable
 
   vars:
     path:
-      "{{ user_bin }}/{{ name }}"
+      "{{ user_bin }}/{{ exec }}"
 
   tasks:
-    - name: Download {{ name }}
+    - name: Download from {{ url }}
       get_url:
         url:
           "{{ url }}"
         dest:
           "{{ path }}"
 
-    - name: Make {{ name }} executable
+    - name: Make {{ exec }} executable
       file:
         path:
           "{{ path }}"

@@ -4,9 +4,6 @@
   name:
     Download archive and link executable
 
-  vars_files:
-    - vars/paths.yaml
-
   tasks:
     - name:
         Initialize release store path
