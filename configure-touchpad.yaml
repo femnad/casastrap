@@ -36,6 +36,8 @@
               Driver "synaptics"
               MatchIsTouchpad "on"
                   Option "TapButton1" "1"
+                  Option "VertEdgeScroll" "on"
+                  Option "HorizEdgeScroll" "on"
           EndSection
       become:
         true
