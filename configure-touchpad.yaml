@@ -2,7 +2,7 @@
 - hosts:
     all
   name:
-    Enable Touchpad tapping
+    Configure Synaptics Touchpad
 
   vars:
     apt:
@@ -24,7 +24,7 @@
 
     # https://wiki.archlinux.org/index.php/Touchpad_Synaptics#Configuration
     - name:
-        Enable tapping for button 1
+        Enable tapping for button 1, button2 and edge scrolls
       blockinfile:
         path:
           /etc/X11/xorg.conf.d/70-synaptics.conf
@@ -36,6 +36,7 @@
               Driver "synaptics"
               MatchIsTouchpad "on"
                   Option "TapButton1" "1"
+                  Option "TapButton2" "2"
                   Option "VertEdgeScroll" "on"
                   Option "HorizEdgeScroll" "on"
           EndSection
