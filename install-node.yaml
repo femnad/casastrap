@@ -1,17 +1,11 @@
 ---
-- hosts: all
-  name: Install Node.js
-
-  vars_files:
-    - vars/paths.yaml
-
+- import_playbook:
+    _download_and_link.yaml
   vars:
-    release:
-      name: node
-      url: https://nodejs.org/dist/v6.5.0/node-v6.5.0.tar.gz
-
-    build:
-      reconf: no
-
-  roles:
-    - release_install
+    url:
+      https://nodejs.org/dist/v8.2.1/node-v8.2.1-linux-x64.tar.xz
+    link:
+      - src:
+          bin/node
+      - src:
+          bin/npm
