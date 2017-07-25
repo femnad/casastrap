@@ -4,17 +4,26 @@
   name:
     Install clipster
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     deps:
       apt:
         - gir1.2-gtk-3.0
-        - python-gi-dev
+        - python3-gi
+    user_service:
+      name:
+        clipster
+      description:
+        Clipster, a simple clipboard manager
+      exec:
+        "{{ virtualenv_base }}/clipster/bin/clipster -d"
+      unit_file:
+        service:
+          - Environment:
+              DISPLAY=:0.0
 
   roles:
     - packages
+    - systemd_user_service
 
   post_tasks:
     - name:
@@ -26,5 +35,7 @@
           false
         virtualenv:
           "{{ virtualenv_base }}/clipster"
+        virtualenv_python:
+          python3
         virtualenv_site_packages:
           yes
