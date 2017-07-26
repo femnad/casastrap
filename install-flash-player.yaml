@@ -1,0 +1,38 @@
+---
+- hosts:
+    all
+  name:
+    Install Flash Player
+
+  vars:
+    temp_path:
+      /tmp/flash_player_extracted
+
+  tasks:
+    - name:
+        Create temporary directory
+      file:
+        path:
+          "{{ temp_path }}"
+        state:
+          directory
+
+    - name:
+        Download and extract Flash Player
+      unarchive:
+        remote_src:
+          yes
+        src:
+          https://fpdownload.adobe.com/get/flashplayer/pdc/26.0.0.137/flash_player_npapi_linux.x86_64.tar.gz
+        dest:
+          "{{ temp_path }}"
+
+    - name:
+        Copy Flash Player shared object file
+      copy:
+        remote_src:
+          yes
+        src:
+          "{{ temp_path }}/libflashplayer.so"
+        dest:
+          "{{ user_home }}/.mozilla/plugins"
