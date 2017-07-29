@@ -1,0 +1,9 @@
+---
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      https://github.com/prometheus/prometheus/releases/download/v1.7.1/prometheus-1.7.1.linux-amd64.tar.gz
+    link:
+      - src:
+          prometheus
