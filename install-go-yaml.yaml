@@ -1,0 +1,13 @@
+---
+- hosts:
+    all
+  name:
+    Install Go yaml processesor
+
+  vars:
+    go_get:
+      packages:
+        github.com/mikefarah/yaml
+
+  roles:
+    - go_get
