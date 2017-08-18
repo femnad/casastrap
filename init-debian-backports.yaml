@@ -1,26 +1,14 @@
 ---
 - hosts: all
-  name: Add Debian backports repository
+  name: Enable Debian backports repository
 
   tasks:
     - name: Add backports repository
       apt_repository:
         repo:
-          deb http://ftp.debian.org/debian jessie-backports main
-        state:
-          present
+          deb http://ftp.debian.org/debian {{ ansible_distribution_release}}-backports main
+        filename:
+          /etc/apt/sources.list.d/{{ ansible_distribution_release }}-backports.list
       become:
         yes
       tags: apt-backports
-
-    - name: Upgrade apt packages
-      apt:
-        update_cache:
-          yes
-        upgrade:
-          yes
-        default_release:
-          jessie-backports
-      become:
-        yes
-      tags: apt-update, apt-upgrade
