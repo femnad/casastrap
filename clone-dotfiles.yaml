@@ -8,11 +8,18 @@
   vars:
     homeshick:
       repos:
-        - base
-        - basic
-        - homebin
-    homeshick_init:
-      yes
+        - host:
+            gitlab
+          castle:
+            base
+        - host:
+            gitlab
+          castle:
+            basic
+        - host:
+            github
+          castle:
+            homebin
 
   roles:
     - homeshick
