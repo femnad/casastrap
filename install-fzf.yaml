@@ -23,4 +23,4 @@
 
     - name: Run fzf installation script
       command:
-        "{{ install_script }}"
+        "{{ install_script }} --no-key-bindings --no-completion --no-update-rc"

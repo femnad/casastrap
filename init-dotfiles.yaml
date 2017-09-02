@@ -2,5 +2,14 @@
 - hosts: all
   name: Install homeshick and clone dotfiles
 
+  tasks:
+    - name:
+        Clone homeshick
+      git:
+        repo:
+          https://github.com/andsens/homeshick.git
+        dest:
+          "{{ user_home }}/.homesick/repos/homeshick"
+
 - import_playbook: clone-dotfiles.yaml
   tags: clone, link

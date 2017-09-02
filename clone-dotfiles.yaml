@@ -2,9 +2,6 @@
 - hosts: all
   name: Clone dotfiles
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     homeshick:
       repos:
