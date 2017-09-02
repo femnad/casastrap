@@ -2,14 +2,10 @@
 - hosts: all
   name: Add authorized ssh key
 
-  vars_files:
-    - vars/user_vars.yaml
-
-  vars:
-    username: "{{ local_user }}"
-
   tasks:
     - name: Add authorized ssh key
-      authorized_key: user={{ username }}
+      authorized_key: user={{ local_user }}
                       key={{ lookup('file', ssh_public_key) }}
+      become:
+        "{{ _remote_user is defined and _remote_user != 'root' }}"
       tags: ssh-key

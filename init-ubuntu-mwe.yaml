@@ -1,0 +1,9 @@
+---
+- import_playbook:
+    bootstrap-ubuntu.yaml
+
+- import_playbook:
+    init-user.yaml
+
+- import_playbook:
+    init-mwe.yaml

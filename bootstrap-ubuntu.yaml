@@ -1,6 +1,10 @@
 ---
 - hosts: all
   gather_facts: no
+  remote_user:
+    "{{ _remote_user | default('root') }}"
+  name:
+    Bootstrap Ubuntu 16.04 and newer
 
   tasks:
     - name: Update apt

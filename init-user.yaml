@@ -2,9 +2,6 @@
 - name: Install sudo, add user to sudo/wheel group and allow passwordless sudo
   hosts: all
 
-  vars_files:
-    - vars/user_vars.yaml
-
   vars:
     username: "{{ local_user }}"
     sudo_group: sudo
