@@ -1,0 +1,91 @@
+---
+- name:
+    Initialize NordVPN OpenVPN scripts
+
+  hosts: all
+
+  vars:
+    pass_filename: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      30373638623939623461313532656536303732316465366263613038636532373834376532323863
+      3930636337313832303234366161633730333662313863370a353164306338346661383965663931
+      65373733383363383037653332653666333536363864303065393966383137653635663431636334
+      3539383364333236310a316538636238363033343637326363666331353632633333306338353261
+      3433
+    vpn_scripts_dir:
+      "{{ user_home }}/z/ce"
+    username_password_file:
+      upf
+    username_password_file_path:
+      "{{ vpn_scripts_dir }}/{{ username_password_file }}"
+    deps:
+      apt:
+        openvpn
+      dnf_yum:
+        openvpn
+
+  roles:
+    - packages
+
+  tasks:
+    - name:
+        Get NordVPN username and password
+      local_action:
+        command pass {{ pass_filename }}
+      register:
+        username_password
+
+    - name:
+        Initialize scripts directory
+      file:
+        path:
+          "{{ vpn_scripts_dir }}"
+        state:
+          directory
+
+    - name:
+        Download and extract OpenVPN scripts
+      unarchive:
+        src:
+          https://nordvpn.com/api/files/zip
+        dest:
+          "{{ vpn_scripts_dir }}"
+        remote_src:
+          yes
+
+    - name:
+        Create user password file
+      lineinfile:
+        path:
+          "{{ username_password_file_path }}"
+        line:
+          "{{ item }}"
+        create:
+          yes
+        mode:
+          '0600'
+      with_items:
+        - "{{ username_password.stdout_lines[1] }}"
+        - "{{ username_password.stdout_lines[0] }}"
+      no_log:
+        true
+
+    - name: Correct username in file
+      replace:
+        path:
+          "{{ username_password_file_path }}"
+        regexp:
+          '^[a-z]+: (.*)$'
+        replace:
+          '\1'
+      tags:
+        correct-username
+
+    - name:
+        Set password options in ovpn files
+      shell:
+        # sed because don't want to iterate over 2413 files
+        sed -i 's/\(auth-user-pass\)/\1 {{ username_password_file }}/' *.ovpn
+      args:
+        chdir:
+          "{{ vpn_scripts_dir }}"
