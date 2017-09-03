@@ -5,6 +5,11 @@
     repo:
       url:
         "{{ repo_url }}"
+    setuptools:
+      site_packages:
+        true
 
   roles:
+    - { role: packages,
+        when: deps is defined }
     - setuptools
