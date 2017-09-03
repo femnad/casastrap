@@ -15,9 +15,7 @@
     vpn_scripts_dir:
       "{{ user_home }}/z/ce"
     username_password_file:
-      upf
-    username_password_file_path:
-      "{{ vpn_scripts_dir }}/{{ username_password_file }}"
+      "{{ vpn_scripts_dir }}/upf"
     deps:
       apt:
         openvpn
@@ -57,7 +55,7 @@
         Create user password file
       lineinfile:
         path:
-          "{{ username_password_file_path }}"
+          "{{ username_password_file }}"
         line:
           "{{ item }}"
         create:
@@ -73,7 +71,7 @@
     - name: Correct username in file
       replace:
         path:
-          "{{ username_password_file_path }}"
+          "{{ username_password_file }}"
         regexp:
           '^[a-z]+: (.*)$'
         replace:
@@ -85,7 +83,7 @@
         Set password options in ovpn files
       shell:
         # sed because don't want to iterate over 2413 files
-        sed -i 's/\(auth-user-pass\)/\1 {{ username_password_file }}/' *.ovpn
+        sed -i 's@\(auth-user-pass\)@\1 {{ username_password_file }}@' *.ovpn
       args:
         chdir:
           "{{ vpn_scripts_dir }}"
