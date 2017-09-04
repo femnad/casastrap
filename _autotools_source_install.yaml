@@ -8,5 +8,5 @@
       url: "{{ url }}"
 
   roles:
-
+    - { role: packages, when: deps is defined }
     - source_install
