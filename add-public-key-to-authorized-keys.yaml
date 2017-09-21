@@ -1,0 +1,24 @@
+---
+- hosts: all
+  name: Add authorized keys
+
+  vars_prompt:
+    - name: key_path
+      prompt: Path of the public key?
+      private: no
+
+    - name:
+        _remote_user
+      prompt:
+        Name of the remote user?
+      private:
+        no
+
+  tasks:
+    - name: Set authorized keys from file
+      authorized_key:
+        user: "{{ _remote_user | default(ansible_user_id) }}"
+        state: present
+        key: "{{ lookup('file', '{{ key_path }}') }}"
+      become:
+        '{{ ansible_user_id != _remote_user }}'
