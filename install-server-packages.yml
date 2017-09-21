@@ -1,0 +1,34 @@
+---
+- hosts: all
+  name: Install server mwe packages
+
+  vars:
+    deps:
+      common:
+        - fish
+        - htop
+        - jq
+        - lnav
+        - lynx
+        - rlwrap
+        - screen
+        - strace
+        - sxiv
+        - tig
+        - tmux
+        - w3m
+      apt:
+        - bind9-host
+        - dnsutils
+        - emacs
+        - mutt
+        - silversearcher-ag
+        - surfraw
+        - urlview
+        - vim
+      dnf_yum:
+        - emacs
+        - vim-enhanced
+
+  roles:
+    - packages

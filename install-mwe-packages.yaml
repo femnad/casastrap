@@ -1,5 +1,5 @@
 ---
-- import_playbook: install-misc.yaml
+- import_playbook: install-server-packages.yml
   tags: misc
 
 - import_playbook: install-lscd.yaml

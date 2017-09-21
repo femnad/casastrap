@@ -1,0 +1,15 @@
+---
+- hosts:
+    all
+  name:
+    Install packages requiring graphical servers
+
+  vars:
+    deps:
+      common:
+        - xsel
+        - zathura
+      apt:
+        - vim-gtk
+      dnf_yum:
+        - vim-X11
