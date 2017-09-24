@@ -2,12 +2,10 @@
 - hosts: all
   name: Install zeal
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     deps:
       apt:
+        - extra-cmake-modules
         - libarchive-dev
         - libqt5webkit5-dev
         - libxcb-keysyms1-dev
@@ -23,9 +21,9 @@
 
     repo:
       url: https://github.com/zealdocs/zeal.git
-      name: zeal
 
     build:
+      cmake: yes
       reconf: no
       configure_command: "{{ _configure_command }}"
 
