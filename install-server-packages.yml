@@ -10,6 +10,8 @@
         - jq
         - lnav
         - lynx
+        - multitail
+        - pwgen
         - rlwrap
         - screen
         - strace
