@@ -2,18 +2,16 @@
 - name: Install emacs
   hosts: all
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     deps:
       apt:
-        - libgnutls-dev
+        - libgif-dev
         - libgtk-3-dev
+        - libgnutls28-dev
+        - libtiff5-dev
     repo:
-      name: emacs
       url: git://git.sv.gnu.org/emacs.git
-      version: emacs-25.1
+      version: emacs-25.2
 
   roles:
     - packages
