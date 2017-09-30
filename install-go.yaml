@@ -2,12 +2,9 @@
 - hosts: all
   name: Install Go
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     go_version:
-      1.7.3
+      1.9
     archive_file_url:
       https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz
     go_path_suffix:

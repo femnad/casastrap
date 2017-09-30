@@ -1,0 +1,27 @@
+---
+- name: Install autotools project from source
+  hosts: all
+
+  vars:
+    repo:
+      url:
+        https://github.com/awesomeWM/awesome.git
+    deps:
+      apt:
+        - libstartup-notification0-dev
+        - libxcb-cursor-dev
+        - libxcb-icccm4-dev
+        - libxcb-xinerama0-dev
+        - libxcb-xrm-dev
+        - libxcb-xtest0-dev
+        - libxdg-basedir-dev
+        - libxkbcommon-x11-dev
+        - lua-lgi-dev
+      common:
+        - imagemagick
+    build:
+      configure:
+        no
+
+  roles:
+    - autotools-source-install
