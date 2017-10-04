@@ -13,11 +13,8 @@
       - Archlinux
 
     deps:
-      apt: sudo
-      dnf_yum: sudo
-      pacman: sudo
-      pkg: sudo
-      portage: sudo
+      common:
+        - sudo
 
     _update_cache:
       yes
