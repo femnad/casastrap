@@ -1,0 +1,17 @@
+---
+- hosts: all
+  name: Install wmutils
+
+  vars:
+    deps:
+      apt:
+        - libxcb-util0-dev
+    repo:
+      url:
+        https://github.com/wmutils/core.git
+    build:
+      configure:
+        no
+
+  roles:
+    - autotools-source-install
