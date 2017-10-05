@@ -1,11 +1,13 @@
 ---
 - hosts: all
   name: Add authorized ssh key
+  remote_user:
+      "{{ user | default('root') }}"
 
   tasks:
     - name: Add authorized ssh key
       authorized_key: user={{ local_user }}
                       key={{ lookup('file', ssh_public_key) }}
       become:
-        "{{ _remote_user is defined and _remote_user != 'root' }}"
+        "{{ user is defined and user != 'root' }}"
       tags: ssh-key

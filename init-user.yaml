@@ -1,6 +1,8 @@
 ---
 - name: Install sudo, add user to sudo/wheel group and allow passwordless sudo
   hosts: all
+  remote_user:
+    "{{ user | default('root') }}"
 
   vars:
     username: "{{ local_user }}"
