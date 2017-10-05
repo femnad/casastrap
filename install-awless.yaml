@@ -1,6 +1,6 @@
 ---
 - import_playbook:
-    _go_get_something.yaml
+    go-get.yml
   vars:
     go_package:
       github.com/wallix/awless

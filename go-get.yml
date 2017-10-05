@@ -1,0 +1,13 @@
+---
+- hosts:
+    all
+  name:
+    Install Go Package {{ package }}
+
+  vars:
+    go_get:
+      packages:
+        "{{ package }}"
+
+  roles:
+    - go-get
