@@ -5,6 +5,7 @@
   vars:
     deps:
       common:
+        - colordiff
         - fish
         - htop
         - jq

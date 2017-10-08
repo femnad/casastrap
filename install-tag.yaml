@@ -1,5 +1,5 @@
 ---
 - import_playbook: go-get.yml
   vars:
-    go_package:
+    package:
       github.com/aykamko/tag

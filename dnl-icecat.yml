@@ -1,0 +1,7 @@
+---
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      # URL chosen by fair dice
+      http://ftp.sotirov-bg.net/pub/mirrors/gnu/gnuzilla/52.3.0/icecat-52.3.0.en-US.linux-x86_64.tar.bz2
