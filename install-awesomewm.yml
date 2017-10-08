@@ -8,6 +8,7 @@
         https://github.com/awesomeWM/awesome.git
     deps:
       apt:
+        - liblua5.1-dev
         - libstartup-notification0-dev
         - libxcb-cursor-dev
         - libxcb-icccm4-dev
