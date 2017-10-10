@@ -9,7 +9,7 @@
       apt:
         - gir1.2-gtk-3.0
         - python3-gi
-    user_service:
+    systemd_service:
       name:
         clipster
       description:
@@ -18,12 +18,12 @@
         "{{ virtualenv_base }}/clipster/bin/clipster -d"
       unit_file:
         service:
-          - Environment:
-              DISPLAY=:0.0
+          Environment:
+            DISPLAY=:0.0
 
   roles:
     - packages
-    - systemd_user_service
+    - systemd_service
 
   post_tasks:
     - name:
