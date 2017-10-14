@@ -1,0 +1,8 @@
+- import_playbook:
+    _download_and_link.yaml
+  vars:
+    url:
+      https://download-installer.cdn.mozilla.net/pub/firefox/releases/52.4.1esr/linux-x86_64/en-GB/firefox-52.4.1esr.tar.bz2
+    link:
+      src:
+        firefox
