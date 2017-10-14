@@ -84,4 +84,5 @@
       ini_file: dest={{ user_home }}/.config/mopidy/mopidy.conf
                 section=spotify option={{ item.key }} value={{ item.value }}
       with_dict: "{{ spotify_credentials | combine(spotify_api_credentials) }}"
+      no_log: true
       tags: config
