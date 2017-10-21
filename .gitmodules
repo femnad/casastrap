@@ -1,3 +1,0 @@
-[submodule "vars"]
-	path = vars
-	url = git@github.com:femnad/vars.git
