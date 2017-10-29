@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Install Alacritty
+
+  vars:
+    repo:
+      url:
+        https://github.com/jwilm/alacritty.git
+
+  roles:
+    - clone
+    - cargo
