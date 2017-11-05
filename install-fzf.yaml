@@ -8,9 +8,6 @@
     install_script:
       "{{ install_script_directory }}/install"
 
-  vars_files:
-    - vars/paths.yaml
-
   tasks:
     - name: Clone fzf for installation
       git:

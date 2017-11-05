@@ -4,9 +4,6 @@
   name:
     Initialize vim
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     vim_dir:
       "{{ user_home }}/.vim"
@@ -36,4 +33,4 @@
     - name:
         Initialize plugins
       command:
-        "vim -c ':PlugInstall | : quitall'"
+        vim -c ":PlugInstall" -c ":quitall"

@@ -1,9 +1,6 @@
 - name: Initialize paths
   hosts: all
 
-  vars_files:
-    - vars/paths.yaml
-
   tasks:
     - name: Initialize path
       file:

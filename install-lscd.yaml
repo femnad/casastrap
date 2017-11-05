@@ -2,9 +2,6 @@
 - hosts: all
   name: Clone and link lscd
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       name: lscd

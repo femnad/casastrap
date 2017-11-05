@@ -2,9 +2,6 @@
 - hosts: all
   name: Install Ranger
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       url:
