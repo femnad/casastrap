@@ -3,7 +3,6 @@
   name: Initialize Password Store
 
   vars_files:
-    - vars/paths.yaml
     - gpg_vars.yaml
 
   vars:
@@ -15,32 +14,45 @@
     - packages
 
   tasks:
-    - name: Ensure that the export directory exists
-      local_action: file path={{gpg_export_dir}} state=directory
+    - name: Ensure that the local copy directory exists
+      local_action: file path={{local_gpg_key_location | dirname}} state=directory
       tags: export
+
     - name: Export gpg key
-      local_action: command gpg --output {{gpg_key_location}} --armor --export-secret-keys {{gpg_id}}
+      local_action: command gpg --output {{ local_gpg_key_location }} --armor --export-secret-keys {{gpg_id}}
       tags: export
+
     - name: Ensure that the copy directory exists
-      file: path={{gpg_export_dir}} state=directory
+      file: path={{remote_gpg_key_location | dirname}} state=directory
       tags: export
+
     - name: Copy the GPG private key to remote machine
-      copy: src={{gpg_key_location}} dest={{gpg_key_location}}
+      copy:
+        src: "{{ local_gpg_key_location }}"
+        dest: "{{ remote_gpg_key_location }}"
       tags: export
+
+    - pause:
+        prompt:
+          You should trust the key by doing a `gpg --edit-key {{ gpg_id }}`
+
     - name: Initialize pass
       shell: |
-        gpg --import {{gpg_key_location}}
+        gpg --import --allow-secret-key-import {{remote_gpg_key_location}}
         pass init {{gpg_id}}
         git init {{user_home}}/.password-store
       tags: init
+
     - name: Cleanup local export
-      local_action: command shred {{gpg_key_location}}
+      local_action: command shred {{local_gpg_key_location}}
       tags: cleanup
+
     - name: Cleanup local directory
-      local_action: file path={{gpg_export_dir}} state=absent
+      local_action: file path={{local_gpg_key_location | dirname}} state=absent
       tags: cleanup
+
     - name: Cleanup remote
       shell: |
-        shred {{gpg_key_location}}
-        rm -r {{gpg_export_dir}}
+        shred {{remote_gpg_key_location}}
+        rm -r {{remote_gpg_key_location | dirname}}
       tags: cleanup

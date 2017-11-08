@@ -31,6 +31,7 @@
         - vim
       dnf_yum:
         - emacs
+        - the_silver_searcher
         - vim-enhanced
 
   roles:
