@@ -20,10 +20,13 @@
     - name:
         Link desired font configuration files
       file:
+        state:
+          link
         src:
-          "{{ item }}"
+          "/usr/share/fontconfig/conf.avail/{{ item }}"
         path:
-          "{{ font_config_dir }}"
+          "{{ font_config_dir }}/{{ item }}"
       with_items:
-        - /etc/fonts/conf.avail/10-sub-pixel-rgb.conf
-        - /etc/fonts/conf.avail/10-hinting-full.conf
+        - 10-sub-pixel-rgb.conf
+        - 10-hinting-full.conf
+        - 11-lcdfilter-default.conf

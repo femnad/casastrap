@@ -2,13 +2,12 @@
   name: Add SSH key to Gitlab
 
   vars_files:
-    - vars/paths.yaml
     - vaults/gitlab_vars.yaml
 
   vars:
     deps:
-      apt:
-        curl
+      common:
+        [curl]
 
   roles:
     - packages

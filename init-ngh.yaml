@@ -5,9 +5,6 @@
 - import_playbook: init-mwe.yaml
   tags: mwe
 
-- import_playbook: install-tarsnap.yaml
-  tags: tarsnap
-
 - import_playbook: generate-ssh-key.yaml
   tags: ssh-key
 

@@ -6,7 +6,23 @@
     repo:
       url:
         https://github.com/jwilm/alacritty.git
+    deps:
+      common:
+        [cmake]
+      dnf_yum:
+        - expat-devel
+        - freetype-devel
+        - gcc-c++
 
   roles:
+    - packages
     - clone
     - cargo
+
+  post_tasks:
+    - name: Link the release binary
+      file:
+        path: "{{ user_bin }}/alacritty"
+        state: link
+        src: "{{ source.path }}/target/release/alacritty"
+      tags: link

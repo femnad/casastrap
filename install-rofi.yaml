@@ -2,22 +2,18 @@
 - hosts: all
   name: Install rofi
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
 
     repo:
       name: rofi
       url: https://github.com/DaveDavenport/rofi.git
-
     version: HEAD
-
     deps:
-      apt:
+      common:
         - bison
         - check
         - flex
+      apt:
         - libcairo2-dev
         - libglib2.0-dev
         - libpango1.0-dev
@@ -33,7 +29,13 @@
         - libxcb-xrm-dev
         - libxkbcommon-x11-dev
       dnf_yum:
+        - cairo-devel
+        - check-devel
+        - glib-devel
+        - glib2-devel
+        - librsvg2-devel
         - libxkbcommon-x11-devel
+        - pango-devel
         - startup-notification-devel
         - xcb-util-xrm-devel
         - xcb-util-devel

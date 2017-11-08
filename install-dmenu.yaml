@@ -2,9 +2,6 @@
 - hosts: all
   name: Install dmenu
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     deps:
       apt: [libfreetype6-dev, libxft-dev, libxinerama-dev]

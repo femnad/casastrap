@@ -3,7 +3,6 @@
   name: Add SSH key to GitHub
 
   vars_files:
-    - vars/paths.yaml
     - vaults/github_vars.yaml
 
   tasks:
