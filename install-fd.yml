@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Install fd
+
+  vars:
+    cargo:
+      crate:
+        fd-find
+
+  roles:
+    - cargo
