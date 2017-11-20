@@ -1,0 +1,28 @@
+---
+- hosts:
+    all
+  name:
+    Copy local terminfo for rxvt-unicode-256color
+
+  vars:
+    terminfo_file:
+      /usr/share/terminfo/r/rxvt-unicode-256color
+    user_terminfo_dir:
+      "{{ ansible_user_dir }}/.terminfo/r/rxvt-unicode-256color"
+
+  tasks:
+    - name:
+        Make sure the terminfo directory exists
+      file:
+        path:
+          "{{ user_terminfo_dir | dirname }}"
+        state:
+          directory
+
+    - name:
+        Copy the local terminfo file to remote host
+      copy:
+        src:
+          "{{ terminfo_file }}"
+        dest:
+          "{{ user_terminfo_dir }}"
