@@ -1,0 +1,17 @@
+- hosts:
+    all
+  name:
+    Install Playerctl
+
+  vars:
+    deps:
+      apt:
+        - gobject-introspection
+        - gtk-doc-tools
+    repo:
+      url:
+        https://github.com/acrisci/playerctl.git
+
+  roles:
+    - packages
+    - autotools-source-install
