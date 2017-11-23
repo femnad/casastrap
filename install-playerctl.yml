@@ -8,6 +8,9 @@
       apt:
         - gobject-introspection
         - gtk-doc-tools
+      dnf_yum:
+        - gobject-introspection-devel
+        - gtk-doc
     repo:
       url:
         https://github.com/acrisci/playerctl.git
