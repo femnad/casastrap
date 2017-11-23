@@ -2,9 +2,6 @@
 - hosts: all
   name: Install Dzen
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       name: dzen
