@@ -31,9 +31,14 @@
 
     - name:
         Link executable
+      vars:
+        base_dir:
+          "{{ (extract_path.files | first).split('/') | first }}"
+        base_path:
+          "{{ release_store_path }}/{{ base_dir }}"
       file:
         src:
-          "{{ release_store_path }}/{{ extract_path.files[0].split('/') | first }}/{{ item.src }}"
+          "{{ base_path }}/{{ item.src | default(base_dir) }}"
         path:
           "{{ user_bin }}/{{ item.dest | default(item.src | basename) }}"
         state:

@@ -3,8 +3,16 @@ user_home:
   "{{ ansible_env.HOME }}"
 user_bin:
   "{{ user_home }}/bin"
+
+local_user_home:
+    "{{ lookup('env', 'HOME') }}"
+local_user:
+    "{{ lookup('env', 'USER') }}"
+
 download_path:
   "{{ user_home }}/x"
+home_prefix:
+    "{{ user_home }}/z/pr"
 release_store_suffix:
   "z/dy"
 release_store_path:
@@ -23,7 +31,3 @@ ssh_public_key:
     "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
 remote_user_ssh_public_key:
     "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
-local_user_home:
-    "{{ lookup('env', 'HOME') }}"
-local_user:
-    "{{ lookup('env', 'USER') }}"

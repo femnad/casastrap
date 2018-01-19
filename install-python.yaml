@@ -6,7 +6,7 @@
       name:
         python3
       url:
-        https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tar.xz
+        https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
     build:
       configure:
         --enable-loadable-sqlite-extensions
