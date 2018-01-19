@@ -24,6 +24,7 @@
       url: https://github.com/zealdocs/zeal.git
 
     build:
+      clean: yes
       cmake: yes
       reconf: no
       configure_command: "{{ _configure_command }}"
