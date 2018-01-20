@@ -1,18 +1,14 @@
 ---
 - hosts: all
-
-  vars_files:
-    - vars/paths.yaml
+  name: Install lnav
 
   vars:
-
     deps:
       apt:
         [libgpm-dev, libncurses5-dev, libncursesw5-dev,
          libpcre3-dev,libreadline-dev, libsqlite3-dev, zlib1g-dev]
       dnf_yum:
         [pcre-devel, readline-devel, sqlite-devel, zlib-devel]
-
     repo:
       name: lnav
       url: https://github.com/tstack/lnav.git
