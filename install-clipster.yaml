@@ -9,6 +9,11 @@
       apt:
         - gir1.2-gtk-3.0
         - python3-gi
+    pip:
+      name: git+https://github.com/mrichar1/clipster.git
+      editable: false
+      virtualenv: "{{ virtualenv_base }}/clipster"
+      virtualenv_site_packages: yes
     systemd_service:
       name:
         clipster
@@ -22,19 +27,5 @@
 
   roles:
     - packages
-    - systemd_service
-
-  post_tasks:
-    - name:
-        Install clipster in virtualenv with site packages access
-      pip:
-        name:
-          git+https://github.com/mrichar1/clipster.git
-        editable:
-          false
-        virtualenv:
-          "{{ virtualenv_base }}/clipster"
-        virtualenv_python:
-          python3
-        virtualenv_site_packages:
-          yes
+    - pip
+    - systemd-service

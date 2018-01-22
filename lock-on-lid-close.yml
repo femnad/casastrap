@@ -4,14 +4,13 @@
 
   vars:
     deps:
-      packages:
-        common:
-          - i3lock
+      common:
+        - i3lock
     systemd_service:
       name: suspend@
       description: Lock on suspend
       before: sleep
-      exec: /usr/bin/i3lock -c 000000
+      exec: /usr/bin/i3lock -e -c 000000
       wanted_by: sleep
       service:
         User: '%I'
