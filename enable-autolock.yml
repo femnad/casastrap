@@ -8,6 +8,7 @@
         - i3lock
         - xautolock
     systemd_service:
+      absolute_exec: no
       name: xautolock
       description: Autolock when idle
       exec:
