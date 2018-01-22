@@ -23,7 +23,7 @@
         "{{ virtualenv_base }}/clipster/bin/clipster -d"
       service:
         Environment:
-          DISPLAY=:0.0
+          DISPLAY=:0
 
   roles:
     - packages
