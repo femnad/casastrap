@@ -1,0 +1,26 @@
+---
+- hosts: all
+  name: Lock with i3lock on suspend
+
+  vars:
+    deps:
+      packages:
+        common:
+          - i3lock
+    systemd_service:
+      name: suspend@
+      description: Lock on suspend
+      before: sleep
+      exec: /usr/bin/i3lock -c 000000
+      wanted_by: sleep
+      service:
+        User: '%I'
+        Type: forking
+        Environment: 'DISPLAY=:0'
+      user_service: no
+      instance: "{{ ansible_user_id }}"
+      start: no
+
+  roles:
+    - packages
+    - systemd-service

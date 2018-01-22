@@ -16,10 +16,9 @@
         Clipster, a simple clipboard manager
       exec:
         "{{ virtualenv_base }}/clipster/bin/clipster -d"
-      unit_file:
-        service:
-          Environment:
-            DISPLAY=:0.0
+      service:
+        Environment:
+          DISPLAY=:0.0
 
   roles:
     - packages
