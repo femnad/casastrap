@@ -12,7 +12,7 @@
       name: xautolock
       description: Autolock when idle
       exec:
-        xautolock -time 5 -locker 'i3lock -e -c 000000' -notifier "notify-send 'Heads Up!' 'Locking in 60 seconds'" -detectsleep
+        xautolock -time 10 -locker 'i3lock -e -c 000000' -notifier "notify-send 'Heads Up!' 'Locking in 60 seconds'" -detectsleep
       service:
         Environment: 'DISPLAY=:0'
 
