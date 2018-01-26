@@ -1,25 +1,11 @@
 ---
-- import_playbook:
-    init-gopath.yaml
-
 - hosts: all
   name: Install doctl
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
-    deps:
-      apt:
-        golang-go
+    go_get:
+      packages:
+        - github.com/digitalocean/doctl/cmd/doctl
 
   roles:
-    - packages
-
-  post_tasks:
-    - name: Install doctl from source
-      shell:
-        go get github.com/digitalocean/doctl/cmd/doctl
-      environment:
-        GOPATH:
-          "{{ gopath }}"
+    - go-get

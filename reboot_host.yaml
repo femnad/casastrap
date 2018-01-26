@@ -4,9 +4,8 @@
 
   tasks:
     - name: Reboot server
-      command:
-        systemctl reboot
-      become:
-        yes
-      when:
-        ansible_service_mgr == "systemd"
+      shell: sleep 5; systemctl reboot
+      async: yes
+      poll: 0
+      become: yes
+      when: ansible_service_mgr == 'systemd'
