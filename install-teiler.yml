@@ -1,0 +1,16 @@
+---
+- hosts: all
+  name: Install teiler
+
+  vars:
+    deps:
+      common:
+        - maim
+    repo:
+      url: https://github.com/carnager/teiler.git
+    build:
+      configure: no
+      make: no
+
+  roles:
+    - source_install
