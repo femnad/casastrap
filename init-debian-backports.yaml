@@ -2,13 +2,23 @@
 - hosts: all
   name: Enable Debian backports repository
 
+  vars:
+    backports: "{{ ansible_distribution_release }}-backports"
+
   tasks:
     - name: Add backports repository
       apt_repository:
         repo:
-          deb http://ftp.debian.org/debian {{ ansible_distribution_release}}-backports main
+          deb http://ftp.debian.org/debian {{ backports }} main
         filename:
-          /etc/apt/sources.list.d/{{ ansible_distribution_release }}-backports.list
+          /etc/apt/sources.list.d/{{ backports }}
       become:
         yes
       tags: apt-backports
+
+    - name: Set default release
+      lineinfile:
+        path: /etc/apt/apt.conf.d/10default-release.conf
+        line: 'APT::Default-Release "{{ backports }}";'
+        create: yes
+      become: yes
