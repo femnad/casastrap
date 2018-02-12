@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Install tmuxp
+
+  vars:
+    pip:
+      name: git+https://github.com/tony/tmuxp.git
+      virtualenv: "{{ virtualenv_base }}/tmuxp"
+
+  roles:
+    - pip
