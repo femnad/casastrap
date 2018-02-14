@@ -1,0 +1,6 @@
+---
+- import_playbook: bootstrap-fedora.yaml
+
+- import_playbook: init-user.yaml
+
+- import_playbook: init-mwe.yaml

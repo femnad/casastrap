@@ -1,7 +1,4 @@
 ---
-- hosts: all
-  name: Initialize a MWE (Minimum Workable Environment)
-
 - import_playbook: update-os.yaml
   tags: update
 
