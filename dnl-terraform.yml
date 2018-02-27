@@ -1,0 +1,10 @@
+- hosts: all
+  name: Download and link Terraform
+
+  vars:
+    download_and_link:
+      url: https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
+      exec_only: yes
+
+  roles:
+    - download-and-link
