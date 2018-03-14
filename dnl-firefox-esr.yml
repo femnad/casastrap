@@ -1,10 +1,8 @@
 - import_playbook:
     _download_and_link.yaml
   vars:
-    version:
-      52.5.3
     url:
-      https://download-installer.cdn.mozilla.net/pub/firefox/releases/{{ version }}esr/linux-x86_64/en-GB/firefox-{{ version }}esr.tar.bz2
+      'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=linux64&lang=en-GB'
     link:
       - src:
           firefox
