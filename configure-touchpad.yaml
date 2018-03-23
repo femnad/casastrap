@@ -6,7 +6,7 @@
 
   vars:
     apt:
-      - xserver-xorg-input-synaptics
+      - xserver-xorg-input-libinput
     dnf_yum:
       - xorg-x11-drv-libinput
 
@@ -24,12 +24,12 @@
       become:
         true
 
-    # https://wiki.archlinux.org/index.php/Touchpad_Synaptics#Configuration
+    # https://wiki.archlinux.org/index.php/Libinput#Common_options
     - name:
-        Enable tapping for buttons 1, 2, 3 and edge scrolls
+        Enable tapping and edge scrolls
       blockinfile:
         path:
-          /etc/X11/xorg.conf.d/70-synaptics.conf
+          /etc/X11/xorg.conf.d/30-touchpad.conf
         create:
           yes
         block: |
@@ -37,11 +37,9 @@
               Identifier "touchpad"
               Driver "synaptics"
               MatchIsTouchpad "on"
-                  Option "TapButton1" "1"
-                  Option "TapButton2" "2"
-                  Option "TapButton3" "3"
-                  Option "VertEdgeScroll" "on"
-                  Option "HorizEdgeScroll" "on"
+              Option "Tapping" "on"
+              Option "ScrollMethod" "twofinger"
+              Option "ScrollMethod" "edge"
           EndSection
       become:
         true
