@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Install pulsemixer
+
+  vars:
+    pip:
+      name: git+https://github.com/GeorgeFilipkin/pulsemixer.git
+      virtualenv: pulsemixer
+
+  roles:
+    - pip
