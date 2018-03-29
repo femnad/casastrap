@@ -4,9 +4,6 @@
   name:
     Install StumpWM utils
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       name:

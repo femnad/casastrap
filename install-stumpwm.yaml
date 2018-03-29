@@ -5,9 +5,6 @@
 - hosts: all
   name: Install StumpWM
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       name: stumpwm
@@ -17,7 +14,8 @@
       apt: [sbcl, x11-utils, texinfo]
       dnf_yum:
         - sbcl
-      portage: dev-lisp/sbcl
+        - texinfo
+      portage: [dev-lisp/sbcl]
 
     sbclrc:
       "{{ user_home }}/.sbclrc"
