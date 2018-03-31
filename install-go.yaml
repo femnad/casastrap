@@ -1,9 +1,6 @@
 ---
-- import_playbook:
-    _download_and_link.yaml
+- import_playbook: _download_and_link.yaml
   vars:
-    url:
-      https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz
+    url: https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
     link:
-      src:
-        go
+        - src: bin/go
