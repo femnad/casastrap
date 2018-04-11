@@ -4,9 +4,6 @@
   name:
     Install vimperator
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       url:
