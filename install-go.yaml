@@ -1,6 +1,13 @@
 ---
-- import_playbook: _download_and_link.yaml
+- hosts: all
+  name: Download and extract Go
+
   vars:
-    url: https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
-    link:
+    download_and_link:
+      url: https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
+      link:
         - src: bin/go
+      purge_dir: go
+
+  roles:
+    - download-and-link
