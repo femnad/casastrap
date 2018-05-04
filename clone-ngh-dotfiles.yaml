@@ -5,8 +5,10 @@
   vars:
     homeshick:
       repos:
-        - "{{ ansible_hostname }}"
-        - cache
+        - host: gitlab
+          castle: "{{ ansible_hostname }}"
+        - host: gitlab
+          castle: cache
       clone_type:
         ssh
 

@@ -6,14 +6,14 @@ user_bin:
   "{{ user_home }}/bin"
 
 local_user_home:
-    "{{ lookup('env', 'HOME') }}"
+  "{{ lookup('env', 'HOME') }}"
 local_user:
-    "{{ lookup('env', 'USER') }}"
+  "{{ lookup('env', 'USER') }}"
 
 download_path:
   "{{ user_home }}/x"
 home_prefix:
-    "{{ user_home }}/z/pr"
+  "{{ user_home }}/z/pr"
 release_store_suffix:
   "z/dy"
 release_store_path:
@@ -27,8 +27,8 @@ gopath:
 bash_profile:
   "{{ user_home }}/.profile"
 github_username:
-    femnad
+  femnad
 ssh_public_key:
-    "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
+  "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
 remote_user_ssh_public_key:
-    "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
+  "{{ ansible_user_dir }}/.ssh/id_rsa.pub"

@@ -2,9 +2,6 @@
 - hosts: all
   name: Init a NGH (non-generic host)
 
-- import_playbook: init-mwe.yaml
-  tags: mwe
-
 - import_playbook: generate-ssh-key.yaml
   tags: ssh-key
 
