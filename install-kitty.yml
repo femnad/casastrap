@@ -1,0 +1,38 @@
+---
+- hosts: all
+  name: Install kitty
+
+  vars:
+    repo:
+      url: https://github.com/kovidgoyal/kitty.git
+    build:
+      configure: no
+      make_install: no
+    deps:
+      common:
+        - fontconfig-devel
+        - harfbuzz-devel
+        - libpng-devel
+        - libxkbcommon-devel
+        - libXcursor-devel
+        - libXinerama-devel
+        - libxkbcommon-x11-devel
+        - libXi-devel
+        - libXrandr-devel
+        - mesa-libGL-devel
+
+  roles:
+    - packages
+    - source_install
+
+  post_tasks:
+    - name: Create a launcher script
+      template:
+        src: templates/kitty/script.j2
+        dest: "{{ user_bin }}/kitty"
+        mode: 0755
+
+    - name: Create desktop file
+      template:
+        src: templates/kitty/desktop.j2
+        dest: "{{ user_home }}/.local/share/applications/kitty.desktop"
