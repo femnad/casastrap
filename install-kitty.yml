@@ -20,6 +20,7 @@
         - libXi-devel
         - libXrandr-devel
         - mesa-libGL-devel
+    local_icons_dir: "{{ user_home }}/.local/share/icons"
 
   roles:
     - packages
@@ -36,3 +37,14 @@
       template:
         src: templates/kitty/desktop.j2
         dest: "{{ user_home }}/.local/share/applications/kitty.desktop"
+
+    - name: Initialise local icons directory
+      file:
+        path: "{{ local_icons_dir }}"
+        state: directory
+
+    - name: Copy the logo file
+      copy:
+        src: "{{ source.path }}/logo/kitty.png"
+        dest: "{{ local_icons_dir }}/kitty.png"
+        remote_src: yes
