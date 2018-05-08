@@ -1,0 +1,12 @@
+- hosts: all
+  name: Download and link Vault
+
+  vars:
+    version:
+      0.10.1
+    download_and_link:
+      url: https://releases.hashicorp.com/vault/{{ version }}/vault_{{ version }}_linux_amd64.zip
+      exec_only: yes
+
+  roles:
+    - download-and-link
