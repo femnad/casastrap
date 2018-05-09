@@ -1,13 +1,10 @@
 - hosts: all
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
 
     release:
       name: tarsnap
-      url: https://www.tarsnap.com/download/tarsnap-autoconf-1.0.37.tgz
+      url: https://www.tarsnap.com/download/tarsnap-autoconf-1.0.39.tgz
 
     deps:
       apt:

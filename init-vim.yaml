@@ -12,7 +12,7 @@
 
   tasks:
     - name:
-        Initialize autoload and plugin directories
+        Initialize autoload, plugin and swap directories
       file:
         path:
           "{{ vim_dir }}/{{ item }}"
@@ -21,6 +21,7 @@
       with_items:
         - autoload
         - "{{ plugin_dir }}"
+        - swap
 
     - name:
         Download vim-plug
