@@ -6,12 +6,16 @@
 
   vars:
     deps:
+      common:
+        - ldc
+        - po4a
       apt:
         - autopoint
         - ldc
         - libgtkd-3-dev
         - libvted-3-dev
-        - po4a
+      dnf_yum:
+        - gettext-devel
     repo:
       url:
         https://github.com/gnunn1/tilix.git
