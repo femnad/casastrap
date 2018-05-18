@@ -1,0 +1,16 @@
+- hosts: all
+  name: Install acpilight
+
+  tasks:
+    - lineinfile:
+        line: SUBSYSTEM=="backlight", ACTION=="add", RUN+="/bin/chgrp video %S%p/brightness", RUN+="/bin/chmod g+w %S%p/brightness"
+        path: /etc/udev/rules.d/90-backlight.rules
+        create: yes
+      become: yes
+
+- import_playbook: _clone_and_link.yaml
+  vars:
+    repo:
+      url: https://github.com/wavexx/acpilight
+    util:
+      link: xbacklight

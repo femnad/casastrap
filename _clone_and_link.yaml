@@ -4,9 +4,6 @@
   name:
     Clone and link from {{ repo.name }}
 
-  vars_files:
-    - vars/paths.yaml
-
   roles:
     - clone
     - util
