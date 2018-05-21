@@ -5,7 +5,7 @@
   vars:
     pip:
       name: git+https://github.com/GeorgeFilipkin/pulsemixer.git
-      virtualenv: pulsemixer
+      virtualenv: no
 
   roles:
     - pip
