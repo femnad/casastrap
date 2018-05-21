@@ -1,0 +1,42 @@
+    - name: Add apt key
+      apt_key:
+        keyserver: hkp://keyserver.ubuntu.com:80
+        id: BBEBDCB318AD50EC6865090613B00F1FD2C19886
+      become: yes
+
+    - name:
+        Download libssl1.0.0 from Jessie packages
+      get_url:
+        url:
+          http://ftp.de.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+        dest:
+          /tmp
+      when:
+        ansible_distribution == 'Debian' and ansible_distribution_release == 'stretch'
+      register:
+        deb_path
+
+    # It's cool, the wiki told me to do it: https://wiki.debian.org/spotify
+    - name:
+        Install libssl1.0.0 from Jessie
+      apt:
+        deb:
+          "{{ deb_path.dest }}"
+      when:
+        ansible_distribution == 'Debian' and ansible_distribution_release == 'stretch'
+      become:
+        yes
+
+    - name: Add apt repository
+      apt_repository:
+        repo: deb http://repository.spotify.com stable non-free
+        state: present
+        filename: spotify
+      become: yes
+
+    - name: Install Spotify client
+      apt:
+        name: spotify-client
+        state: present
+        update-cache: yes
+      become: yes

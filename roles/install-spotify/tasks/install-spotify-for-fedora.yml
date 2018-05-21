@@ -1,0 +1,23 @@
+---
+- name: Install Flatpak
+  dnf:
+    name: flatpak
+  become: yes
+
+- name: Add new Flatpak remote
+  shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  become: yes
+
+- name: Check if Spotify client is installed
+  command: flatpak info com.spotify.Client
+  register: app_info
+  failed_when: app_info.rc not in [0, 1]
+
+- name: Install Spotify using Flatpak
+  command: flatpak install -y --from https://flathub.org/repo/appstream/com.spotify.Client.flatpakref
+  when: app_info.rc == 1
+
+- name: Add .desktop file for Spotify
+  template:
+    src: spotify.desktop.j2
+    dest: "{{ user_home }}/.local/share/applications/Spotify.desktop"
