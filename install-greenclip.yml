@@ -1,0 +1,19 @@
+---
+- import_playbook: _download_executable.yaml
+  vars:
+    url: https://github.com/erebe/greenclip/releases/download/2.1/greenclip
+    executable: greenclip
+
+- hosts: all
+  name: Add user service for greenclip
+
+  vars:
+    systemd_service:
+      description: Simple clipboard manager
+      name: greenclip
+      exec: "{{ user_bin }}/greenclip daemon"
+      service:
+        Environment: DISPLAY={{ ansible_env.DISPLAY }}
+
+  roles:
+    - systemd-service

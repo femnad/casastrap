@@ -4,7 +4,7 @@
 
   vars:
     path:
-      "{{ user_bin }}/{{ exec }}"
+      "{{ user_bin }}/{{ executable }}"
 
   tasks:
     - name: Download from {{ url }}
@@ -16,7 +16,7 @@
         force:
           yes
 
-    - name: Make {{ exec }} executable
+    - name: Make {{ executable }} executable
       file:
         path:
           "{{ path }}"
