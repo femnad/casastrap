@@ -3,7 +3,7 @@
     _download_and_link.yaml
   vars:
     url:
-      https://download.jetbrains.com/python/pycharm-community-2017.1.4.tar.gz
+      https://download.jetbrains.com/python/pycharm-community-2017.3.6.tar.gz
     link_src:
       bin/pycharm.sh
     list_dest:
