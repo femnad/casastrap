@@ -1,6 +1,11 @@
 ---
-- import_playbook:
-    go-get.yml
+- hosts: all
+  name: Install awless
+
   vars:
-    go_package:
-      github.com/wallix/awless
+    go_get:
+      packages:
+        - github.com/wallix/awless
+
+  roles:
+    - go-get
