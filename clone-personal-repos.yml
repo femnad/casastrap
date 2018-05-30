@@ -1,0 +1,25 @@
+---
+- hosts: all
+  name: Clone personal repos
+
+  vars:
+    repos:
+      - ansible-roles
+      - casastrap
+      - geheim
+      - stuff
+
+  tasks:
+    - block:
+        - name: Clone repo
+          git:
+            repo: git@github.com:femnad/{{ item }}
+            dest: "{{ personal_repos_dir }}"
+          loop: "{{ repos }}"
+      rescue:
+        - name: Helpful reminder
+          debug:
+            msg: |
+              You probably need to forward the authentication agent connection for cloning these repos,
+              however, cannot set `ssh_extra_args` for a play as of Ansible version 2.5.
+              Try with with command line argument `--ssh-extra-args '-A'` maybe?

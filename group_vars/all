@@ -32,3 +32,5 @@ ssh_public_key:
   "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
 remote_user_ssh_public_key:
   "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
+
+personal_repos_dir: "{{ user_home }}/fm"
