@@ -1,10 +1,7 @@
 ---
-- import_playbook:
-    _download_and_link.yaml
+- import_playbook: _download_and_link.yaml
   vars:
-    url:
-      https://download.jetbrains.com/python/pycharm-community-2017.3.6.tar.gz
-    link_src:
-      bin/pycharm.sh
-    list_dest:
-      pycharm
+    url: https://download.jetbrains.com/python/pycharm-community-2017.3.6.tar.gz
+    link:
+      - src: bin/pycharm.sh
+        dest: pycharm
