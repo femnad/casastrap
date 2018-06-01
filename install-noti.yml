@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Install noti
+
+  vars:
+    go_get:
+      packages:
+        - github.com/variadico/noti/cmd/noti
+
+  roles:
+    - go-get
