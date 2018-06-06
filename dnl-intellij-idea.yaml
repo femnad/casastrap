@@ -1,7 +1,8 @@
 ---
 - import_playbook: _download_and_link.yaml
   vars:
-    url: https://download.jetbrains.com/idea/ideaIC-2017.3.5.tar.gz
+    version: 2018.1.4
+    url: https://download.jetbrains.com/idea/ideaIC-{{ version }}.tar.gz
     link:
       - src: bin/idea.sh
         dest: idea
