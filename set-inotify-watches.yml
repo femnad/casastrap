@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Set maximum inotify watches
+
+  vars:
+    inotify_watches: 524288
+    sysctl:
+      file: 10-max-inotify-watches.conf
+      config: fs.inotify.max_user_watches = {{ inotify_watches }}
+
+  roles:
+    - sysctl
