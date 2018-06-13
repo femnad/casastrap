@@ -11,7 +11,7 @@
       url: https://github.com/stumpwm/stumpwm
 
     deps:
-      apt: [sbcl, x11-utils, texinfo]
+      apt: [install-info, sbcl, x11-utils, texinfo]
       dnf_yum:
         - sbcl
         - texinfo
