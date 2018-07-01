@@ -2,9 +2,6 @@
 - hosts: all
   name: Install rossa
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     deps:
       apt:
@@ -15,6 +12,11 @@
     build:
       configure:
         no
+    systemd_service:
+        description: Simpleton battery monitor
+        name: rossa
+        exec: "{{ user_bin }}/rossa"
 
   roles:
     - source_install
+    - systemd-service

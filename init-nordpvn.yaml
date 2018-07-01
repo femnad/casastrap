@@ -18,9 +18,9 @@
       "{{ vpn_scripts_dir }}/upf"
     deps:
       apt:
-        openvpn
+        [openvpn]
       dnf_yum:
-        openvpn
+        [openvpn]
 
   roles:
     - packages
