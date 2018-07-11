@@ -1,0 +1,9 @@
+- hosts: all
+
+  vars:
+    download_and_link:
+      url: https://github.com/atom/atom/releases/download/v1.28.1/atom-amd64.tar.gz
+      link:
+        - src: atom
+  roles:
+    - download-and-link
