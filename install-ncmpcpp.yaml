@@ -1,18 +1,11 @@
 ---
 - name: Install ncmpcpp
-
-  hosts:
-    all
-
-  vars_files:
-    - vars/paths.yaml
+  hosts: all
 
   vars:
-
     repo:
       name: ncmpcpp
       url: git://repo.or.cz/ncmpcpp.git
-
     deps:
       apt: [libcurl4-openssl-dev, libmpdclient-dev, libboost-all-dev,
             libreadline-dev, libncurses5-dev, libncursesw5-dev]
@@ -22,8 +15,7 @@
                 readline-devel]
 
     build:
-      configuration:
-        "--with-curl"
+      configuration: --with-curl
 
   roles:
     - source_install

@@ -2,13 +2,10 @@
 - hosts: all
   name: Install mpc
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       name: mpc
-      url: git://git.musicpd.org/master/mpc.git
+      url: https://github.com/MusicPlayerDaemon/mpc.git
     deps:
       dnf_yum:
         - autoconf-archive
