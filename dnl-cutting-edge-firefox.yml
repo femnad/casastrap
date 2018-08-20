@@ -1,0 +1,14 @@
+---
+- hosts: all
+  name: DnL cutting-edge Firefox
+
+  vars:
+    version: 61.0.2
+    language: en-GB
+    download_and_link:
+      url: https://download-installer.cdn.mozilla.net/pub/firefox/releases/{{ version }}/linux-x86_64/{{ language }}/firefox-{{ version }}.tar.bz2
+      link:
+        - src: firefox
+
+  roles:
+    - download-and-link
