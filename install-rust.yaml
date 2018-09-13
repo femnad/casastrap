@@ -2,9 +2,6 @@
 - hosts: all
   name: Install Rust
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     version:
       1.16.0

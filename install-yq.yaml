@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Install yq
+
+  vars:
+    go_get:
+      packages:
+        gopkg.in/mikefarah/yq.v2
+
+  roles:
+    - go-get

@@ -5,9 +5,6 @@
 - hosts: all
   name: Download and bootstrap Leiningen
 
-  vars_files:
-    - vars/paths.yaml
-
   tasks:
     - name: Download stable Leiningen
       get_url:
