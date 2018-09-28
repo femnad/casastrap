@@ -26,3 +26,5 @@
       exec: "{{ user_bin }}/prometheus --config.file={{ config_file }}"
       name: prometheus
       description: 'Prometheus: From metrics to insight'
+      service:
+        WorkingDirectory: "{{ base_path }}"
