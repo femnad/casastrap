@@ -1,0 +1,9 @@
+---
+- name: Install Prometheus
+  include_tasks: prometheus-service.yml
+
+- name: Install Node Exporter
+  include_tasks: node-exporter-service.yml
+
+- name: Install Grafana
+  include_tasks: grafana-service.yml

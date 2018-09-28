@@ -1,0 +1,2 @@
+---
+config_file: "{{ user_home }}/.local/share/prometheus/config.yml"

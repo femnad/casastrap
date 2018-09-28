@@ -1,0 +1,28 @@
+---
+- name: Download Prometheus
+  import_role:
+    name: download-and-link
+  vars:
+    download_and_link:
+      url: https://github.com/prometheus/prometheus/releases/download/v2.4.2/prometheus-2.4.2.linux-amd64.tar.gz
+      link:
+        - src: prometheus
+
+- name: Create config directory
+  file:
+    path: "{{ config_file | dirname }}"
+    state: directory
+
+- name: Template config file
+  template:
+    src: config.yml.j2
+    dest: "{{ config_file }}"
+
+- name: Create Prometheus Service
+  import_role:
+    name: systemd-service
+  vars:
+    systemd_service:
+      exec: "{{ user_bin }}/prometheus --config.file={{ config_file }}"
+      name: prometheus
+      description: 'Prometheus: From metrics to insight'

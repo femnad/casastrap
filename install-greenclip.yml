@@ -1,7 +1,7 @@
 ---
 - import_playbook: _download_executable.yaml
   vars:
-    url: https://github.com/erebe/greenclip/releases/download/3.0/greenclip
+    url: https://github.com/erebe/greenclip/releases/download/3.2/greenclip
     executable: greenclip
 
 - hosts: all

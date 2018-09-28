@@ -1,0 +1,32 @@
+---
+- name: Download Grafana
+  import_role:
+    name: download-and-link
+  vars:
+    download_and_link:
+      url: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.2.4.linux-amd64.tar.gz
+      link:
+        - src: bin/grafana-server
+
+- name: Create Grafana service
+  import_role:
+    name: systemd-service
+  vars:
+    systemd_service:
+      exec: grafana-server
+      name: grafana
+      description: 'Grafana: The open platform for beautiful analytics and monitoring'
+      absolute_exec: false
+      enable: no
+      service:
+        WorkingDirectory: "{{ base_path }}"
+
+- name: Add Prometheus data source
+  grafana_datasource:
+    name: local-prometheus
+    grafana_url: http://127.0.0.1:3000
+    grafana_user: admin
+    grafana_password: admin
+    org_id: 1
+    ds_type: prometheus
+    is_default: yes

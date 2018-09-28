@@ -1,0 +1,18 @@
+---
+- name: Download Node Exporter
+  import_role:
+    name: download-and-link
+  vars:
+    download_and_link:
+      url: https://github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-amd64.tar.gz
+      link:
+        - src: node_exporter
+
+- name: Create Node Exporter service
+  import_role:
+    name: systemd-service
+  vars:
+    systemd_service:
+      exec: "{{ user_bin }}/node_exporter --web.listen-address=127.0.0.1:9100"
+      name: node_exporter
+      description: Prometheus exporter for machine metrics
