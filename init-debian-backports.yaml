@@ -9,7 +9,7 @@
     - name: Add backports repository
       apt_repository:
         repo:
-          deb http://ftp.debian.org/debian {{ backports }} main
+          deb http://ftp.debian.org/debian {{ backports }} main contrib non-free
         filename:
           /etc/apt/sources.list.d/{{ backports }}
       become:
