@@ -9,3 +9,10 @@
 
   roles:
     - go-get
+
+  post_tasks:
+    - name: Symlink binary to yq
+      file:
+        path: '{{ user_bin }}/yq'
+        src: '{{ user_bin }}/yq.v2'
+        state: link
