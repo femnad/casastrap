@@ -1,0 +1,23 @@
+---
+- hosts: all
+  name: Download and Link Kubetail
+
+  vars:
+    repo:
+      url: git@github.com:johanhaleby/kubetail.git
+
+  roles:
+    - clone
+
+  post_tasks:
+    - name: Link the script
+      file:
+        src: '{{ clone_path }}/kubetail'
+        path: '{{ user_bin }}/kubetail'
+        state: link
+
+    - name: Link the completion script
+      file:
+        src: '{{ clone_path }}/completion/kubetail.fish'
+        path: '{{ user_home }}/.config/fish/completions/kubetail.fish'
+        state: link
