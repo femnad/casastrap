@@ -1,0 +1,19 @@
+---
+- hosts: all
+  name: Get latest Kubectl
+
+  tasks:
+    - name: Get the latest stable version
+      uri:
+        url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+        return_content: yes
+      register: version
+
+    - name: Download the latest stable version
+      vars:
+        latest_stable: '{{ version.content.strip() }}'
+      get_url:
+        url: https://storage.googleapis.com/kubernetes-release/release/{{ latest_stable }}/bin/linux/amd64/kubectl
+        dest: '{{ ansible_user_dir }}/bin'
+        mode: 0755
+...

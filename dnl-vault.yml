@@ -3,7 +3,7 @@
 
   vars:
     version:
-      0.10.1
+      0.11.5
     download_and_link:
       url: https://releases.hashicorp.com/vault/{{ version }}/vault_{{ version }}_linux_amd64.zip
       exec_only: yes
