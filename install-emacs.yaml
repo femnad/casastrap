@@ -11,7 +11,7 @@
         - libtiff5-dev
     repo:
       url: git://git.sv.gnu.org/emacs.git
-      version: emacs-25.2
+      version: emacs-26.1
 
   roles:
     - packages

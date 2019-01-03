@@ -14,5 +14,8 @@
       pkg: [gnubc]
       portage: [sys-devel/bc]
 
+    build:
+      cmake: true
+
   roles:
     - source_install
