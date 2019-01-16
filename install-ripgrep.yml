@@ -1,0 +1,10 @@
+---
+- hosts: all
+  name: Install ripgrep
+
+  vars:
+    cargo:
+      crate: ripgrep
+
+  roles:
+    - cargo
