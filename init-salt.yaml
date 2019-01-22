@@ -21,3 +21,8 @@
         - minion
         - ssh
       become: yes
+
+    - name: Install OpenSSH server for salt-ssh
+      apt:
+        name: openssh-server
+      become: yes
