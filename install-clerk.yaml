@@ -5,9 +5,6 @@
 - hosts: all
   name: Install clerk
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     config_directory:
       "{{ user_home }}/.config/clerk"

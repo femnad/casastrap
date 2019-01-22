@@ -1,10 +1,6 @@
 ---
-- import_playbook:
-    install-tarsnap-from-source.yaml
-  when:
-    ansible_os_family != 'Debian'
+- import_playbook: install-tarsnap-from-source.yaml
+  when: ansible_distribution != 'Debian'
 
-- import_playbook:
-    install-tarsnap-from-deb.yaml
-  when:
-    ansible_os_family == 'Debian'
+- import_playbook: install-tarsnap-from-deb.yaml
+  when: ansible_distribution == 'Debian'

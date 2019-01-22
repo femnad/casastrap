@@ -17,6 +17,7 @@
         - libcairo2-dev
         - libglib2.0-dev
         - libpango1.0-dev
+        - librsvg2-dev
         - libstartup-notification0-dev
         - libx11-dev
         - libx11-xcb-dev

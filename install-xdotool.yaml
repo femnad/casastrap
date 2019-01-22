@@ -2,9 +2,6 @@
 - hosts: all
   name: Install xdotool
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       name:

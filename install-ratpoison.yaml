@@ -2,9 +2,6 @@
 - hosts: all
   name: Install ratpoison
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     deps:
       apt:
