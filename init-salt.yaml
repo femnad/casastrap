@@ -1,0 +1,23 @@
+---
+- name: Initialise Salt for Apt distros
+  hosts: all
+
+  tasks:
+    - name: Add Salt repository key
+      apt_key:
+        url: https://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub
+      become: yes
+
+    - name: Add Salt repository
+      apt_repository:
+        repo: deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest bionic main
+      become: yes
+
+    - name: Install Salt components
+      apt:
+        name: salt-{{ item }}
+      loop:
+        - master
+        - minion
+        - ssh
+      become: yes
