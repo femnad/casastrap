@@ -2,6 +2,12 @@
 - name: Install Go stuff
   hosts: all
 
+  vars:
+    packages:
+      - ratilf
+      - stuff
+
   tasks:
-    - name: Go get github.com/femnad/stuff
-      command: go get github.com/femnad/stuff/...
+    - name: Go get package
+      command: go get github.com/femnad/{{ item }}/...
+      loop: '{{ packages }}'
