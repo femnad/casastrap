@@ -18,13 +18,14 @@
       apt:
         - libdbus-1-dev
         - libxcursor-dev
-        - libpng-devel
+        - libpng-dev
         - libxinerama-dev
         - libxkbcommon-dev
         - libxrandr-dev
         - libxi-devel
         - libgl1-mesa-dev
       dnf_yum:
+        - libpng-devel
         - libxkbcommon-devel
         - libXcursor-devel
         - libXinerama-devel
