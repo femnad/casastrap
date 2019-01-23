@@ -9,8 +9,9 @@
       configure: no
       make_install: no
     deps:
-      common:
+      debian:
         - fontconfig-devel
+      common:
         - harfbuzz-devel
         - libpng-devel
         - libxkbcommon-devel
