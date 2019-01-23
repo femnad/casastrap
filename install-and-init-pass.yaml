@@ -7,7 +7,7 @@
 
   vars:
     deps:
-      apt: [gnupg2, git, pass, pinentry-gtk-2]
+      apt: [gnupg2, git, pass, pinentry-gtk2]
       dnf_yum: [gnupg2, git, pass]
 
   roles:
@@ -31,10 +31,6 @@
         src: "{{ local_gpg_key_location }}"
         dest: "{{ remote_gpg_key_location }}"
       tags: export
-
-    - pause:
-        prompt:
-          You should trust the key by doing a `gpg --edit-key {{ gpg_id }}`
 
     - name: Initialize pass
       shell: |
