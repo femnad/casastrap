@@ -16,7 +16,6 @@
         - libfontconfig1-dev
         - libharfbuzz-dev
       common:
-        - harfbuzz-devel
         - libpng-devel
         - libxkbcommon-devel
         - libXcursor-devel
