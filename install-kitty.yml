@@ -15,8 +15,16 @@
       ubuntu:
         - libfontconfig1-dev
         - libharfbuzz-dev
-      common:
+      apt:
+        - libdbus-1-dev
+        - libxcursor-dev
         - libpng-devel
+        - libxinerama-dev
+        - libxkbcommon-dev
+        - libxrandr-dev
+        - libxi-devel
+        - libgl1-mesa-dev
+      dnf_yum:
         - libxkbcommon-devel
         - libXcursor-devel
         - libXinerama-devel
