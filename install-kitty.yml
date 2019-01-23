@@ -22,7 +22,7 @@
         - libxinerama-dev
         - libxkbcommon-dev
         - libxrandr-dev
-        - libxi-devel
+        - libxi-dev
         - libgl1-mesa-dev
       dnf_yum:
         - libpng-devel
