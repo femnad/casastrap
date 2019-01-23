@@ -10,7 +10,7 @@
 
     - name: Add Salt repository
       apt_repository:
-        repo: deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest bionic main
+        repo: deb [arch=amd64] http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest bionic main
       become: yes
 
     - name: Install Salt components
