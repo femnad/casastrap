@@ -1,0 +1,6 @@
+---
+- name: Install Go stuff
+  hosts: all
+
+  tasks:
+    - command: go install github.com/femnad/stuff/...
