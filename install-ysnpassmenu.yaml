@@ -8,9 +8,7 @@
         - rofi
 
   roles:
-    - clone
     - packages
-    - util
 
 - import_playbook: install-dmenu.yaml
   tags: dmenu
