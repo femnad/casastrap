@@ -3,4 +3,5 @@
   hosts: all
 
   tasks:
-    - command: go get github.com/femnad/stuff/...
+    - name: Go get github.com/femnad/stuff
+      command: go get github.com/femnad/stuff/...
