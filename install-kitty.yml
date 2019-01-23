@@ -11,6 +11,10 @@
     deps:
       debian:
         - fontconfig-devel
+        - harfbuzz-dev
+      ubuntu:
+        - libfontconfig1-dev
+        - libharfbuzz-dev
       common:
         - harfbuzz-devel
         - libpng-devel
