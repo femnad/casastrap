@@ -26,6 +26,7 @@
         - libgl1-mesa-dev
         - libpython3-dev
         - python3-dev
+        - libxkbcommon-x11-dev
       dnf_yum:
         - libpng-devel
         - libxkbcommon-devel
