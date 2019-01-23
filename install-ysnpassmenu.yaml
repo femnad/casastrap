@@ -3,13 +3,6 @@
   name: Install ysnpassmenu
 
   vars:
-    repo:
-      name: ysnpassmenu
-      url: "https://github.com/femnad/ysnpassmenu.git"
-    util:
-      link:
-        - ysnpassmenu
-        - contrib/ysnrofi
     deps:
       apt:
         - rofi
