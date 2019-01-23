@@ -24,6 +24,8 @@
         - libxrandr-dev
         - libxi-dev
         - libgl1-mesa-dev
+        - libpython3-dev
+        - python3-dev
       dnf_yum:
         - libpng-devel
         - libxkbcommon-devel
