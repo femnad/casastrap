@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: Install clipnotify
+
+  vars:
+    repo:
+      url: https://github.com/cdown/clipnotify.git
+    build:
+      configure: no
+
+  roles:
+    - source_install

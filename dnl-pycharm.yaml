@@ -1,7 +1,7 @@
 ---
 - import_playbook: _download_and_link.yaml
   vars:
-    url: https://download.jetbrains.com/python/pycharm-community-2018.2.tar.gz
+    url: https://download.jetbrains.com/python/pycharm-community-2018.3.2.tar.gz
     link:
       - src: bin/pycharm.sh
         dest: pycharm
