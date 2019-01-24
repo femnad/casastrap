@@ -9,6 +9,7 @@
         - libgtk-3-dev
         - libgnutls28-dev
         - libtiff5-dev
+        - libxpm-dev
     repo:
       url: git://git.sv.gnu.org/emacs.git
       version: emacs-26.1
