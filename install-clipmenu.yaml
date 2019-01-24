@@ -1,0 +1,36 @@
+---
+- import_playbook: install-clipnotify.yaml
+
+- hosts: all
+  name: Install clipmenu
+
+  vars:
+    repo:
+      url: https://github.com/cdown/clipmenu
+    util:
+      link:
+        - clipdel
+        - clipmenu
+        - clipmenud
+
+  roles:
+    - clone-and-link
+
+  post_tasks:
+    - name: Ensure Systemd user service directory
+      file:
+        path: '{{ user_home }}/.config/systemd/user'
+        state: directory
+
+    - name: Template the service file
+      template:
+        src: clipmenud.service.j2
+        dest: '{{ user_home }}/.config/systemd/user/clipmenud.service'
+
+    - name: Start and enable clipmenud service
+      systemd:
+        name: clipmenud
+        user: yes
+        daemon_reload: yes
+        state: started
+        enabled: yes

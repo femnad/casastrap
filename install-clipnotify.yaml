@@ -7,6 +7,12 @@
       url: https://github.com/cdown/clipnotify.git
     build:
       configure: no
+      make_install: no
 
   roles:
     - source_install
+
+  post_tasks:
+    - name: Install clipnotify
+      command: install {{ source.path }}/clipnotify /usr/bin
+      become: yes
