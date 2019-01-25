@@ -1,0 +1,16 @@
+---
+- hosts: all
+  name: Install pamixer
+
+  vars:
+    deps:
+      apt:
+        - libboost-program-options-dev
+        - libpulse-dev
+    build:
+      configure: no
+    repo:
+      url: https://github.com/cdemoulins/pamixer.git
+
+  roles:
+    - source_install
