@@ -9,6 +9,9 @@
       "{{ user_home }}/.vim"
     plugin_dir:
       plugged
+    packages:
+      apt:
+        - python3-dev
 
   tasks:
     - name:
@@ -35,3 +38,8 @@
         Initialize plugins
       command:
         vim -c ":PlugInstall" -c ":quitall"
+
+    - name: Compile YCM
+      command: python3 ./install.py
+      args:
+        chdir: '{{ vim_dir }}/{{ plugin_dir }}/YouCompleteMe'
