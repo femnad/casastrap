@@ -23,8 +23,6 @@
       apt:
         - bind9-host
         - dnsutils
-        - emacs
-        - mutt
         - silversearcher-ag
         - surfraw
         - urlview

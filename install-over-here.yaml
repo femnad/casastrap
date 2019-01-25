@@ -1,12 +1,6 @@
 ---
-- import_playbook: install-rust.yaml
-  tags: rust
-
 - hosts: all
   name: Install over-here
-
-  vars_files:
-    - vars/paths.yaml
 
   vars:
     deps:
@@ -14,16 +8,17 @@
         - dbus-x11
         - libdbus-1-dev
     repo:
-      name:
-        over-here
-      url:
-        https://github.com/femnad/over-here.git
-    util:
-      link:
-        target/release/over-here
+      name: over-here
+      url: https://github.com/femnad/over-here.git
+    systemd_service:
+      exec: '{{ cargo_bin }}/over-here'
+      name: over-here
+      description: Simpleton notification daemon
 
   roles:
     - packages
-    - clone
-    - cargo
-    - util
+    - cargo/source-install
+    - systemd-service
+
+- import_playbook: cnl-notify-recv.yaml
+...

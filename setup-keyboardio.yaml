@@ -1,0 +1,55 @@
+---
+- import_playbook: install-arduino.yaml
+
+- hosts: all
+  name: Clone Model01 hardware for Arduino
+
+  vars:
+    arduino_version: 1.8.8
+    arduino_path: '{{ release_store_path }}/arduino-{{ arduino_version }}'
+    repo:
+      url: https://github.com/femnad/Model01-Firmware
+      version: mevorak
+
+  tasks:
+    - name: Clone Model01 firmware
+      git:
+        repo: https://github.com/keyboardio/Kaleidoscope-Bundle-Keyboardio.git
+        dest: '{{ arduino_path }}/hardware/keyboardio'
+
+    - name: Copy the Udev rules
+      copy:
+        src: 99-kaleidoscope.rules
+        dest: /etc/udev/rules.d
+      become: yes
+
+    - name: Reload Udev
+      command: udevadm control -R
+      become: yes
+
+    - name: Add current user to dialout group
+      user:
+        name: '{{ ansible_user_id }}'
+        groups: dialout
+      when: ansible_distribution != 'Archlinux'
+      become: yes
+
+    - name: Add current user to uucp group
+      user:
+        name: '{{ ansible_user_id }}'
+        groups: dialout
+      when: ansible_distribution == 'Archlinux'
+      become: yes
+
+  roles:
+    - name: clone
+
+  post_tasks:
+    - name: Build the firmware
+      shell: make
+      environment:
+        ARDUINO_PATH: '{{ arduino_path }}'
+      args:
+        chdir: '{{ source.path }}'
+      tags: make
+...

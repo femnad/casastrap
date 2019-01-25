@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: Download and extract Arduino
+
+  vars:
+    release:
+      url: https://downloads.arduino.cc/arduino-1.8.8-linux64.tar.xz
+
+  roles:
+    - download
+...
