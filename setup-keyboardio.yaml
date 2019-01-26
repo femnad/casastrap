@@ -31,6 +31,7 @@
       user:
         name: '{{ ansible_user_id }}'
         groups: dialout
+        append: yes
       when: ansible_distribution != 'Archlinux'
       become: yes
 
@@ -38,6 +39,7 @@
       user:
         name: '{{ ansible_user_id }}'
         groups: dialout
+        append: yes
       when: ansible_distribution == 'Archlinux'
       become: yes
 

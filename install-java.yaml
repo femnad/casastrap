@@ -5,9 +5,9 @@
   vars:
     deps:
       apt:
-        - openjdk-8-jdk
-        - openjdk-8-jre
-        - openjdk-8-source
+        - openjdk-11-jdk
+        - openjdk-11-jre
+        - openjdk-11-source
       dnf_yum:
         - java-1.8.0-openjdk
 
