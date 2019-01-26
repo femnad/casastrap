@@ -1,0 +1,24 @@
+---
+- import_playbook: install-java.yaml
+
+- hosts: all
+
+  vars:
+    deps:
+      apt:
+        - bash
+        - curl
+        - rlwrap
+    script_target: /tmp/install-clojure.sh
+
+  roles:
+    - packages
+
+  post_tasks:
+    - get_url:
+        url: https://download.clojure.org/install/linux-install-1.10.0.411.sh
+        dest: '{{ script_target }}'
+        mode: 0755
+
+    - command: '{{ script_target }}'
+      become: yes
