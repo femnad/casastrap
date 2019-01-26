@@ -5,18 +5,14 @@
   vars:
     homeshick:
       repos:
-        - host:
-            gitlab
-          castle:
-            base
-        - host:
-            gitlab
-          castle:
-            basic
-        - host:
-            github
-          castle:
-            homebin
+        - host: gitlab
+          castle: base
+        - host: gitlab
+          castle: basic
+        - host: github
+          castle: homebin
+        - host: gitlab
+          castle: disposable
 
   roles:
     - homeshick

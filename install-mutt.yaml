@@ -1,30 +1,32 @@
 ---
 - hosts: all
-
-  vars_files:
-    - vars/paths.yaml
-    - misc.yaml
+  name: Install mutt
 
   vars:
+    prefixes: [eb, fm, gm]
+    header_directory: '{{ user_home }}/.cache/mutt'
+    cache_dirs:
+      - header
+      - message
     repo:
       name: mutt
-      url: http://dev.mutt.org/hg/mutt
-      type: hg
+      url: https://gitlab.com/muttmua/mutt.git
+      version: mutt-1-11-2-rel
     deps:
       apt: [libncurses5-dev, libncursesw5-dev, libssl-dev,
                 libtokyocabinet-dev, libsasl2-dev, urlview]
       dnf_yum: [cyrus-sasl-devel, ncurses-devel, openssl-devel,
                 tokyocabinet-devel, urlview]
     build:
-      configuration: "--enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl"
+      configuration: '--enable-imap --enable-smtp --enable-hcache --enable-sidebar --with-ssl --with-sasl'
 
   roles:
     - source_install
 
   tasks:
-    - name: Generate header and message caches
-      file: path="{{mutt_header_directory}}/{{ item[0] }}{{ item[1] }}" state=directory
-      with_nested:
-        - "{{mutt_prefixes}}"
-        - ['header', 'message']
+    - name: Generate header and message cache dirs
+      file:
+        path: '{{ header_directory}}/{{ item.0 }}{{ item.1 }}'
+        state: directory
+      loop: '{{ prefixes | product(cache_dirs) | list }}'
       tags: caches
