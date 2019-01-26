@@ -10,15 +10,30 @@
     repo:
       name: over-here
       url: https://github.com/femnad/over-here.git
-    systemd_service:
-      exec: '{{ cargo_bin }}/over-here'
-      name: over-here
-      description: Simpleton notification daemon
+    user_service_dir: '{{ ansible_user_dir }}/.config/systemd/user'
 
   roles:
     - packages
     - cargo/source-install
-    - systemd-service
+
+  post_tasks:
+    - name: Ensure user service dir
+      file:
+        path: '{{ user_service_dir }}'
+        state: directory
+
+    - name: Copy the service file
+      copy:
+        src: '{{ source.path }}/contrib/over-here.service'
+        dest: '{{ user_service_dir }}'
+
+    - name: Start and enable the service
+      systemd:
+        name: over-here
+        state: started
+        enabled: yes
+        user: yes
+        daemon-reload: yes
 
 - import_playbook: cnl-notify-recv.yaml
 ...
