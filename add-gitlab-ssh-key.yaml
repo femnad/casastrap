@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Add SSH key to Gitlab
 
@@ -5,22 +6,24 @@
     - vaults/gitlab_vars.yaml
 
   vars:
-    deps:
-      common:
-        [curl]
+    public_key: '{{ user_home }}/.ssh/id_rsa.pub'
+    key_name: '{{ ansible_user_id }}@{{ ansible_hostname }}'
+    key: '{{ lookup("file", "{{ public_key }}") }}'
+    access_token: '{{ lookup("passwordstore", "{{ gitlab_access_token_secret }}") }}'
+    endpoint: https://gitlab.com/api/v4/user/keys
 
-  roles:
-    - packages
-
-  post_tasks:
-    - name: Read SSH key
-      command: cat {{ user_home }}/.ssh/id_rsa.pub
-      register: ssh_pubkey
-      tags: key-read
+  tasks:
+    - debug:
+        var: access_token
 
     - name: Add key to Gitlab
-      command:
-        # Can't seem to able to this with the uri module
-        curl https://gitlab.com/api/v3/user/keys -F 'title={{ ansible_user_id }}@{{ ansible_hostname }}'
-            -F 'key={{ ssh_pubkey.stdout }}' -F 'private_token={{ gitlab_access_token }}'
-      tags: key-add
+      uri:
+        url: '{{ endpoint }}'
+        body:
+          title: '{{ key_name }}'
+          key: '{{ key }}'
+          private_token: '{{ access_token }}'
+        body_format: form-urlencoded
+        method: POST
+        status_code: 201
+...

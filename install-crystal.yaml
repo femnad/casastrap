@@ -5,7 +5,9 @@
 
   vars:
     deps:
-      apt: [libevent-dev]
+      apt:
+        - libevent-dev
+        - libyaml-dev
     version: 0.27.0
 
   roles:
