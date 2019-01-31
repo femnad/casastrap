@@ -5,28 +5,28 @@
     Set font configuration for user
 
   vars:
-    font_config_dir:
-      "{{ user_home }}/.config/fontconfig/conf.d"
+    font_config_dir: '{{ user_home }}/.config/fontconfig/conf.d'
 
   tasks:
-    - name:
-        Initialize fontconfig directory
+    - name: Initialize fontconfig directory
       file:
-        path:
-          "{{ font_config_dir }}"
-        state:
-          directory
+        path: '{{ font_config_dir }}'
+        state: directory
 
-    - name:
-        Link desired font configuration files
+    - set_fact:
+        font_dir: /usr/share/fontconfig/conf.avail/
+      when: ansible_distribution == 'Fedora'
+
+    - set_fact:
+        font_dir: /etc/fonts/conf.avail
+        when: ansible_distribution == 'Ubuntu'
+
+    - name: Link desired font configuration files
       file:
-        state:
-          link
-        src:
-          "/usr/share/fontconfig/conf.avail/{{ item }}"
-        path:
-          "{{ font_config_dir }}/{{ item }}"
-      with_items:
+        state: link
+        src: '{{ font_dir }}/{{ item }}'
+        path: '{{ font_config_dir }}/{{ item }}'
+      loop:
         - 10-sub-pixel-rgb.conf
         - 10-hinting-full.conf
         - 11-lcdfilter-default.conf

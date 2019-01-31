@@ -1,9 +1,14 @@
 - hosts: all
 
   vars:
+    deps:
+      apt:
+        - libgconf-2-4
     download_and_link:
       url: https://vscode-update.azurewebsites.net/latest/linux-x64/stable
       link:
         - src: code
+
   roles:
+    - packages
     - download-and-link

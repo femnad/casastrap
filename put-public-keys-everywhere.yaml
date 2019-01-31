@@ -2,9 +2,6 @@
 - hosts: all
   name: Put every public key into everywhere
 
-  vars_files:
-    - vars/user_vars.yaml
-
   tasks:
     - name: Get public keys from GitHub
       uri:
