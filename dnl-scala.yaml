@@ -1,11 +1,9 @@
 ---
-- import_playbook:
-    _download_and_link.yaml
+- import_playbook: _download_and_link.yaml
   vars:
-    url:
-      https://downloads.lightbend.com/scala/2.12.2/scala-2.12.2.tgz
+    version: 2.12.8
+    url: https://downloads.lightbend.com/scala/{{ version }}/scala-{{ version }}.tgz
     link:
-      - src:
-          bin/scala
-      - src:
-          bin/scalac
+      - src: bin/scala
+      - src: bin/scalac
+...

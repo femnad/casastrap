@@ -1,24 +1,19 @@
 ---
 - hosts: all
-  name: Download executable
+  name: Download executable and link
 
   vars:
-    path:
-      "{{ user_bin }}/{{ executable }}"
+    path: '{{ user_bin }}/{{ executable }}'
 
   tasks:
-    - name: Download from {{ url }}
+    - name: Download from url
       get_url:
-        url:
-          "{{ url }}"
-        dest:
-          "{{ path }}"
-        force:
-          yes
+        url: '{{ url }}'
+        dest: '{{ path }}'
+        force: yes
 
-    - name: Make {{ executable }} executable
+    - name: Make file executable
       file:
-        path:
-          "{{ path }}"
-        mode:
-          0744
+        path: '{{ path }}'
+        mode: 0744
+...

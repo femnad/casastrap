@@ -1,8 +1,17 @@
 ---
-- import_playbook:
-    _download_executable.yaml
+- import_playbook: _download_executable.yaml
   vars:
-    exec:
-      ammonite
-    url:
-      https://github.com/lihaoyi/Ammonite/releases/download/1.0.2/2.12-1.0.2
+    version: 1.6.3/2.12-1.6.3
+    executable: ammonite
+    url: https://github.com/lihaoyi/Ammonite/releases/download/{{ version }}
+
+- hosts: all
+  name: Add shebang to Ammonite script
+
+  tasks:
+    - name: Add shebang to script
+      lineinfile:
+        line: '#!/usr/bin/env sh'
+        insertbefore: BOF
+        path: '{{ user_bin }}/ammonite'
+...

@@ -7,18 +7,18 @@
   vars:
     deps:
       common:
-        - ldc
         - po4a
       apt:
         - autopoint
         - ldc
         - libgtkd-3-dev
+        - libphobos-4.8-dev
         - libvted-3-dev
       dnf_yum:
         - gettext-devel
     repo:
-      url:
-        https://github.com/gnunn1/tilix.git
+      url: https://github.com/gnunn1/tilix.git
+      version: 1.7.9
 
   roles:
     - source_install
