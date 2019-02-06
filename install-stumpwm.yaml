@@ -60,7 +60,7 @@
               (load quicklisp-init)))
 
     - name: Install packages with Quicklisp
-      command: sbcl --eval '(ql:quickload "{{ item }}")'
+      command: sbcl --eval '(ql:quickload "{{ item }}")' --non-interactive
       with_items:
         - alexandria
         - clx
