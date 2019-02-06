@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Stumpwm
+Exec=/usr/local/bin/stumpwm
+Type=XSession

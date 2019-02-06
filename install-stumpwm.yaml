@@ -1,30 +1,12 @@
 ---
-- import_playbook: install-x.yaml
-  tags: xorg
-
 - hosts: all
   name: Install StumpWM
 
   vars:
-    repo:
-      name: stumpwm
-      url: https://github.com/stumpwm/stumpwm
-
-    deps:
-      apt: [install-info, sbcl, x11-utils, texinfo]
-      dnf_yum:
-        - sbcl
-        - texinfo
-      portage: [dev-lisp/sbcl]
-
     sbclrc:
       "{{ user_home }}/.sbclrc"
 
-  roles:
-    - packages
-    - clone
-
-  post_tasks:
+  pre_tasks:
     - name: Create download path
       file:
         path:
@@ -67,8 +49,13 @@
         - cl-ppcre
       tags: quicklisp, quicklisp-deps
 
-- import_playbook: build-stumpwm.yaml
-  tags: build, install
+  roles:
+    - install-stumpwm
 
-- import_playbook: install-stumpwm-utils.yaml
-  tags: utils
+  post_tasks:
+    - name: Add Xsession file
+      copy:
+        src: stumpwm.desktop
+        dest: /usr/share/xsessions/
+      become: yes
+...
