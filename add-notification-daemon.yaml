@@ -1,0 +1,18 @@
+---
+- hosts: all
+  name: Install notification daemon as user service
+
+  vars:
+    systemd_service:
+      name: notification-daemon
+      description: Notification Daemon
+      exec: /usr/lib/notification-daemon/notification-daemon
+      absolute_exec: true
+      service:
+        Environment: DISPLAY=:0
+        Restart: Always
+        RestartSec: 5
+
+  roles:
+    - systemd-service
+...

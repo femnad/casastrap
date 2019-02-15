@@ -1,0 +1,32 @@
+---
+- hosts: all
+  name: Install Wireshark (and Tshark)
+
+  vars:
+    deps:
+      common:
+        - wireshark
+        - tshark
+
+  roles:
+    - packages
+
+  post_tasks:
+    - name: Create the Wireshark group
+      group:
+        name: wireshark
+      become: yes
+
+    - name: Set the group of dumpcap to Wireshark
+      file:
+        path: /usr/bin/dumpcap
+        group: wireshark
+      become: yes
+
+    - name: Add current user to the Wireshark group
+      user:
+        name: '{{ ansible_user_id }}'
+        groups: wireshark
+        append: yes
+      become: yes
+...
