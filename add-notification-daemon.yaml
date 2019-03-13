@@ -7,7 +7,6 @@
       name: notification-daemon
       description: Notification Daemon
       exec: /usr/lib/notification-daemon/notification-daemon
-      absolute_exec: true
       service:
         Environment: DISPLAY=:0
         Restart: Always
