@@ -1,0 +1,16 @@
+---
+- hosts: all
+  name: Install xidlehook
+
+  vars:
+    cargo:
+      crate: xidlehook
+    systemd_service:
+      name: xidlehook
+      description: xidlehook
+      exec: xidlehook --timer normal 300 'i3lock -c 000000' ''
+
+  roles:
+    - cargo
+    - systemd-service
+...
