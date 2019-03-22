@@ -13,10 +13,8 @@
         - expat-devel
         - freetype-devel
         - gcc-c++
-    cargo:
-      crate: alacritty
 
   roles:
     - packages
     - clone
-    - cargo
+    - cargo/source-install
