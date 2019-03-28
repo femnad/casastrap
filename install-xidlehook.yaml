@@ -9,6 +9,10 @@
       name: xidlehook
       description: xidlehook
       exec: xidlehook --timer normal 300 'i3lock -c 000000' ''
+      service:
+        Environment: 'DISPLAY=:0'
+        Restart: always
+        RestartSec: 5
 
   roles:
     - cargo
