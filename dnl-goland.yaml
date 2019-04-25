@@ -1,9 +1,10 @@
 ---
 - import_playbook: _download_and_link.yaml
   vars:
-    version: 2018.3.3
+    version: 2019.1.1
 
     url: https://download.jetbrains.com/go/goland-{{ version }}.tar.gz
     link:
       - src: bin/goland.sh
         dest: goland
+...
