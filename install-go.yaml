@@ -3,7 +3,7 @@
   name: Download and extract Go
 
   vars:
-    go_version: 1.12.1
+    go_version: 1.12.4
     download_and_link:
       url: https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz
       link:
@@ -12,3 +12,4 @@
 
   roles:
     - download-and-link
+...

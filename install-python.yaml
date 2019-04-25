@@ -3,13 +3,10 @@
     _release_install.yaml
   vars:
     release:
-      name:
-        python3
-      url:
-        https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
+      name: python3
+      url: https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
     build:
-      configure:
-        --enable-loadable-sqlite-extensions
+      configure: --enable-loadable-sqlite-extensions
     deps:
       apt:
         - libncursesw5-dev

@@ -1,45 +1,39 @@
 ---
-- hosts:
-    all
-  name:
-    Initialize vim
+- hosts: all
+  name: Initialize vim
 
   vars:
-    vim_dir:
-      "{{ user_home }}/.vim"
-    plugin_dir:
-      plugged
+    vim_dir: "{{ user_home }}/.vim"
+    plugin_dir: plugged
     packages:
+      common:
+        - cmake
       apt:
         - python3-dev
 
-  tasks:
-    - name:
-        Initialize autoload, plugin and swap directories
+  roles:
+    - packages
+
+  post_tasks:
+    - name: Initialize autoload, plugin and swap directories
       file:
-        path:
-          "{{ vim_dir }}/{{ item }}"
-        state:
-          directory
+        path: "{{ vim_dir }}/{{ item }}"
+        state: directory
       with_items:
         - autoload
         - "{{ plugin_dir }}"
         - swap
 
-    - name:
-        Download vim-plug
+    - name: Download vim-plug
       get_url:
-        url:
-          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest:
-          "{{ vim_dir }}/autoload/plug.vim"
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ vim_dir }}/autoload/plug.vim"
 
-    - name:
-        Initialize plugins
-      command:
-        vim -c ":PlugInstall" -c ":quitall"
+    - name: Initialize plugins
+      command: vim -c ":PlugInstall" -c ":quitall"
 
     - name: Compile YCM
       command: python3 ./install.py
       args:
         chdir: '{{ vim_dir }}/{{ plugin_dir }}/YouCompleteMe'
+...

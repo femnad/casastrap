@@ -2,23 +2,18 @@
 - hosts: all
   name: Install wireguard
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     deps:
       apt:
         - libmnl-dev
     repo:
-      url:
-        https://git.zx2c4.com/WireGuard
+      url: https://git.zx2c4.com/WireGuard
     build:
-      configure:
-        no
-      makefile_path:
-        src
+      configure: no
+      makefile_path: src
 
   roles:
     - packages
     - clone
     - autotools
+...
