@@ -2,7 +2,6 @@
 - import_playbook:
     _download_and_link.yaml
   vars:
-    url:
-      https://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz
+    url: https://dbeaver.io/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz
     link:
         - src: dbeaver
