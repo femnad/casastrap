@@ -8,6 +8,7 @@
         - libboost-program-options-dev
         - libpulse-dev
       dnf_yum:
+        - boost-devel
         - pulseaudio-libs-devel
     build:
       configure: no

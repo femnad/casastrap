@@ -5,6 +5,9 @@
   name: Install clipmenu
 
   vars:
+    deps:
+      common:
+        - xsel
     repo:
       url: https://github.com/cdown/clipmenu
     util:
@@ -14,6 +17,7 @@
         - clipmenud
 
   roles:
+    - packages
     - clone-and-link
 
   post_tasks:
