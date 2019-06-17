@@ -16,7 +16,7 @@
         User: '%I'
         Type: forking
         Environment: 'DISPLAY=:0'
-      user_service: no
+      scope: system
       instance: "{{ ansible_user_id }}"
       start: no
 
