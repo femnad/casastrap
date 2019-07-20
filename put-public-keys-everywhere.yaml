@@ -5,20 +5,14 @@
   tasks:
     - name: Get public keys from GitHub
       uri:
-        url:
-          https://api.github.com/users/{{ github_username }}/keys
-        return_content:
-          yes
-        body_format:
-          json
-      register:
-        github_public_keys
+        url: https://api.github.com/users/{{ github_username }}/keys
+        return_content: yes
+        body_format: json
+      register: github_public_keys
 
     - name: Add authorized keys
       authorized_key:
-        key:
-          "{{ item.key }}"
-        user:
-          "{{ ansible_user_id }}"
-      with_items:
-        "{{ github_public_keys.json }}"
+        key: '{{ item.key }}'
+        user: '{{ ansible_user_id }}'
+      loop: '{{ github_public_keys.json }}'
+...

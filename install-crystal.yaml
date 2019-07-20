@@ -2,13 +2,12 @@
 - hosts: all
   name: Install Crystal
 
-
   vars:
     deps:
       apt:
         - libevent-dev
         - libyaml-dev
-    version: 0.27.0
+    version: 0.29.0
 
   roles:
     - packages
