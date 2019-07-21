@@ -5,8 +5,8 @@
   vars:
 
     repo:
-      url:
-        https://github.com/fish-shell/fish-shell.git
+      url: https://github.com/fish-shell/fish-shell.git
+      version: 3.0.2
 
     deps:
       apt: [bc, g++, ncurses-dev]
@@ -19,3 +19,4 @@
 
   roles:
     - source_install
+...
