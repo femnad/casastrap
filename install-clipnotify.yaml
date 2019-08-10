@@ -3,6 +3,11 @@
   name: Install clipnotify
 
   vars:
+    deps:
+      apt:
+        - libx11-dev
+        - libxfixes-dev
+        - x11proto-dev
     repo:
       url: https://github.com/cdown/clipnotify.git
     build:
