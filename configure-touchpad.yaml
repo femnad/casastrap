@@ -1,8 +1,6 @@
 ---
-- hosts:
-    all
-  name:
-    Configure Synaptics Touchpad
+- hosts: all
+  name: Configure Synaptics Touchpad
 
   vars:
     apt:
@@ -14,32 +12,16 @@
     - packages
 
   post_tasks:
-    - name:
-        Create Xorg configuration directory
+    - name: Create Xorg configuration directory
       file:
-        path:
-          /etc/X11/xorg.conf.d
-        state:
-          directory
-      become:
-        true
+        path: /etc/X11/xorg.conf.d
+        state: directory
+      become: true
 
     # https://wiki.archlinux.org/index.php/Libinput#Common_options
-    - name:
-        Enable tapping and edge scrolls
-      blockinfile:
-        path:
-          /etc/X11/xorg.conf.d/30-touchpad.conf
-        create:
-          yes
-        block: |
-          Section "InputClass"
-              Identifier "touchpad"
-              Driver "synaptics"
-              MatchIsTouchpad "on"
-              Option "Tapping" "on"
-              Option "ScrollMethod" "twofinger"
-              Option "ScrollMethod" "edge"
-          EndSection
-      become:
-        true
+    - name: Enable tapping and edge scrolls
+      copy:
+        src: touchpad.conf
+        dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+      become: true
+...
