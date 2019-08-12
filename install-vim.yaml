@@ -1,0 +1,20 @@
+---
+- name: Install emacs
+  hosts: all
+
+  vars:
+    repo:
+      url: https://github.com/vim/vim.git
+      version: v8.1.1694
+    deps:
+      dnf_yum:
+        - ncurses-devel
+    build:
+      autoconf: false
+      configure: --enable-terminal
+
+
+  roles:
+    - packages
+    - source_install
+...
