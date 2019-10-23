@@ -1,20 +1,22 @@
 ---
-- name: Initialise Salt for Apt distros
+- name: Initialise Salt
   hosts: all
 
   tasks:
     - name: Add Salt repository key
       apt_key:
         url: https://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub
+      when: ansible_distribution = 'Ubuntu'
       become: yes
 
     - name: Add Salt repository
       apt_repository:
         repo: deb [arch=amd64] http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest bionic main
       become: yes
+      when: ansible_distribution = 'Ubuntu'
 
     - name: Install Salt components
-      apt:
+      package:
         name: salt-{{ item }}
       loop:
         - master
@@ -23,6 +25,12 @@
       become: yes
 
     - name: Install OpenSSH server for salt-ssh
-      apt:
+      package:
         name: openssh-server
       become: yes
+
+    - name: Clone Salt states repository
+      git:
+        repo: https://github.com/femnad/anr.git
+        dest: '{{ personal_repos_dir }}/anr'
+...

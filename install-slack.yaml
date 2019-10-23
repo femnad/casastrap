@@ -3,7 +3,7 @@
   name: Install Slack
 
   vars:
-    version: 3.3.7
+    version: 4.0.2
 
   tasks:
     - name: Install Slack .deb package
