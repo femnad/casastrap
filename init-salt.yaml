@@ -24,9 +24,11 @@
         - ssh
       become: yes
 
-    - name: Install OpenSSH server for salt-ssh
+    - name: Install OpenSSH server and git
       package:
-        name: openssh-server
+        name:
+          - git
+          - openssh-server
       become: yes
 
     - name: Clone Salt states repository
