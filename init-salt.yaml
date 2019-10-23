@@ -33,7 +33,7 @@
 
     - name: Enable OpenSSH service
       systemd:
-        name: ssh
+        name: sshd
         state: started
         enabled: true
       become: yes
