@@ -31,6 +31,13 @@
           - openssh-server
       become: yes
 
+    - name: Enable OpenSSH service
+      systemd:
+        name: ssh
+        state: started
+        enabled: true
+      become: yes
+
     - name: Clone Salt states repository
       git:
         repo: https://github.com/femnad/anr.git
