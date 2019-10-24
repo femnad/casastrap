@@ -60,4 +60,5 @@
     - name: Add localhost as known host
       known_hosts:
         name: localhost
+        key: "{{ lookup('file', '/etc/ssh/ssh_host_rsa_key.pub') }}"
 ...
