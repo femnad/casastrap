@@ -58,7 +58,5 @@
         key: "{{ lookup('file', user_home + '/.ssh/id_rsa.pub') }}"
 
     - name: Add localhost as known host
-      known_hosts:
-        name: localhost
-        key: "{{ lookup('file', '/etc/ssh/ssh_host_rsa_key.pub') }}"
+      shell: ssh-keyscan localhost > {{ user_home }}/.ssh/known_hosts
 ...
