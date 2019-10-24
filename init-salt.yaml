@@ -43,6 +43,11 @@
         repo: https://github.com/femnad/anr.git
         dest: '{{ personal_repos_dir }}/anr'
 
+    - name: Ensure .ssh directory
+      file:
+        path: '{{ user_home }}/.ssh'
+        state: directory
+
     - name: Add non passphrased SSH key
       openssh_keypair:
         path: '{{ user_home }}/.ssh/id_rsa'
