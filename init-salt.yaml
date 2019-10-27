@@ -36,6 +36,15 @@
         name:
           - git
           - openssh-server
+      when: ansible_distribution != 'Archlinux'
+      become: yes
+
+    - name: Install OpenSSH server and git
+      package:
+        name:
+          - git
+          - openssh
+      when: ansible_distribution == 'Archlinux'
       become: yes
 
     - name: Enable OpenSSH service
