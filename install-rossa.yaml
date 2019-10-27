@@ -10,8 +10,7 @@
       url:
         https://github.com/femnad/rossa.git
     build:
-      configure:
-        no
+      configure: no
     systemd_service:
         description: Simpleton battery monitor
         name: rossa
@@ -20,3 +19,4 @@
   roles:
     - source_install
     - systemd-service
+...

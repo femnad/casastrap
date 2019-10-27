@@ -4,6 +4,7 @@
 
   vars:
     version: 4.0.2
+    version: 4.0.1
 
   tasks:
     - name: Install Slack .deb package

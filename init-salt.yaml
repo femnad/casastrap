@@ -23,6 +23,13 @@
         - minion
         - ssh
       become: yes
+      when: ansible_distribution != 'Arch Linux'
+
+    - name: Install Salt
+      package:
+        name: salt
+      become: yes
+      when: ansible_distribution != 'Arch Linux'
 
     - name: Install OpenSSH server and git
       package:
