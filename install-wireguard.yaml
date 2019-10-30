@@ -6,6 +6,7 @@
     deps:
       apt:
         - libmnl-dev
+        - resolvconf
     repo:
       url: https://git.zx2c4.com/WireGuard
     build:
