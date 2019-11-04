@@ -1,8 +1,9 @@
 ---
 - import_playbook: _download_and_link.yaml
   vars:
-    version: 2019.1.3
+    version: 2019.2.4
     url: https://download.jetbrains.com/python/pycharm-community-{{ version }}.tar.gz
     link:
       - src: bin/pycharm.sh
         dest: pycharm
+...
