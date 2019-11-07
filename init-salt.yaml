@@ -33,7 +33,29 @@
         - minion
         - ssh
       become: yes
-      when: ansible_distribution == 'Fedora'
+      when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '30'
+
+    - name: Install Fedora 30 versions of Salt components
+      dnf:
+        name:
+          - https://dfw.mirror.rackspace.com/fedora/releases/30/Everything/x86_64/os/Packages/s/{{ item }}-2019.2.0-1.fc30.noarch.rpm
+      loop:
+        - salt
+        - salt-api
+        - salt-cloud
+        - salt-master
+        - salt-minion
+        - salt-ssh
+        - salt-syndic
+      become: yes
+      when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '31'
+
+    - name: Exclude Salt packages from upgrades
+      lineinfile:
+        path: /etc/dnf/dnf.conf
+        line: excludepkgs = salt, salt-api, salt-cloud, salt-master, salt-minion, salt-ssh, salt-syndic
+      become: yes
+      when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '31'
 
     - name: Install Salt
       package:
