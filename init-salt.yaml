@@ -35,6 +35,25 @@
       become: yes
       when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '30'
 
+    - name: Install Python 3 development package
+      package:
+        name: python3-devel
+      become: yes
+      when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '30'
+
+    - name: Install Salt with pip
+      pip:
+        name: salt==2019.2.2
+        virtualenv: '{{ virtualenv_base }}/salt'
+      when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '31'
+
+    - name: Exclude Salt packages from upgrades
+      lineinfile:
+        path: /etc/dnf/dnf.conf
+        line: excludepkgs = salt, salt-api, salt-cloud, salt-master, salt-minion, salt-ssh, salt-syndic
+      become: yes
+      when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '31'
+
     - name: Install Salt
       package:
         name: salt
