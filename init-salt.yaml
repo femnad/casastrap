@@ -23,7 +23,17 @@
         - minion
         - ssh
       become: yes
-      when: ansible_distribution != 'Archlinux'
+      when: ansible_distribution == 'Archlinux'
+
+    - name: Install Salt components (pinned to 2019.2.0)
+      package:
+        name: salt-{{ item }}-2019.2.0
+      loop:
+        - master
+        - minion
+        - ssh
+      become: yes
+      when: ansible_distribution == 'Fedora'
 
     - name: Install Salt
       package:
