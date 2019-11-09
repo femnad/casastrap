@@ -25,8 +25,9 @@
     - packages
 
   tasks:
-    - copy:
+    - name: Copy Teensy udev rules
+      copy:
         src: teensy.rules
-        path: /etc/udev/rules.d/49-teensy.rules
+        dest: /etc/udev/rules.d/49-teensy.rules
       become: yes
 ...
