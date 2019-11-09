@@ -7,7 +7,7 @@
   vars:
     repo:
       url:
-        https://github.com/femnad/qmk_firmware.git
+        https://github.com/qmk/qmk_firmware.git
     deps:
       apt:
         - gcc-avr
@@ -18,7 +18,15 @@
         - gcc-arm-none-eabi
         - binutils-arm-none-eabi
         - libnewlib-arm-none-eabi
+        - teensy-loader-cli
 
   roles:
     - clone
     - packages
+
+  tasks:
+    - copy:
+        src: teensy.rules
+        path: /etc/udev/rules.d/49-teensy.rules
+      become: yes
+...
