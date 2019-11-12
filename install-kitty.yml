@@ -28,6 +28,7 @@
         - python3-dev
         - libxkbcommon-x11-dev
       dnf_yum:
+        - dbus-devel
         - libpng-devel
         - libxkbcommon-devel
         - libXcursor-devel
