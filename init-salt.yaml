@@ -8,7 +8,7 @@
         name:
           - git
           - openssh-server
-          - python3-virtualenv
+          - virtualenv
       when: ansible_distribution != 'Archlinux'
       become: yes
 
