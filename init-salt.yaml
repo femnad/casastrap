@@ -19,6 +19,7 @@
       package:
         name: salt-{{ item }}
       loop:
+        - common
         - master
         - minion
         - ssh
