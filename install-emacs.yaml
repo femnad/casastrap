@@ -10,9 +10,16 @@
         - libgnutls28-dev
         - libtiff5-dev
         - libxpm-dev
+      dnf_yum:
+        - giflib-devel
+        - gnutls-devel
+        - gtk3-devel
+        - libXpm-devel
+        - libjpeg-turbo-devel
+        - ncurses-devel
     repo:
       url: git://git.sv.gnu.org/emacs.git
-      version: emacs-26.1
+      version: emacs-26.3
 
   roles:
     - packages
