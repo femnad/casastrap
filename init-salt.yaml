@@ -2,25 +2,23 @@
 - name: Initialise Salt
   hosts: all
 
-  tasks:
-    - name: Install requirements
-      package:
-        name:
-          - git
-          - openssh-server
-          - python3-dev
-          - virtualenv
-      when: ansible_distribution != 'Archlinux'
-      become: yes
+  vars:
+    common:
+      - git
+    apt:
+      - openssh_server
+      - virtualenv
+    dnf_yum:
+      - python3-devel
+      - python3-virtualenv
+      - openssh_server
+    pacman:
+      - openssh
 
-    - name: Install OpenSSH server and git
-      package:
-        name:
-          - git
-          - openssh
-      when: ansible_distribution == 'Archlinux'
-      become: yes
+  roles:
+    - packages
 
+  post_tasks:
     - name: Install Salt with pip
       pip:
         name: salt==2019.2.2
