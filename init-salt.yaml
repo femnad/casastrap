@@ -3,17 +3,18 @@
   hosts: all
 
   vars:
-    common:
-      - git
-    apt:
-      - openssh_server
-      - virtualenv
-    dnf_yum:
-      - python3-devel
-      - python3-virtualenv
-      - openssh_server
-    pacman:
-      - openssh
+    deps:
+      common:
+        - git
+      apt:
+        - openssh_server
+        - virtualenv
+      dnf_yum:
+        - python3-devel
+        - python3-virtualenv
+        - openssh_server
+      pacman:
+        - openssh
 
   roles:
     - packages
