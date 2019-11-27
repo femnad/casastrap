@@ -7,12 +7,12 @@
       common:
         - git
       apt:
-        - openssh_server
+        - openssh-server
         - virtualenv
       dnf_yum:
+        - openssh-server
         - python3-devel
         - python3-virtualenv
-        - openssh_server
       pacman:
         - openssh
 
