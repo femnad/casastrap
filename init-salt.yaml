@@ -10,6 +10,7 @@
         - openssh-server
         - virtualenv
       dnf_yum:
+        - gcc
         - openssh-server
         - python3-devel
         - python3-virtualenv
@@ -42,11 +43,15 @@
         path: '{{ user_home }}/.ssh'
         state: directory
 
+    - name: Check if there is an SSH key
+      stat:
+        path: '{{ user_home }}/.ssh/id_rsa'
+      register: ssh_key
+
     - name: Add non passphrased SSH key
       openssh_keypair:
         path: '{{ user_home }}/.ssh/id_rsa'
-      args:
-        creates: '{{ user_home }}/.ssh/id_rsa'
+      when: not ssh_key.stat.exists
 
     - name: Add own key as authorized
       authorized_key:
