@@ -8,6 +8,7 @@
         - git
       apt:
         - openssh-server
+        - python3-dev
         - virtualenv
       dnf_yum:
         - gcc
