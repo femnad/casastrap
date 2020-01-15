@@ -3,7 +3,7 @@
   hosts: all
 
   vars:
-    sudo_file: /etc/sudoers.d/{{ ansible_user_id }}.nopasswd
+    sudo_file: /etc/sudoers.d/{{ ansible_user_id }}-nopasswd
 
     deps:
       common:
