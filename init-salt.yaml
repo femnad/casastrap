@@ -26,7 +26,7 @@
   post_tasks:
     - name: Install Salt with pip
       pip:
-        name: salt==2019.2.2
+        name: salt==2019.2.3
         virtualenv: '{{ virtualenv_base }}/salt'
 
     - name: Enable OpenSSH service
