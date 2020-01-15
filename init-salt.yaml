@@ -3,6 +3,8 @@
   hosts: all
 
   vars:
+    sudo_file: /etc/sudoers.d/{{ ansible_user_id }}.nopasswd
+
     deps:
       common:
         - git
@@ -61,4 +63,12 @@
 
     - name: Add localhost as known host
       shell: ssh-keyscan localhost > {{ user_home }}/.ssh/known_hosts
+
+    - name: Enable passwordless sudo
+      lineinfile:
+        create: yes
+        dest: '{{ sudo_file }}'
+        line: '{{ ansible_user_id }} ALL=(ALL:ALL) NOPASSWD: ALL'
+        validate: visudo -cf %s
+      become: yes
 ...
