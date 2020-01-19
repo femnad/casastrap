@@ -2,4 +2,4 @@
 gpg_export_dir_suffix: "y/shred-me/fff.key"
 local_gpg_key_location: "{{ lookup('env', 'HOME') }}/{{ gpg_export_dir_suffix }}"
 remote_gpg_key_location: "{{ user_home }}/{{ gpg_export_dir_suffix }}"
-gpg_id: femnad
+...
