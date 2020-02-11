@@ -63,7 +63,7 @@
         key: "{{ lookup('file', user_home + '/.ssh/id_rsa.pub') }}"
 
     - name: Add localhost as known host
-      shell: ssh-keyscan localhost > {{ user_home }}/.ssh/known_hosts
+      shell: ssh-keyscan localhost >> {{ user_home }}/.ssh/known_hosts
 
     - name: Enable passwordless sudo
       lineinfile:
