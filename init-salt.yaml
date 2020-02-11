@@ -3,6 +3,7 @@
   hosts: all
 
   vars:
+    salt_version: 3000
     sudo_file: /etc/sudoers.d/{{ ansible_user_id }}-nopasswd
 
     deps:
@@ -26,7 +27,7 @@
   post_tasks:
     - name: Install Salt with pip
       pip:
-        name: salt==2019.2.3
+        name: salt=={{ salt_version }}
         virtualenv: '{{ virtualenv_base }}/salt'
 
     - name: Enable OpenSSH service
