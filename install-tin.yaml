@@ -1,20 +1,20 @@
 ---
 - hosts: all
 
-  vars_files:
-    - vars/paths.yaml
-
   vars:
     repo:
       name: tin
       url: http://bzr.tin.org/
       type: bzr
     deps:
-      apt: [bison, libncursesw5-dev]
+      apt:
+        - bison
+        - libncursesw5-dev
     build:
-      configuration: "--with-screen=ncursesw --mandir=/usr/local/share/man"
+      configuration: '--with-screen=ncursesw --mandir=/usr/local/share/man'
       make_command: build
       reconf: no
 
   roles:
     - source_install
+...
