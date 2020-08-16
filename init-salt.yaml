@@ -77,5 +77,6 @@
         dest: '{{ sudo_file }}'
         line: '{{ ansible_user_id }} ALL=(ALL:ALL) NOPASSWD: ALL'
         validate: visudo -cf %s
+        mode: 0600
       become: yes
 ...
