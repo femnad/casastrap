@@ -3,7 +3,7 @@
   hosts: all
 
   vars:
-    salt_version: 3000
+    salt_version: 3001.1
     sudo_file: /etc/sudoers.d/{{ ansible_user_id }}-nopasswd
 
     deps:
@@ -25,6 +25,12 @@
     - packages
 
   post_tasks:
+    - name: Upgrade pip
+      pip:
+        name: pip
+        state: latest
+        virtualenv: '{{ virtualenv_base }}/salt'
+
     - name: Install Salt with pip
       pip:
         name: salt=={{ salt_version }}
