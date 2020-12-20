@@ -65,7 +65,7 @@
 
     - name: Add own key as authorized
       authorized_key:
-        user: '{{ ansible_user }}'
+        user: '{{ ansible_user_id }}'
         key: "{{ lookup('file', user_home + '/.ssh/id_rsa.pub') }}"
 
     - name: Add localhost as known host
