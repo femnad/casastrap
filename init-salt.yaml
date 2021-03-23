@@ -3,7 +3,7 @@
   hosts: all
 
   vars:
-    salt_version: 3002.2
+    salt_version: 3002.5
     sudo_file: /etc/sudoers.d/{{ ansible_user_id }}-nopasswd
 
     deps:
