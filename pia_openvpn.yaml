@@ -1,5 +1,0 @@
----
-pia_pass_filename: www/private-internet-access
-vpn_scripts_dir: "{{ user_home }}/z/ce"
-pia_user_password_filename: up
-pia_user_password_file: "{{ vpn_scripts_dir }}/{{ pia_user_password_filename }}"

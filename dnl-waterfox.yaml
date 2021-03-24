@@ -1,6 +1,0 @@
----
-- import_playbook:
-    _download_and_link.yaml
-  vars:
-    url:
-      https://storage-waterfox.netdna-ssl.com/releases/linux64/installer/waterfox-55.2.0.en-US.linux-x86_64-1.tar.bz2

@@ -1,9 +1,0 @@
----
-- name: Install openfortivpn
-  hosts: all
-
-- import_playbook:
-    _autotools_source_install.yaml
-  vars:
-    url:
-      https://github.com/adrienverge/openfortivpn.git
