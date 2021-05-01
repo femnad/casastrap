@@ -5,6 +5,9 @@
   vars:
     salt_version: 3002.5
     sudo_file: /etc/sudoers.d/{{ ansible_user_id }}-nopasswd
+    ssh_service:
+      Debian: ssh
+      Fedora: sshd
 
     deps:
       common:
@@ -38,7 +41,7 @@
 
     - name: Enable OpenSSH service
       systemd:
-        name: ssh
+        name: '{{ ssh_service[ansible_os_family] }}'
         state: started
         enabled: true
       become: yes
